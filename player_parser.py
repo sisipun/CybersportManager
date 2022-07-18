@@ -1,46 +1,125 @@
 """
 Players parser module
 """
-from html.parser import HTMLParser
+from base_html_parser import BaseHtmlParser
 
 from player import PlayerBuilder
 
 
-class PlayerParser(HTMLParser):
+class PlayerParser(BaseHtmlParser):
     """Players parser"""
 
-    def handle_starttag(self, tag, attrs):
-        if tag in self._self_closed_tags:
-            return
-        self._stack.append(tag)
+    def __init__(self, summary):
+        super().__init__()
+        self._player_builder = PlayerBuilder(summary)
+        self.stat_row_number = 0
+        self.breakdown_row_number = 0
+        self.breakdown_number = 0
 
-        if self._stack[-1:-5:-1] == ['a', 'td', 'tr', 'tbody']:
-            href_attr = next(filter(lambda attr: attr[0] == 'href', attrs))
-            if href_attr:
-                self._current_player_builder.add_stats_url(href_attr[1])
+    def handle_starttag(self, tag, attrs):
+        super().handle_starttag(tag, attrs)
+
+        if (
+            tag == 'div' and
+            super().find_attr(attrs, 'class') == 'stats-row'
+        ):
+            self.stat_row_number += 1
+
+        if (
+            tag == 'div' and
+            super().find_attr(attrs, 'class') == 'summaryStatBreakdownRow'
+        ):
+            self.breakdown_row_number += 1
+
+        if (
+            tag == 'div' and
+            super().find_attr(attrs, 'class') and
+            'summaryStatBreakdown ' in super().find_attr(attrs, 'class')
+        ):
+            self.breakdown_number += 1
+
+        if (
+            tag == 'img' and
+            self._tags_stack[-1] == 'div' and
+            self.find_attr(self._attrs_stack[-1], 'class') and
+            'summaryRealname ' in self.find_attr(self._attrs_stack[-1], 'class')
+        ):
+            self._player_builder.add_country(self.find_attr(attrs, 'title'))
 
     def handle_data(self, data):
-        if self._stack[-1:-5:-1] == ['a', 'td', 'tr', 'tbody']:
-            self._current_player_builder.add_name(data)
+        if (
+            self._tags_stack[-1:-3:-1] == ['div', 'div'] and
+            self.find_attr(self._attrs_stack[-2], 'class') and
+            'summaryRealname ' in self.find_attr(self._attrs_stack[-2], 'class')
+        ):
+            self._player_builder.add_real_name(data)
 
-    def handle_endtag(self, tag):
-        if self._stack[-1:-3:-1] == ['tr', 'tbody']:
-            self._players.append(self._current_player_builder.build())
-            self._current_player_builder = PlayerBuilder()
+        if (
+            self._tags_stack[-1] == 'div' and
+            self.find_attr(self._attrs_stack[-1], 'class') == 'summaryPlayerAge'
+        ):
+            self._player_builder.add_age(data)
 
-        self._stack.pop()
+        if (
+            self._tags_stack[-1:-3:-1] == ['a', 'div'] and
+            self.find_attr(self._attrs_stack[-2], 'class') and
+            'SummaryTeamname ' in self.find_attr(self._attrs_stack[-2], 'class')
+        ):
+            self._player_builder.add_current_team(data)
 
-    def error(self, message):
-        print('Error while parsing players info')
-        print(message)
+        if (
+            self._tags_stack[-1:-3:-1] == ['span', 'div'] and
+            self.find_attr(self._attrs_stack[-2], 'class') == 'stats-row'
+        ):
+            self.handle_stats_row(data)
+
+        if (
+            self._tags_stack[-1] == 'div' and
+            self.find_attr(self._attrs_stack[-1], 'class') == 'summaryStatBreakdownDataValue'
+        ):
+            self.handle_breakdown_row(data)
+
+    def handle_stats_row(self, value):
+        """Handle stats row"""
+        if self.stat_row_number == 1:
+            self._player_builder.add_total_kills(value)
+        elif self.stat_row_number == 2:
+            self._player_builder.add_headshot_percent(value)
+        elif self.stat_row_number == 3:
+            self._player_builder.add_total_deaths(value)
+        elif self.stat_row_number == 4:
+            self._player_builder.add_kill_death_ratio(value)
+        elif self.stat_row_number == 5:
+            self._player_builder.add_damage_round_ratio(value)
+        elif self.stat_row_number == 6:
+            self._player_builder.add_grenade_damage_round_ratio(value)
+        elif self.stat_row_number == 7:
+            self._player_builder.add_maps_played(value)
+        elif self.stat_row_number == 8:
+            self._player_builder.add_rounds_played(value)
+        elif self.stat_row_number == 9:
+            self._player_builder.add_kill_round_ratio(value)
+        elif self.stat_row_number == 10:
+            self._player_builder.add_assist_round_ratio(value)
+        elif self.stat_row_number == 11:
+            self._player_builder.add_death_round_ratio(value)
+        elif self.stat_row_number == 12:
+            self._player_builder.add_saved_by_teammate_round_ratio(value)
+        elif self.stat_row_number == 13:
+            self._player_builder.add_saved_teammate_round_ratio(value)
+
+    def handle_breakdown_row(self, value):
+        """Handle breakdown row"""
+        if (
+            self.breakdown_row_number == 1 and
+            self.breakdown_number == 3
+        ):
+            self._player_builder.add_kast(value)
+        elif (
+            self.breakdown_row_number == 2 and
+            self.breakdown_number == 4
+        ):
+            self._player_builder.add_impact(value)
 
     def get_result(self):
-        """
-        Returns players list
-        """
-        return self._players
-
-    _stack = []
-    _players = []
-    _current_player_builder = PlayerBuilder()
-    _self_closed_tags = ['img']
+        return self._player_builder.build()
