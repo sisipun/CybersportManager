@@ -1,10 +1,10 @@
 """
 Players summary parser module
 """
-from base_html_parser import BaseHtmlParser
+from html_parser.base_html_parser import BaseHtmlParser
 
-from player import PlayerSummaryBuilder
-from team import TeamSummaryBuilder
+from model.player import PlayerSummaryBuilder
+from model.team import TeamSummaryBuilder
 
 
 class PlayerSummaryParser(BaseHtmlParser):
@@ -54,7 +54,7 @@ class PlayerSummaryParser(BaseHtmlParser):
             tag == 'tr' and
             self._tags_stack[-1:-3:-1] == ['tr', 'tbody']
         ):
-            self._result.append(self._current_player_builder.build())
+            self._result.append(self._current_player_builder)
             self._current_player_builder = PlayerSummaryBuilder()
 
         if (
