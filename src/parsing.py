@@ -6,16 +6,10 @@ import json
 import urllib.request
 from math import floor
 
-from model.player import Player, PlayerSummary
+from constants import HOST, PLAYERS_URL, DEFAULT_HTTP_HEADERS, YEARS_TO_PARSE, FILE_PATH_WITH_PLAYERS
+from model.player import Player
 from html_parser.player_stats_parser import PlayerStatsParser
 from html_parser.player_summary_parser import PlayerSummaryParser
-
-HOST = 'https://www.hltv.org'
-PLAYERS_URL = '/stats/players'
-DEFAULT_HTTP_HEADERS = {'User-Agent': 'CybersportManager'}
-YEARS_TO_PARSE = ['2022', '2021', '2020',
-                  '2019', '2018', '2017', '2016', '2015']
-FILE_PATH_TO_PARSE = 'build/players.json'
 
 
 def main():
@@ -41,7 +35,7 @@ def main():
         players.append(Player(summary, stats, stats_per_year))
         log_players_progress(i + 1, players_number)
 
-    with open(FILE_PATH_TO_PARSE, 'w', encoding="utf-8") as file:
+    with open(FILE_PATH_WITH_PLAYERS, 'w', encoding="utf-8") as file:
         file.write(json.dumps([player.to_dict() for player in players]))
 
 
