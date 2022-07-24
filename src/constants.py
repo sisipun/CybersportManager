@@ -1,3 +1,7 @@
+"""
+Global constants module
+"""
+
 HOST = 'https://www.hltv.org'
 PLAYERS_URL = '/stats/players'
 DEFAULT_HTTP_HEADERS = {'User-Agent': 'CybersportManager'}
@@ -11,6 +15,7 @@ YEARS_TO_PARSE = ['2022', '2021', '2020',
 ALL_TIME = "all"
 
 RATING_GENERATION_MIN_MAPS = 20
+MIN_RATING = 40
 
 STATS_FOR_RATING_WITH_DIRECTION = {
     "headshot_percent": False,
