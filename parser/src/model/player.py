@@ -31,7 +31,8 @@ class Player:
         return Player(
             PlayerSummary.from_dict(dictionary["summary"]),
             PlayerStats.from_dict(dictionary["stats"]),
-            {year: PlayerStats.from_dict(stats) for year, stats in dictionary["stats_per_year"].items()}
+            {year: PlayerStats.from_dict(
+                stats) for year, stats in dictionary["stats_per_year"].items()}
         )
 
     def __repr__(self):

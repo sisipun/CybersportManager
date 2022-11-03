@@ -19,7 +19,7 @@ def main():
     generator = RatingGenerator(players, RATING_GENERATION_MIN_MAPS)
     players_rating = generator.generate_rating()
 
-    with open(FILE_PATH_WITH_RATING, 'w', encoding="utf-8") as file:
+    with open(FILE_PATH_WITH_RATING, 'w+', encoding="utf-8") as file:
         file.write(json.dumps({
             name: {
                 year: rating.to_dict()
@@ -30,7 +30,7 @@ def main():
             in players_rating.items()
         }))
 
-    with open(FILE_PATH_WITH_OVERALL_RATING, 'w', encoding="utf-8") as file:
+    with open(FILE_PATH_WITH_OVERALL_RATING, 'w+', encoding="utf-8") as file:
         file.write(json.dumps({
             name: {
                 year: rating.overall

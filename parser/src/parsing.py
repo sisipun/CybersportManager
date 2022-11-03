@@ -6,7 +6,7 @@ import json
 import urllib.request
 from math import floor
 
-from constants import HOST, PLAYERS_URL, DEFAULT_HTTP_HEADERS, YEARS_TO_PARSE, FILE_PATH_WITH_PLAYERS
+from constants import HOST, PLAYERS_URL, DEFAULT_HTTP_HEADERS, SLEEP_BETWEEN_PARSE_IN_SECONDS, YEARS_TO_PARSE, FILE_PATH_WITH_PLAYERS
 from model.player import Player
 from html_parser.player_stats_parser import PlayerStatsParser
 from html_parser.player_summary_parser import PlayerSummaryParser
@@ -30,12 +30,12 @@ def main():
             if stat_per_year.maps_played > 0:
                 stats_per_year[year] = stat_per_year
             log_years_progress(year)
-            time.sleep(0.05)
+            time.sleep(SLEEP_BETWEEN_PARSE_IN_SECONDS)
 
         players.append(Player(summary, stats, stats_per_year))
         log_players_progress(i + 1, players_number)
 
-    with open(FILE_PATH_WITH_PLAYERS, 'w', encoding="utf-8") as file:
+    with open(FILE_PATH_WITH_PLAYERS, 'w+', encoding="utf-8") as file:
         file.write(json.dumps([player.to_dict() for player in players]))
 
 
