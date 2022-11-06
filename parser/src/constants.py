@@ -6,9 +6,9 @@ HOST = 'https://www.hltv.org'
 PLAYERS_URL = '/stats/players'
 DEFAULT_HTTP_HEADERS = {'User-Agent': 'CybersportManager'}
 
-FILE_PATH_WITH_PLAYERS = "../data/players.json"
-FILE_PATH_WITH_RATING = "../data/rating.json"
-FILE_PATH_WITH_OVERALL_RATING = "../data/overall_rating.json"
+FILE_PATH_WITH_PLAYERS = "data/players.json"
+FILE_PATH_WITH_RATING = "data/rating.json"
+FILE_PATH_WITH_OVERALL_RATING = "data/overall_rating.json"
 
 SLEEP_BETWEEN_PARSE_IN_SECONDS = 1
 YEARS_TO_PARSE = ['2022', '2021', '2020',

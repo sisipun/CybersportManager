@@ -57,6 +57,8 @@ class RatingGenerator:
             for player_stats
             in players_stats
         ]
+        if stat_values == []:
+            return (0, 0)
         return (max(stat_values), min(stat_values)) if reverse else (min(stat_values), max(stat_values))
 
     def _get_players_stats_by_year(self, players, year):
