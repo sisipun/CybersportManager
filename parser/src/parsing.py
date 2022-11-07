@@ -6,7 +6,7 @@ import json
 import urllib.request
 from math import floor
 
-from constants import HOST, PLAYERS_URL, DEFAULT_HTTP_HEADERS, SLEEP_BETWEEN_PARSE_IN_SECONDS, YEARS_TO_PARSE, FILE_PATH_WITH_PLAYERS
+from constants import *
 from model.player import Player
 from html_parser.player_stats_parser import PlayerStatsParser
 from html_parser.player_summary_parser import PlayerSummaryParser
@@ -14,11 +14,16 @@ from html_parser.player_summary_parser import PlayerSummaryParser
 
 def main():
     """Start point of parser"""
-    player_summary_builders = parse_player_summaries()
+    player_summary_builders = parse_player_summaries(
+        PARSING_FROM_PLAYER_INDEX, PARSING_TO_PLAYER_INDEX
+    )
     players_number = len(player_summary_builders)
     print('Players number:', players_number)
 
-    players = []
+    if PARSING_REWRITE:
+        with open(FILE_PATH_WITH_PLAYERS, 'w+', encoding="utf-8") as file:
+            print('File:', FILE_PATH_WITH_PLAYERS, 'was rewrited.')
+
     for i, player_summary_builder in enumerate(player_summary_builders):
         stats = parse_player_stats(player_summary_builder).build()
         summary = player_summary_builder.build()
@@ -26,27 +31,30 @@ def main():
         stats_per_year = {}
         for year in YEARS_TO_PARSE:
             stat_per_year = parse_player_stats(
-                player_summary_builder, year).build()
+                player_summary_builder, year
+            ).build()
             if stat_per_year.maps_played > 0:
                 stats_per_year[year] = stat_per_year
             log_years_progress(year)
             time.sleep(SLEEP_BETWEEN_PARSE_IN_SECONDS)
 
-        players.append(Player(summary, stats, stats_per_year))
+        with open(FILE_PATH_WITH_PLAYERS, 'a', encoding="utf-8") as file:
+            file.write(json.dumps(
+                Player(summary, stats, stats_per_year).to_dict()
+            ))
+            file.write('\n')
         log_players_progress(i + 1, players_number)
 
-    with open(FILE_PATH_WITH_PLAYERS, 'w+', encoding="utf-8") as file:
-        file.write(json.dumps([player.to_dict() for player in players]))
 
-
-def parse_player_summaries():
+def parse_player_summaries(from_index, to_index):
     """Parse players summaries info"""
     players_url = HOST + PLAYERS_URL
     players_request = urllib.request.Request(
-        players_url, headers=DEFAULT_HTTP_HEADERS)
+        players_url, headers=DEFAULT_HTTP_HEADERS
+    )
     with urllib.request.urlopen(players_request) as response:
         data = response.read()
-        parser = PlayerSummaryParser()
+        parser = PlayerSummaryParser(from_index, to_index)
         parser.feed(str(data))
         return parser.get_result()
 

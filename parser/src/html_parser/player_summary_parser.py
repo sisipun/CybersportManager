@@ -10,7 +10,13 @@ from model.team import TeamSummaryBuilder
 class PlayerSummaryParser(BaseHtmlParser):
     """Players summary parser"""
 
+    def __init__(self, from_index, to_index):
+        super().__init__()
+        self._from_index = from_index
+        self._to_index = to_index
+
     def handle_starttag(self, tag, attrs):
+        """Handle start tag"""
         super().handle_starttag(tag, attrs)
 
         if (
@@ -46,10 +52,12 @@ class PlayerSummaryParser(BaseHtmlParser):
             self._current_player_builder.add_stats_url(href_attr[1])
 
     def handle_data(self, data):
+        """Handle tag data"""
         if self._tags_stack[-1:-5:-1] == ['a', 'td', 'tr', 'tbody']:
             self._current_player_builder.add_name(data)
 
     def handle_endtag(self, tag):
+        """Handle end tag"""
         if (
             tag == 'tr' and
             self._tags_stack[-1:-3:-1] == ['tr', 'tbody']
@@ -66,14 +74,19 @@ class PlayerSummaryParser(BaseHtmlParser):
             self._tags_stack[-1:-6:-1] == ['a', 'span', 'td', 'tr', 'tbody'] and
             self.find_attr(self._attrs_stack[-3], 'class') == 'teamCol'
         ):
-            self._current_player_builder.add_team(self._current_team_builder.build())
+            self._current_player_builder.add_team(
+                self._current_team_builder.build()
+            )
             self._current_team_builder = TeamSummaryBuilder()
 
         super().handle_endtag(tag)
 
     def get_result(self):
-        return self._result
+        """Returns parsing result"""
+        return self._result[self._from_index:self._to_index]
 
     _current_player_builder = PlayerSummaryBuilder()
     _current_team_builder = TeamSummaryBuilder()
     _result = []
+    _from_index = None
+    _to_index = None

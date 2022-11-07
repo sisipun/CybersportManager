@@ -18,6 +18,7 @@ class PlayerStatsParser(BaseHtmlParser):
         self.spawn_index = 0
 
     def handle_starttag(self, tag, attrs):
+        """Handle start tag"""
         super().handle_starttag(tag, attrs)
 
         if (
@@ -50,6 +51,7 @@ class PlayerStatsParser(BaseHtmlParser):
                 self.find_attr(attrs, 'title'))
 
     def handle_data(self, data):
+        """Handle tag data"""
         if (
             self._tags_stack[-1:-3:-1] == ['div', 'div'] and
             self.find_attr(self._attrs_stack[-2], 'class') and
@@ -142,4 +144,5 @@ class PlayerStatsParser(BaseHtmlParser):
             pass
 
     def get_result(self):
+        """Returns parsing result"""
         return self._player_stats_builder

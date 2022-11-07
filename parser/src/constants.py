@@ -2,11 +2,15 @@
 Global constants module
 """
 
+PARSING_REWRITE = False
+PARSING_FROM_PLAYER_INDEX = 151
+PARSING_TO_PLAYER_INDEX = None
+
 HOST = 'https://www.hltv.org'
 PLAYERS_URL = '/stats/players'
 DEFAULT_HTTP_HEADERS = {'User-Agent': 'CybersportManager'}
 
-FILE_PATH_WITH_PLAYERS = "data/players.json"
+FILE_PATH_WITH_PLAYERS = "data/players.jsonl"
 FILE_PATH_WITH_RATING = "data/rating.json"
 FILE_PATH_WITH_OVERALL_RATING = "data/overall_rating.json"
 

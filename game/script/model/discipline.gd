@@ -1,7 +1,8 @@
+class_name Discipline
 extends Node
 
 
-enum Discipline {
+enum Type {
 	CS_GO,
 	DOTA,
 	PUBG
