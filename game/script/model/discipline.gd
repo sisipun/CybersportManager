@@ -3,7 +3,7 @@ extends Node
 
 
 enum Type {
-	CS_GO,
-	DOTA,
-	PUBG
+	TACTICAL_FPS,
+	MOBA,
+	BATTLE_ROYALE
 }

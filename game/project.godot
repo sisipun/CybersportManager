@@ -10,14 +10,14 @@ config_version=4
 
 _global_script_classes=[ {
 "base": "Node",
+"class": "BaseMap",
+"language": "GDScript",
+"path": "res://script/match/base_map.gd"
+}, {
+"base": "Node",
 "class": "BaseMatch",
 "language": "GDScript",
 "path": "res://script/match/base_match.gd"
-}, {
-"base": "Node",
-"class": "CsGoMatch",
-"language": "GDScript",
-"path": "res://script/match/cs_go_match.gd"
 }, {
 "base": "Node",
 "class": "Discipline",
@@ -39,6 +39,21 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://script/model/player/player_summary_model.gd"
 }, {
+"base": "Node",
+"class": "TacticalFpsMap",
+"language": "GDScript",
+"path": "res://script/match/tactical_fps/tactical_fps_map.gd"
+}, {
+"base": "Node",
+"class": "TacticalFpsMatch",
+"language": "GDScript",
+"path": "res://script/match/tactical_fps/tactical_fps_match.gd"
+}, {
+"base": "Node",
+"class": "TacticalFpsPlayer",
+"language": "GDScript",
+"path": "res://script/match/tactical_fps/tactical_fps_player.gd"
+}, {
 "base": "Resource",
 "class": "TeamModel",
 "language": "GDScript",
@@ -50,12 +65,15 @@ _global_script_classes=[ {
 "path": "res://script/model/team/team_summary_model.gd"
 } ]
 _global_script_class_icons={
+"BaseMap": "",
 "BaseMatch": "",
-"CsGoMatch": "",
 "Discipline": "",
 "OrganizationModel": "",
 "PlayerModel": "",
 "PlayerSummaryModel": "",
+"TacticalFpsMap": "",
+"TacticalFpsMatch": "",
+"TacticalFpsPlayer": "",
 "TeamModel": "",
 "TeamSummaryModel": ""
 }
@@ -63,7 +81,7 @@ _global_script_class_icons={
 [application]
 
 config/name="CybersportManager"
-run/main_scene="res://script/ui.tscn"
+run/main_scene="res://script/match/tactical_fps/tactical_fps_map.tscn"
 config/icon="res://asset/icon/icon.png"
 
 [physics]
