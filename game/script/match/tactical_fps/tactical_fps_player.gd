@@ -1,3 +1,3 @@
 class_name TacticalFpsPlayer
-extends Node
+extends KinematicBody2D
 

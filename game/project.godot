@@ -39,7 +39,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://script/model/player/player_summary_model.gd"
 }, {
-"base": "Node",
+"base": "Area2D",
 "class": "TacticalFpsMap",
 "language": "GDScript",
 "path": "res://script/match/tactical_fps/tactical_fps_map.gd"
@@ -49,7 +49,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://script/match/tactical_fps/tactical_fps_match.gd"
 }, {
-"base": "Node",
+"base": "KinematicBody2D",
 "class": "TacticalFpsPlayer",
 "language": "GDScript",
 "path": "res://script/match/tactical_fps/tactical_fps_player.gd"
@@ -81,8 +81,12 @@ _global_script_class_icons={
 [application]
 
 config/name="CybersportManager"
-run/main_scene="res://script/match/tactical_fps/tactical_fps_map.tscn"
+run/main_scene="res://script/ui.tscn"
 config/icon="res://asset/icon/icon.png"
+
+[input_devices]
+
+pointing/emulate_touch_from_mouse=true
 
 [physics]
 
