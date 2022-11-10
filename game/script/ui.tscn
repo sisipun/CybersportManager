@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://script/ui.gd" type="Script" id=1]
 [ext_resource path="res://script/match/tactical_fps/tactical_fps_map.tscn" type="PackedScene" id=2]
+[ext_resource path="res://script/match/tactical_fps/tactical_fps_wall.tscn" type="PackedScene" id=3]
 
 [node name="UI" type="Control"]
 anchor_right = 1.0
@@ -17,3 +18,7 @@ anchor_bottom = 0.5
 mouse_filter = 2
 
 [node name="Map" parent="MapZone" instance=ExtResource( 2 )]
+
+[node name="Wall" parent="MapZone/Map" instance=ExtResource( 3 )]
+position = Vector2( 1, -78 )
+scale = Vector2( 0.5, 0.1 )
