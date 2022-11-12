@@ -1,17 +1,23 @@
 class_name TacticalFpsPlayer
-extends KinematicBody2D
+extends BasePlayer
 
 
-const TARGET_EPSILON = 5
+const TARGET_EPSILON: int = 5
 
 export (float) var speed: float = 150.0
 
 var target: Vector2 = Vector2.ZERO
 
-func _physics_process(delta: float) -> void:
+
+func init(_team: int) -> void:
+	.init(_team)
+
+
+func _physics_process(_delta: float) -> void:
 	var direction: Vector2 = target - position
 	if direction.length() > TARGET_EPSILON:
 		direction = direction.normalized()
+		# warning-ignore:return_value_discarded
 		move_and_slide(speed * direction)
 
 

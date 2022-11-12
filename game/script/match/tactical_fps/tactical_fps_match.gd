@@ -1,4 +1,6 @@
 class_name TacticalFpsMatch
-extends Node
+extends BaseMatch
 
 
+func _ready() -> void:
+	.init(TacticalFpsTeam.Side.values(), 5)
