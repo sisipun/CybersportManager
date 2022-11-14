@@ -17,7 +17,7 @@ func init(teams: Array, team_players_count: int) -> void:
 		
 		for _i in range(team_players_count):
 			var player: BasePlayer = player_scene.instance()
-			player.init(team)
+			player.init(team, _i)
 			map.add_player(player)
 
 

@@ -7,10 +7,12 @@ const TARGET_EPSILON: int = 5
 export (float) var speed: float = 150.0
 
 var target: Vector2 = Vector2.ZERO
+var player_number: int = -1
 
 
-func init(_team: int) -> void:
-	.init(_team)
+func init(_team: int, _player_number: int) -> void:
+	team = _team
+	player_number = _player_number
 
 
 func _physics_process(_delta: float) -> void:

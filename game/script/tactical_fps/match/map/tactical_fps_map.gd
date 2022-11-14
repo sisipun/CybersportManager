@@ -18,10 +18,10 @@ func _ready() -> void:
 		plant_zones.append(get_node(plant_zone_node))
 
 
-func get_starting_position(team: int, player_number: int) -> Vector2:
-	var starting_position = team_starting_positions[team]
+func get_starting_position(player: BasePlayer) -> Vector2:
+	var starting_position = team_starting_positions[player.team]
 	var radius = starting_position.radius
-	var y: int = (player_number + 1) * 10 * ((randi() % 2 ) * 2 - 1)
+	var y: int = (player.player_number + 1) * 10 * ((randi() % 2 ) * 2 - 1)
 	var x: int = int(sqrt(radius * radius - y * y)) * ((randi() % 2 ) * 2 - 1)
 	var player_offset: Vector2 = Vector2(x, y)
-	return team_starting_positions[team].position + player_offset
+	return starting_position.position + player_offset

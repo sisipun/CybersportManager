@@ -10,12 +10,12 @@ func add_player(player: BasePlayer) -> void:
 		players[player.team] = []
 	
 	var team_players: Array = players[player.team]
-	var player_position: Vector2 = get_starting_position(player.team, len(team_players))
+	var player_position: Vector2 = get_starting_position(player)
 	player.position = player_position
 	player.move_to(player_position)
 	add_child(player)
 	team_players.append(player)
 
 
-func get_starting_position(_team: int, _player_number: int) -> Vector2:
+func get_starting_position(_player: BasePlayer) -> Vector2:
 	return Vector2.ZERO

@@ -6,7 +6,7 @@ var target_plant_zone: TacticalFpsPlantZone = null
 
 
 func init(_team: int) -> void:
-	.init(_team)
+	team = _team
 
 
 func process(map: BaseMap) -> void:
