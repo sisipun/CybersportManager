@@ -5,10 +5,12 @@ export (NodePath) onready var map = get_node(map) as BaseMap
 export (PackedScene) var player_controller_scene: PackedScene = null
 export (PackedScene) var player_scene: PackedScene = null
 
+var team_players_count: int = -1
 var team_controllers: Dictionary = {}
 
 
-func init(teams: Array, team_players_count: int) -> void:
+func init(teams: Array, _team_players_count: int) -> void:
+	team_players_count = _team_players_count
 	for team in teams:
 		var controller: BasePlayerController = player_controller_scene.instance()
 		controller.init(team)
