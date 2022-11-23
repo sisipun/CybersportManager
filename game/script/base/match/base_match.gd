@@ -21,6 +21,9 @@ func init(teams: Array, _team_players_count: int) -> void:
 			var player: BasePlayer = player_scene.instance()
 			player.init(team, _i)
 			map.add_player(player)
+	
+	for controller in team_controllers.values():
+		controller.before_start(map)
 
 
 func _process(_delta: float) -> void:

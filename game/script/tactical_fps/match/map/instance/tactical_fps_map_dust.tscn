@@ -1,49 +1,57 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://script/tactical_fps/match/map/tactical_fps_map.tscn" type="PackedScene" id=1]
 [ext_resource path="res://script/tactical_fps/match/map/tactical_fps_plant_zone.tscn" type="PackedScene" id=2]
 [ext_resource path="res://script/tactical_fps/match/map/tactical_fps_starting_position.tscn" type="PackedScene" id=3]
 [ext_resource path="res://script/tactical_fps/match/map/tactical_fps_wall.tscn" type="PackedScene" id=4]
 
+[sub_resource type="NavigationPolygon" id=1]
+vertices = PoolVector2Array( 272, -276, 272, -184, -153, -190, -270, -274, -265, 268, -160, 158, 275, 269, 275, 166 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ), PoolIntArray( 4, 3, 2, 5 ), PoolIntArray( 6, 4, 5, 7 ) ]
+outlines = [ PoolVector2Array( 275, 166, 275, 269, -265, 268, -270, -274, 272, -276, 272, -184, -153, -190, -160, 158 ) ]
+
 [node name="Map" instance=ExtResource( 1 )]
 starting_position_nodes = [ NodePath("BlueStartingPosition"), NodePath("RedStartingPosition") ]
 plant_zone_nodes = [ NodePath("ZoneA"), NodePath("ZoneB") ]
 
-[node name="RedStartingPosition" parent="." index="2" instance=ExtResource( 3 )]
+[node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="Navigation" index="0"]
+navpoly = SubResource( 1 )
+
+[node name="RedStartingPosition" parent="." index="3" instance=ExtResource( 3 )]
 position = Vector2( 33, 223 )
 
-[node name="BlueStartingPosition" parent="." index="3" instance=ExtResource( 3 )]
+[node name="BlueStartingPosition" parent="." index="4" instance=ExtResource( 3 )]
 position = Vector2( -2, -186 )
 team = 1
 
-[node name="ZoneA" parent="." index="4" instance=ExtResource( 2 )]
+[node name="ZoneA" parent="." index="5" instance=ExtResource( 2 )]
 position = Vector2( -176, -223 )
 scale = Vector2( 2, 2 )
 
-[node name="ZoneB" parent="." index="5" instance=ExtResource( 2 )]
+[node name="ZoneB" parent="." index="6" instance=ExtResource( 2 )]
 position = Vector2( 185, -206 )
 scale = Vector2( 2, 2 )
 
-[node name="Wall" parent="." index="6" instance=ExtResource( 4 )]
+[node name="Wall" parent="." index="7" instance=ExtResource( 4 )]
 position = Vector2( -132, 35 )
 scale = Vector2( 0.1, 1 )
 
-[node name="Wall5" parent="." index="7" instance=ExtResource( 4 )]
+[node name="Wall5" parent="." index="8" instance=ExtResource( 4 )]
 position = Vector2( 136, 40 )
 scale = Vector2( 0.1, 1 )
 
-[node name="Wall2" parent="." index="8" instance=ExtResource( 4 )]
+[node name="Wall2" parent="." index="9" instance=ExtResource( 4 )]
 position = Vector2( -87, -85 )
 scale = Vector2( 0.5, 0.1 )
 
-[node name="Wall6" parent="." index="9" instance=ExtResource( 4 )]
+[node name="Wall6" parent="." index="10" instance=ExtResource( 4 )]
 position = Vector2( 91, -82 )
 scale = Vector2( 0.5, 0.1 )
 
-[node name="Wall3" parent="." index="10" instance=ExtResource( 4 )]
+[node name="Wall3" parent="." index="11" instance=ExtResource( 4 )]
 position = Vector2( -88, -167 )
 scale = Vector2( 0.5, 0.1 )
 
-[node name="Wall4" parent="." index="11" instance=ExtResource( 4 )]
+[node name="Wall4" parent="." index="12" instance=ExtResource( 4 )]
 position = Vector2( 96, -166 )
 scale = Vector2( 0.5, 0.1 )

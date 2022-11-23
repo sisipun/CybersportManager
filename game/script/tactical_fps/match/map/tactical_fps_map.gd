@@ -1,7 +1,6 @@
 class_name TacticalFpsMap
 extends BaseMap
 
-
 export (Array, NodePath) var starting_position_nodes: Array = []
 export (Array, NodePath) var plant_zone_nodes: Array = []
 
