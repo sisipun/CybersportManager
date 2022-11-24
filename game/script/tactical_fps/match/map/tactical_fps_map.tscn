@@ -18,3 +18,4 @@ scale = Vector2( 2.5, 2.5 )
 texture = ExtResource( 4 )
 
 [node name="Navigation" type="Navigation2D" parent="."]
+edge_connection_margin = 50.0
