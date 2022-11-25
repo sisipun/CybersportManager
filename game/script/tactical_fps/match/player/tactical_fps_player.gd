@@ -15,6 +15,10 @@ func init(_team: int, _player_number: int) -> void:
 
 
 func _physics_process(_delta: float) -> void:
+	if ray.is_colliding() and ray.get_collider() is BasePlayer:
+		var collider: TacticalFpsPlayer = ray.get_collider()
+		if collider.team != team:
+			print('Enemy detected')
 	if navigation_agent.is_navigation_finished():
 		return
 	
