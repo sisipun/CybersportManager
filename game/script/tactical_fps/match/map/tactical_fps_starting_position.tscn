@@ -1,6 +1,9 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://script/tactical_fps/match/map/tactical_fps_starting_position.gd" type="Script" id=1]
+[ext_resource path="res://script/base/match/map/base_starting_position.tscn" type="PackedScene" id=2]
 
-[node name="StartingPosition" type="Node2D"]
+[node name="Position" instance=ExtResource( 2 )]
 script = ExtResource( 1 )
+team = 0
+radius = 50

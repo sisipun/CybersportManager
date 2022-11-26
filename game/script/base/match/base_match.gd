@@ -17,9 +17,9 @@ func init(teams: Array, _team_players_count: int) -> void:
 		add_child(controller)
 		team_controllers[team] = controller
 		
-		for _i in range(team_players_count):
+		for i in range(team_players_count):
 			var player: BasePlayer = player_scene.instance()
-			player.init(team, _i)
+			player.init(team, i)
 			map.add_player(player)
 
 

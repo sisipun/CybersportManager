@@ -5,10 +5,6 @@ extends BasePlayerController
 var target_plant_zone: TacticalFpsPlantZone = null
 
 
-func init(_team: int) -> void:
-	team = _team
-
-
 func process(map: BaseMap) -> void:
 	var tactical_fps_map: TacticalFpsMap = map as TacticalFpsMap
 	if not target_plant_zone:
