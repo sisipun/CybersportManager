@@ -5,8 +5,8 @@ extends Node
 var team: int = -1
 
 
-func init(team: int) -> void:
-	self.team = team
+func init(_team: int) -> void:
+	self.team = _team
 
 
 func before_start(_map: BaseMap) -> void:
