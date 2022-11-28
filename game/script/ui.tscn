@@ -1,9 +1,7 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://script/ui.gd" type="Script" id=1]
 [ext_resource path="res://script/tactical_fps/match/tactical_fps_match.tscn" type="PackedScene" id=2]
-[ext_resource path="res://script/tactical_fps/match/player/tactical_fps_player.tscn" type="PackedScene" id=3]
-[ext_resource path="res://script/tactical_fps/match/player/tactical_fps_player_controller.tscn" type="PackedScene" id=4]
 
 [node name="UI" type="Control"]
 anchor_right = 1.0
@@ -19,8 +17,5 @@ anchor_bottom = 0.5
 mouse_filter = 2
 
 [node name="Match" parent="MapZone" instance=ExtResource( 2 )]
-map = NodePath("Map")
-player_controller_scene = ExtResource( 4 )
-player_scene = ExtResource( 3 )
 
 [editable path="MapZone/Match"]

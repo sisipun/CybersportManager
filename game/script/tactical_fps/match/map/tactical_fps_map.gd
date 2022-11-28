@@ -24,3 +24,8 @@ func get_starting_position(player: BasePlayer) -> Vector2:
 	var x: int = int(sqrt(radius * radius - y * y)) * ((randi() % 2 ) * 2 - 1)
 	var player_offset: Vector2 = Vector2(x, y)
 	return starting_position.position + player_offset
+
+
+func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
+	if event is InputEventMouseButton and event.is_pressed():
+		players[0][0].move_to(event.position)

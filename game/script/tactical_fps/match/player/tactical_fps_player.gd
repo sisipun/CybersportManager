@@ -2,6 +2,14 @@ class_name TacticalFpsPlayer
 extends BasePlayer
 
 
-func _on_enemy_detected(enemy: KinematicBody2D) -> void:
-	look_at(enemy.global_position)
-	print('Enemy Detected')
+var enemy: BasePlayer = null
+
+
+func _on_enemy_detected(_enemy: KinematicBody2D) -> void:
+	stop()
+	enemy = _enemy
+
+
+func _physics_process(delta: float) -> void:
+	if enemy:
+		.rotate_to(delta, enemy.position)

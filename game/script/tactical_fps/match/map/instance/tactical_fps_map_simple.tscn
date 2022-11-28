@@ -28,5 +28,7 @@ position = Vector2( -176, -223 )
 scale = Vector2( 2, 2 )
 
 [node name="ZoneB" parent="." index="6" instance=ExtResource( 2 )]
-position = Vector2( 185, -206 )
+position = Vector2( -122, -223 )
 scale = Vector2( 2, 2 )
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]

@@ -5,13 +5,13 @@ extends RayCast2D
 signal player_detected(player)
 
 
-export (float) var cone_of_vision: float = 100.0
+export (float) var cone_of_vision_degrees: float = 100.0
 export (int) var rays_count: int = 10
 
 
 func _physics_process(_delta: float) -> void:
 	var cast_to_vector: Vector2 = Vector2(cast_to.x, cast_to.y)
-	var cone_of_vision_step: float = cone_of_vision / (rays_count - 1.0)
+	var cone_of_vision_step: float = cone_of_vision_degrees / (rays_count - 1.0)
 	var align_index: float = (rays_count - 1.0) / 2.0
 
 	for i in range(rays_count):
