@@ -5,20 +5,24 @@ extends KinematicBody2D
 export (NodePath) onready var navigation_agent = get_node(navigation_agent) as NavigationAgent2D
 export (NodePath) onready var vision = get_node(vision) as RayCast2D
 
+export (float) var max_health: float = 100.0
 export (float) var max_speed: float = 100.0
 export (float) var max_rotation_speed: float = PI
 
 var team: int = -1
 var player_number: int = -1
+var health: float = 0.0
 
 
 func init(_team: int, _player_number: int) -> void:
 	self.team = _team
 	self.player_number = _player_number
+	self.health = max_health
 
 
 func _ready() -> void:
 	vision.connect("player_detected", self, "_on_player_detected")
+	health = max_health
 
 
 func _physics_process(_delta: float) -> void:
@@ -44,6 +48,11 @@ func rotate_to(delta: float, target: Vector2) -> void:
 
 func stop() -> void:
 	navigation_agent.set_target_location(global_position)
+
+
+func hit(power: float) -> void:
+	health -= power
+	print('Hitted wiht power:', power, '. Health left:', health)
 
 
 # Can't use BasePlayer type because of circylar dependency

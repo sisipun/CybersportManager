@@ -59,6 +59,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://script/base/model/player/player_summary_model.gd"
 }, {
+"base": "KinematicBody2D",
+"class": "TacticalFpsBullet",
+"language": "GDScript",
+"path": "res://script/tactical_fps/match/player/tactical_fps_bullet.gd"
+}, {
 "base": "BaseMap",
 "class": "TacticalFpsMap",
 "language": "GDScript",
@@ -115,6 +120,7 @@ _global_script_class_icons={
 "OrganizationModel": "",
 "PlayerModel": "",
 "PlayerSummaryModel": "",
+"TacticalFpsBullet": "",
 "TacticalFpsMap": "",
 "TacticalFpsMatch": "",
 "TacticalFpsPlantZone": "",

@@ -9,14 +9,16 @@ export (float) var cone_of_vision_degrees: float = 100.0
 export (int) var rays_count: int = 10
 
 
+var direction: Vector2 = cast_to
+
+
 func _physics_process(_delta: float) -> void:
-	var cast_to_vector: Vector2 = Vector2(cast_to.x, cast_to.y)
 	var cone_of_vision_step: float = cone_of_vision_degrees / (rays_count - 1.0)
 	var align_index: float = (rays_count - 1.0) / 2.0
 
 	for i in range(rays_count):
 		var current_cone_of_vision_angle: float = deg2rad((i - align_index) * cone_of_vision_step)
-		var current_cast_to_vector: Vector2 = cast_to_vector.rotated(current_cone_of_vision_angle)
+		var current_cast_to_vector: Vector2 = direction.rotated(current_cone_of_vision_angle)
 		cast_to = current_cast_to_vector
 		force_raycast_update()
 		
@@ -24,4 +26,4 @@ func _physics_process(_delta: float) -> void:
 			emit_signal("player_detected", get_collider())
 			break
 	
-	cast_to = cast_to_vector
+	cast_to = direction
