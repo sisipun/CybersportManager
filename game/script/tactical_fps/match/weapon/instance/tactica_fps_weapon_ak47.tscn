@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://script/tactical_fps/match/weapon/tactical_fps_weapon.tscn" type="PackedScene" id=1]
+[ext_resource path="res://asset/sprite/weapon.png" type="Texture" id=2]
+
+[node name="Weapon" instance=ExtResource( 1 )]
+texture = ExtResource( 2 )
+
+[node name="BulletSpawnPoint" parent="." index="0"]
+position = Vector2( 41, 0 )
+
+[node name="PlayerAttachPoint" parent="." index="1"]
+position = Vector2( -41, 0 )

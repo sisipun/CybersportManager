@@ -62,7 +62,7 @@ _global_script_classes=[ {
 "base": "KinematicBody2D",
 "class": "TacticalFpsBullet",
 "language": "GDScript",
-"path": "res://script/tactical_fps/match/player/tactical_fps_bullet.gd"
+"path": "res://script/tactical_fps/match/weapon/tactical_fps_bullet.gd"
 }, {
 "base": "BaseMap",
 "class": "TacticalFpsMap",
@@ -99,6 +99,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://script/tactical_fps/match/tactical_fps_team.gd"
 }, {
+"base": "Sprite",
+"class": "TacticalFpsWeapon",
+"language": "GDScript",
+"path": "res://script/tactical_fps/match/weapon/tactical_fps_weapon.gd"
+}, {
 "base": "Resource",
 "class": "TeamModel",
 "language": "GDScript",
@@ -128,6 +133,7 @@ _global_script_class_icons={
 "TacticalFpsPlayerController": "",
 "TacticalFpsStartingPosition": "",
 "TacticalFpsTeam": "",
+"TacticalFpsWeapon": "",
 "TeamModel": "",
 "TeamSummaryModel": ""
 }

@@ -26,6 +26,6 @@ func get_starting_position(player: BasePlayer) -> Vector2:
 	return starting_position.position + player_offset
 
 
-func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
+func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
 	if event is InputEventMouseButton and event.is_pressed():
 		players[0][0].move_to(event.position)

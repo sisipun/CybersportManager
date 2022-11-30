@@ -2,26 +2,31 @@ class_name TacticalFpsPlayer
 extends BasePlayer
 
 
-export (PackedScene) var bullet_scene: PackedScene = null
+export (PackedScene) var _weapon_scene: PackedScene = null
 
-var enemy: BasePlayer = null
+var _enemy: BasePlayer = null
+var _weapon: TacticalFpsWeapon = null
 
 
-func _on_enemy_detected(_enemy: KinematicBody2D) -> void:
-	if enemy:
+func _ready() -> void:
+	_weapon = _weapon_scene.instance()
+	add_child(_weapon)
+	_weapon.init(self)
+
+
+func _on_enemy_detected(enemy: KinematicBody2D) -> void:
+	if _enemy:
 		return
 	
 	stop()
-	enemy = _enemy
+	_enemy = enemy
 	shoot()
 
 
 func _physics_process(delta: float) -> void:
-	if enemy:
-		.rotate_to(delta, enemy.position)
+	if _enemy:
+		.rotate_to(delta, _enemy.position)
 
 
 func shoot() -> void:
-	var bullet: TacticalFpsBullet = bullet_scene.instance()
-	bullet.init(self, transform.x)
-	get_parent().add_child(bullet)
+	_weapon.shoot()

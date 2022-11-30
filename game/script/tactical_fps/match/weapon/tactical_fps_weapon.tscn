@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://script/tactical_fps/match/weapon/tactical_fps_weapon.gd" type="Script" id=1]
+[ext_resource path="res://script/tactical_fps/match/weapon/tactical_fps_bullet.tscn" type="PackedScene" id=2]
+
+[node name="Weapon" type="Sprite"]
+script = ExtResource( 1 )
+_bullet_spawn_point = NodePath("BulletSpawnPoint")
+_player_attach_point = NodePath("PlayerAttachPoint")
+_bullet_scene = ExtResource( 2 )
+
+[node name="BulletSpawnPoint" type="Node2D" parent="."]
+
+[node name="PlayerAttachPoint" type="Node2D" parent="."]
