@@ -13,7 +13,7 @@ func add_player(player: BasePlayer) -> void:
 	
 	var team_players: Array = players[player.team]
 	var player_position: Vector2 = get_starting_position(player)
-	player.global_position = player_position
+	player.position = player_position
 	navigation.add_child(player)
 	team_players.append(player)
 

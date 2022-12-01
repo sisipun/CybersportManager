@@ -20,12 +20,12 @@ func _on_enemy_detected(enemy: KinematicBody2D) -> void:
 	
 	stop()
 	_enemy = enemy
-	shoot()
 
 
 func _physics_process(delta: float) -> void:
 	if _enemy:
 		.rotate_to(delta, _enemy.position)
+		shoot()
 
 
 func shoot() -> void:

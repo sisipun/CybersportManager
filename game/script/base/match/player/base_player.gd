@@ -36,6 +36,10 @@ func _physics_process(_delta: float) -> void:
 	rotation = _velocity.angle()
 
 
+func to_map_coordinates(global_position: Vector2) -> Vector2:
+	return get_parent().to_local(global_position)
+
+
 func move_to(target: Vector2) -> void:
 	navigation_agent.set_target_location(target)
 
