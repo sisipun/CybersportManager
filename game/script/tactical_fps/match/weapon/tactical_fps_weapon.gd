@@ -19,7 +19,7 @@ var can_shoot: bool = true
 func _ready() -> void:
 	_bullet_spawn_timer.wait_time = 60.0 / _rate_of_fire
 	_bullet_spawn_timer.one_shot = true
-	_bullet_spawn_timer.connect("timeout", self, "_on_bullet_spawn_timer_timeout")
+	assert(_bullet_spawn_timer.connect("timeout", self, "_on_bullet_spawn_timer_timeout") == OK)
 
 
 func init(_player: BasePlayer) -> void:

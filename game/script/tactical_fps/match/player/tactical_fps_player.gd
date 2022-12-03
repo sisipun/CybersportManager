@@ -20,6 +20,7 @@ func _on_enemy_detected(enemy: KinematicBody2D) -> void:
 	
 	stop()
 	_enemy = enemy
+	assert(_enemy.connect("dead", self, "_on_enemy_dead") == OK)
 
 
 func _physics_process(delta: float) -> void:
@@ -30,3 +31,7 @@ func _physics_process(delta: float) -> void:
 
 func shoot() -> void:
 	_weapon.shoot()
+
+
+func _on_enemy_dead() -> void:
+	_enemy = null

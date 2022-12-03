@@ -2,6 +2,9 @@ class_name BasePlayer
 extends KinematicBody2D
 
 
+signal dead
+
+
 export (NodePath) onready var navigation_agent = get_node(navigation_agent) as NavigationAgent2D
 export (NodePath) onready var vision = get_node(vision) as RayCast2D
 
@@ -21,7 +24,7 @@ func init(_team: int, _player_number: int) -> void:
 
 
 func _ready() -> void:
-	vision.connect("player_detected", self, "_on_player_detected")
+	assert(vision.connect("player_detected", self, "_on_player_detected") == OK)
 	health = max_health
 
 
@@ -57,6 +60,11 @@ func stop() -> void:
 func hit(power: float) -> void:
 	health -= power
 	print('Hitted wiht power:', power, '. Health left:', health)
+	
+	if health <= 0:
+		health = 0
+		emit_signal("dead")
+		queue_free()
 
 
 # Can't use BasePlayer type because of circylar dependency
