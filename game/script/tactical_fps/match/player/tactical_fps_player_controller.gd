@@ -13,3 +13,11 @@ func process(map: BaseMap) -> void:
 		for player in players:
 			var tactical_fps_player: TacticalFpsPlayer = player as TacticalFpsPlayer
 			tactical_fps_player.move_to(target_plant_zone.global_position)
+
+
+func start_round() -> void:
+	pass
+
+
+func end_round() -> void:
+	target_plant_zone = null

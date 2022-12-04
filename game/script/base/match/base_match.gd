@@ -7,20 +7,31 @@ export (PackedScene) var player_scene: PackedScene = null
 
 var team_players_count: int = -1
 var team_controllers: Dictionary = {}
+var teams: Array = []
 
 
-func init(teams: Array, _team_players_count: int) -> void:
+func init(_teams: Array, _team_players_count: int) -> void:
+	teams = _teams
 	team_players_count = _team_players_count
 	for team in teams:
 		var controller: BasePlayerController = player_controller_scene.instance()
 		controller.init(team)
 		add_child(controller)
 		team_controllers[team] = controller
-		
+	
+	start_round()
+
+
+func start_round() -> void:
+	for team in teams:
 		for i in range(team_players_count):
 			var player: BasePlayer = player_scene.instance()
 			player.init(team, i)
 			map.add_player(player)
+
+
+func end_round() -> void:
+	map.clear()
 
 
 func _process(_delta: float) -> void:
