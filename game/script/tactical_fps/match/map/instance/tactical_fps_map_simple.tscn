@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://script/tactical_fps/match/map/tactical_fps_map.tscn" type="PackedScene" id=1]
 [ext_resource path="res://script/tactical_fps/match/map/tactical_fps_plant_zone.tscn" type="PackedScene" id=2]
 [ext_resource path="res://script/tactical_fps/match/map/tactical_fps_starting_position.tscn" type="PackedScene" id=3]
+[ext_resource path="res://script/base/match/map/base_wall.tscn" type="PackedScene" id=4]
 
 [sub_resource type="NavigationPolygon" id=1]
 vertices = PoolVector2Array( -276, -276, 275, -274, 277, 276, -276, 275 )
@@ -16,19 +17,36 @@ plant_zone_nodes = [ NodePath("ZoneA"), NodePath("ZoneB") ]
 [node name="Zone" type="NavigationPolygonInstance" parent="Navigation" index="0"]
 navpoly = SubResource( 1 )
 
-[node name="RedStartingPosition" parent="." index="3" instance=ExtResource( 3 )]
+[node name="LWall" parent="." index="3" instance=ExtResource( 4 )]
+position = Vector2( -270, 0 )
+scale = Vector2( 0.1, 2.5 )
+
+[node name="RWall" parent="." index="4" instance=ExtResource( 4 )]
+position = Vector2( 270, 0 )
+scale = Vector2( 0.1, 2.5 )
+
+[node name="UWall" parent="." index="5" instance=ExtResource( 4 )]
+position = Vector2( 0, -270 )
+scale = Vector2( 2.5, 0.1 )
+
+[node name="DWall" parent="." index="6" instance=ExtResource( 4 )]
+position = Vector2( 0, 270 )
+scale = Vector2( 2.5, 0.1 )
+
+[node name="RedStartingPosition" parent="." index="7" instance=ExtResource( 3 )]
 position = Vector2( 33, 223 )
 
-[node name="BlueStartingPosition" parent="." index="4" instance=ExtResource( 3 )]
+[node name="BlueStartingPosition" parent="." index="8" instance=ExtResource( 3 )]
 position = Vector2( -2, -186 )
 team = 1
 
-[node name="ZoneA" parent="." index="5" instance=ExtResource( 2 )]
+[node name="ZoneA" parent="." index="9" instance=ExtResource( 2 )]
 position = Vector2( -176, -223 )
 scale = Vector2( 2, 2 )
 
-[node name="ZoneB" parent="." index="6" instance=ExtResource( 2 )]
+[node name="ZoneB" parent="." index="10" instance=ExtResource( 2 )]
 position = Vector2( -122, -223 )
 scale = Vector2( 2, 2 )
 
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
 [connection signal="input_event" from="." to="." method="_on_input_event"]

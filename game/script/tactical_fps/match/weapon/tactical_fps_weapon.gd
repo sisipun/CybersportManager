@@ -8,9 +8,9 @@ export (NodePath) onready var _bullet_spawn_timer = get_node(_bullet_spawn_timer
 
 export (PackedScene) var _bullet_scene: PackedScene = null
 
-export (float) var _bullet_power: float = 30.0
-export (float) var _bullet_speed: float = 30.0
-export (float) var _rate_of_fire: float = 60.0
+export (float) var _bullet_power: float = 10.0
+export (float) var _bullet_speed: float = 1000.0
+export (float) var _rate_of_fire: float = 300.0
 
 var player: BasePlayer = null
 var can_shoot: bool = true

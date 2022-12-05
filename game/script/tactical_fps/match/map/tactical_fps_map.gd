@@ -39,3 +39,8 @@ func _on_player_dead(player: BasePlayer) -> void:
 func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
 	if event is InputEventMouseButton and event.is_pressed():
 		players[0][0].move_to(event.position)
+
+
+
+func _on_body_exited(body: Node) -> void:
+	body.queue_free()
