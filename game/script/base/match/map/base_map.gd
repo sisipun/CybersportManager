@@ -31,5 +31,5 @@ func clear() -> void:
 	players.clear()
 
 
-func _on_player_dead(player: BasePlayer) -> void:
+func _on_player_dead(_player: BasePlayer) -> void:
 	pass

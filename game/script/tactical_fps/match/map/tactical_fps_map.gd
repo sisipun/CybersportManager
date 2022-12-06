@@ -2,7 +2,7 @@ class_name TacticalFpsMap
 extends BaseMap
 
 
-signal team_dead
+signal team_dead(team)
 
 
 export (Array, NodePath) var starting_position_nodes: Array = []
@@ -33,7 +33,7 @@ func get_starting_position(player: BasePlayer) -> Vector2:
 func _on_player_dead(player: BasePlayer) -> void:
 	players[player.team].erase(player)
 	if players[player.team] == []:
-		emit_signal("team_dead")
+		emit_signal("team_dead", player.team)
 
 
 func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:

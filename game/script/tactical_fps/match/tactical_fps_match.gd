@@ -3,13 +3,15 @@ extends BaseMatch
 
 
 export (NodePath) onready var _next_round_timer = get_node(_next_round_timer) as Timer
-
-
 export (float) var _next_round_delay: float = 3.0
+
+var score: Dictionary = {} 
 
 
 func init(teams: Array, team_players_count: int) -> void:
 	.init(teams, team_players_count)
+	for team in teams:
+		score[team] = 0
 	map.connect("team_dead", self, "_on_team_dead")
 
 
@@ -32,8 +34,10 @@ func end_round() -> void:
 		controller.end_round()
 
 
-func _on_team_dead() -> void:
+func _on_team_dead(team: int) -> void:
 	_next_round_timer.start()
+	score[1 - team] += 1
+	print(score)
 
 
 func _on_next_round_timer_timeout() -> void:
