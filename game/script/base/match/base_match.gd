@@ -1,39 +1,40 @@
 class_name BaseMatch
 extends Node
 
-export (NodePath) onready var map = get_node(map) as BaseMap
-export (PackedScene) var player_controller_scene: PackedScene = null
-export (PackedScene) var player_scene: PackedScene = null
 
-var team_players_count: int = -1
-var team_controllers: Dictionary = {}
-var teams: Array = []
+export (NodePath) onready var _map = get_node(_map) as BaseMap
+export (PackedScene) var _player_controller_scene: PackedScene = null
+export (PackedScene) var _player_scene: PackedScene = null
+
+var _team_players_count: int = -1
+var _team_controllers: Dictionary = {}
+var _teams: Array = []
 
 
-func init(_teams: Array, _team_players_count: int) -> void:
-	teams = _teams
-	team_players_count = _team_players_count
+func init(teams: Array, team_players_count: int) -> void:
+	_teams = teams
+	_team_players_count = team_players_count
 	for team in teams:
-		var controller: BasePlayerController = player_controller_scene.instance()
+		var controller: BasePlayerController = _player_controller_scene.instance()
 		controller.init(team)
 		add_child(controller)
-		team_controllers[team] = controller
+		_team_controllers[team] = controller
 	
 	start_round()
 
 
 func start_round() -> void:
-	for team in teams:
-		for i in range(team_players_count):
-			var player: BasePlayer = player_scene.instance()
+	for team in _teams:
+		for i in range(_team_players_count):
+			var player: BasePlayer = _player_scene.instance()
 			player.init(team, i)
-			map.add_player(player)
+			_map.add_player(player)
 
 
 func end_round() -> void:
-	map.clear()
+	_map.clear()
 
 
 func _process(_delta: float) -> void:
-	for controller in team_controllers.values():
-		controller.process(map)
+	for controller in _team_controllers.values():
+		controller.process(_map)

@@ -2,21 +2,21 @@ class_name BaseMap
 extends Node
 
 
-export (NodePath) onready var navigation = get_node(navigation) as Navigation2D
+export (NodePath) onready var _navigation = get_node(_navigation) as Navigation2D
 
-var players: Dictionary = {}
+var _players: Dictionary = {}
 
 
 func add_player(player: BasePlayer) -> void:
-	if not (players.has(player.team)):
-		players[player.team] = []
+	if not (_players.has(player.team)):
+		_players[player.team] = []
 	
 	assert(player.connect("dead", self, "_on_player_dead", [player]) == OK)
 	
-	var team_players: Array = players[player.team]
+	var team_players: Array = _players[player.team]
 	var player_position: Vector2 = get_starting_position(player)
 	player.position = player_position
-	navigation.add_child(player)
+	_navigation.add_child(player)
 	team_players.append(player)
 
 
@@ -25,10 +25,14 @@ func get_starting_position(_player: BasePlayer) -> Vector2:
 
 
 func clear() -> void:
-	for team_players in players.values():
+	for team_players in _players.values():
 		for player in team_players:
 			player.queue_free()
-	players.clear()
+	_players.clear()
+
+
+func get_team_players(team: int) -> Array:
+	return _players[team]
 
 
 func _on_player_dead(_player: BasePlayer) -> void:

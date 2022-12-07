@@ -31,14 +31,14 @@ func get_starting_position(player: BasePlayer) -> Vector2:
 
 
 func _on_player_dead(player: BasePlayer) -> void:
-	players[player.team].erase(player)
-	if players[player.team] == []:
+	_players[player.team].erase(player)
+	if _players[player.team] == []:
 		emit_signal("team_dead", player.team)
 
 
 func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
 	if event is InputEventMouseButton and event.is_pressed():
-		players[0][0].move_to(event.position)
+		_players[0][0].move_to(event.position)
 
 
 

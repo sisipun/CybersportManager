@@ -9,8 +9,8 @@ radius = 14.0
 
 [node name="Player" type="KinematicBody2D"]
 script = ExtResource( 2 )
-navigation_agent = NodePath("NavigationAgent")
-vision = NodePath("Vision")
+_navigation_agent = NodePath("NavigationAgent")
+_vision = NodePath("Vision")
 
 [node name="Shape" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )

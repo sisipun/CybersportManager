@@ -1,6 +1,6 @@
 extends Node
 
 
-export (Resource) var player: Resource = null
-export (Resource) var team: Resource = null
-export (Resource) var organization: Resource = null
+export (Resource) var _player: Resource = null
+export (Resource) var _team: Resource = null
+export (Resource) var _organization: Resource = null
