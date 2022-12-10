@@ -2,6 +2,10 @@ class_name BaseMatch
 extends Node
 
 
+# warning-ignore:unused_signal
+signal end_match(winner)
+
+
 export (NodePath) onready var _map = get_node(_map) as BaseMap
 export (PackedScene) var _player_controller_scene: PackedScene = null
 export (PackedScene) var _player_scene: PackedScene = null

@@ -2,6 +2,7 @@ class_name TacticalFpsMatch
 extends BaseMatch
 
 
+export (int) var _win_condition_rounds_count: int = 16
 export (NodePath) onready var _next_round_timer = get_node(_next_round_timer) as Timer
 export (float) var _next_round_delay: float = 3.0
 
@@ -35,10 +36,18 @@ func end_round() -> void:
 
 
 func _on_team_dead(team: int) -> void:
-	_next_round_timer.start()
-	_score[1 - team] += 1
-	print(_score)
+	_on_round_end(1 - team)
 
+
+func _on_round_end(winner_team: int) -> void:
+	_score[winner_team] += 1
+	print(_score)
+	if _score[winner_team] >= _win_condition_rounds_count:
+		emit_signal("end_match", winner_team)
+		print('End match. Winner: ', winner_team)
+	else:
+		_next_round_timer.start()
+	
 
 func _on_next_round_timer_timeout() -> void:
 	end_round()
