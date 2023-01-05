@@ -7,6 +7,7 @@ signal dead
 
 export (NodePath) onready var _navigation_agent = get_node(_navigation_agent) as NavigationAgent2D
 export (NodePath) onready var _vision = get_node(_vision) as RayCast2D
+export (NodePath) onready var _health_bar = get_node(_health_bar) as HealthBar
 
 export (float) var _max_health: float = 100.0
 export (float) var _max_speed: float = 100.0
@@ -25,6 +26,7 @@ func init(_team: int, _player_number: int) -> void:
 
 func _ready() -> void:
 	assert(_vision.connect("player_detected", self, "_on_player_detected") == OK)
+	_health_bar.init(_max_health)
 	health = _max_health
 
 
@@ -65,6 +67,8 @@ func hit(power: float) -> void:
 		health = 0
 		emit_signal("dead")
 		queue_free()
+	
+	_health_bar.value = health
 
 
 # Can't use BasePlayer type because of circylar dependency

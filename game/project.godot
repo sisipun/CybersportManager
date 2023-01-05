@@ -44,6 +44,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://script/base/model/discipline.gd"
 }, {
+"base": "ProgressBar",
+"class": "HealthBar",
+"language": "GDScript",
+"path": "res://script/base/match/player/health_bar.gd"
+}, {
 "base": "Resource",
 "class": "OrganizationModel",
 "language": "GDScript",
@@ -122,6 +127,7 @@ _global_script_class_icons={
 "BasePlayerVision": "",
 "BaseStartingPosition": "",
 "Discipline": "",
+"HealthBar": "",
 "OrganizationModel": "",
 "PlayerModel": "",
 "PlayerSummaryModel": "",
