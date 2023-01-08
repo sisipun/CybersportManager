@@ -10,8 +10,14 @@ script = ExtResource( 4 )
 _map = NodePath("Map")
 _player_controller_scene = ExtResource( 3 )
 _player_scene = ExtResource( 1 )
+_round_timer = NodePath("RoundTimer")
+_bomb_timer = NodePath("BombTimer")
 _next_round_timer = NodePath("NextRoundTimer")
 
 [node name="Map" parent="." instance=ExtResource( 2 )]
+
+[node name="RoundTimer" type="Timer" parent="."]
+
+[node name="BombTimer" type="Timer" parent="."]
 
 [node name="NextRoundTimer" type="Timer" parent="."]

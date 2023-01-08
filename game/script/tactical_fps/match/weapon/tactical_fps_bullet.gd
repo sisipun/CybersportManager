@@ -29,8 +29,7 @@ func _physics_process(delta: float) -> void:
 
 
 func _on_collision(collider: CollisionObject2D) -> void:
-	print(get_class())
-	if collider == _weapon.player or collider.get_class() == get_class():
+	if collider == _weapon.player:
 		return
 	
 	if collider is TacticalFpsPlayer:
