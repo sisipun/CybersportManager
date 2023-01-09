@@ -24,19 +24,11 @@ func init(teams: Array, team_players_count: int) -> void:
 		add_child(controller)
 		_team_controllers[team] = controller
 	
-	start_round()
+	start()
 
 
-func start_round() -> void:
-	for team in _teams:
-		for i in range(_team_players_count):
-			var player: BasePlayer = _player_scene.instance()
-			player.init(team, i)
-			_map.add_player(player)
-
-
-func end_round() -> void:
-	_map.clear()
+func start() -> void:
+	pass
 
 
 func _process(_delta: float) -> void:

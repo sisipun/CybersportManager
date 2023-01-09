@@ -17,5 +17,10 @@ anchor_bottom = 0.5
 mouse_filter = 2
 
 [node name="Match" parent="MapZone" instance=ExtResource( 2 )]
+_win_condition_rounds_count = 16
+_round_ends_winning_team = 1
+_round_bomb_explodes_winning_team = 0
+_round_duration = 10.0
+_bomb_duration = 30.0
 
 [editable path="MapZone/Match"]

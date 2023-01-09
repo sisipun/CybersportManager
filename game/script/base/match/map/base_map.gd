@@ -32,7 +32,10 @@ func clear() -> void:
 
 
 func get_team_players(team: int) -> Array:
-	return _players[team]
+	if team < _players.size():
+		return _players[team]
+	else: 
+		return []
 
 
 func _on_player_dead(_player: BasePlayer) -> void:

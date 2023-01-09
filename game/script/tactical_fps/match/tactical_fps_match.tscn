@@ -12,7 +12,8 @@ _player_controller_scene = ExtResource( 3 )
 _player_scene = ExtResource( 1 )
 _round_timer = NodePath("RoundTimer")
 _bomb_timer = NodePath("BombTimer")
-_next_round_timer = NodePath("NextRoundTimer")
+_start_round_timer = NodePath("StartRoundTimer")
+_end_round_timer = NodePath("EndRoundTimer")
 
 [node name="Map" parent="." instance=ExtResource( 2 )]
 
@@ -20,4 +21,6 @@ _next_round_timer = NodePath("NextRoundTimer")
 
 [node name="BombTimer" type="Timer" parent="."]
 
-[node name="NextRoundTimer" type="Timer" parent="."]
+[node name="StartRoundTimer" type="Timer" parent="."]
+
+[node name="EndRoundTimer" type="Timer" parent="."]
