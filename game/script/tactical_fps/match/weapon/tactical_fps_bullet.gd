@@ -3,6 +3,7 @@ extends KinematicBody2D
 
 
 var _weapon: TacticalFpsWeapon = null
+var _player: TacticalFpsPlayer = null
 var _direction: Vector2 = Vector2.ZERO
 var _power: float = 0.0 
 var _speed: float = 0.0 
@@ -29,7 +30,7 @@ func _physics_process(delta: float) -> void:
 
 
 func _on_collision(collider: CollisionObject2D) -> void:
-	if collider == _weapon.player:
+	if collider == _player:
 		return
 	
 	if collider is TacticalFpsPlayer:
