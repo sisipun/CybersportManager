@@ -13,7 +13,7 @@ export (float) var _bullet_speed: float = 1000.0
 export (float) var _rate_of_fire: float = 300.0
 
 var player: BasePlayer = null
-var can_shoot: bool = true
+var _can_shoot: bool = true
 
 
 func _ready() -> void:
@@ -28,7 +28,7 @@ func init(_player: BasePlayer) -> void:
 
 
 func shoot() -> void:
-	if !can_shoot:
+	if !_can_shoot:
 		return
 	
 	var bullet = _bullet_scene.instance()
@@ -40,7 +40,7 @@ func shoot() -> void:
 		_bullet_power, 
 		_bullet_speed
 	)
-	can_shoot = false
+	_can_shoot = false
 	_bullet_spawn_timer.start()
 
 
@@ -49,4 +49,4 @@ func forward() -> Vector2:
 
 
 func _on_bullet_spawn_timer_timeout() -> void:
-	can_shoot = true
+	_can_shoot = true

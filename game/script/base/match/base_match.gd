@@ -6,8 +6,8 @@ extends Node
 signal end_match(winner)
 
 
-export (NodePath) onready var _map = get_node(_map) as BaseMap
-export (PackedScene) var _player_controller_scene: PackedScene = null
+export (NodePath) onready var map = get_node(map) as BaseMap
+export (PackedScene) var _team_controller_scene: PackedScene = null
 export (PackedScene) var _player_scene: PackedScene = null
 
 var _team_players_count: int = -1
@@ -19,12 +19,11 @@ func init(teams: Array, team_players_count: int) -> void:
 	_teams = teams
 	_team_players_count = team_players_count
 	for team in teams:
-		var controller: BasePlayerController = _player_controller_scene.instance()
-		controller.init(team)
+		# Can use BaseTeamController because of circylar dependency
+		var controller: Node = _team_controller_scene.instance()
+		controller.init(team, self)
 		add_child(controller)
 		_team_controllers[team] = controller
-	
-	start()
 
 
 func start() -> void:
@@ -33,4 +32,4 @@ func start() -> void:
 
 func _process(_delta: float) -> void:
 	for controller in _team_controllers.values():
-		controller.process(_map)
+		controller.process()

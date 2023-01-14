@@ -46,13 +46,14 @@ func _ready() -> void:
 	_end_round_timer.connect("timeout", self, "_on_end_round_timer_timeout")
 	
 	init(TacticalFpsTeam.Side.values(), 2)
+	start()
 
 
 func init(teams: Array, team_players_count: int) -> void:
 	.init(teams, team_players_count)
 	for team in teams:
 		_score[team] = 0
-	_map.connect("team_dead", self, "_on_team_dead")
+	map.connect("team_dead", self, "_on_team_dead")
 
 
 func start() -> void:
@@ -65,9 +66,9 @@ func start_round() -> void:
 		for i in range(_team_players_count):
 			var player: BasePlayer = _player_scene.instance()
 			player.init(team, i)
-			_map.add_player(player)
+			map.add_player(player)
 	for controller in _team_controllers.values():
-		controller.start_round(_map)
+		controller.start_round()
 	_round_timer.start()
 	_state = State.ROUND_IN_PROGRESS
 
@@ -97,7 +98,7 @@ func _on_start_round_timer_timeout() -> void:
 
 
 func _on_end_round_timer_timeout() -> void:
-	_map.clear()
+	map.clear()
 	_state = State.ROUND_STARTING
 	_start_round_timer.start()
 

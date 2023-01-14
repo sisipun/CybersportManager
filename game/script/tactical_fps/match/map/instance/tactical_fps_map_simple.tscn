@@ -45,7 +45,7 @@ position = Vector2( -176, -223 )
 scale = Vector2( 2, 2 )
 
 [node name="ZoneB" parent="." index="10" instance=ExtResource( 2 )]
-position = Vector2( -122, -223 )
+position = Vector2( 170, -210 )
 scale = Vector2( 2, 2 )
 
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]

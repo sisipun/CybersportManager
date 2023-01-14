@@ -18,12 +18,6 @@ var player_number: int = -1
 var health: float = 0.0
 
 
-func init(_team: int, _player_number: int) -> void:
-	self.team = _team
-	self.player_number = _player_number
-	self.health = _max_health
-
-
 func _ready() -> void:
 	assert(_vision.connect("player_detected", self, "_on_player_detected") == OK)
 	_health_bar.init(_max_health)
@@ -39,6 +33,12 @@ func _physics_process(_delta: float) -> void:
 	_navigation_agent.set_velocity(_velocity)
 	_velocity = move_and_slide(_velocity)
 	rotation = _velocity.angle()
+
+
+func init(_team: int, _player_number: int) -> void:
+	self.team = _team
+	self.player_number = _player_number
+	self.health = _max_health
 
 
 func to_map_coordinates(global_position: Vector2) -> Vector2:

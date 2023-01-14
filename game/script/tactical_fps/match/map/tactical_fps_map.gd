@@ -36,6 +36,7 @@ func _on_player_dead(player: BasePlayer) -> void:
 		emit_signal("team_dead", player.team)
 
 
+# TODO Method for test proposal. Remove later
 func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
 	if event is InputEventMouseButton and event.is_pressed():
 		_players[0][0].move_to(event.position)

@@ -24,18 +24,18 @@ func get_starting_position(_player: BasePlayer) -> Vector2:
 	return Vector2.ZERO
 
 
-func clear() -> void:
-	for team_players in _players.values():
-		for player in team_players:
-			player.queue_free()
-	_players.clear()
-
-
 func get_team_players(team: int) -> Array:
 	if team < _players.size():
 		return _players[team]
 	else: 
 		return []
+
+
+func clear() -> void:
+	for team_players in _players.values():
+		for player in team_players:
+			player.queue_free()
+	_players.clear()
 
 
 func _on_player_dead(_player: BasePlayer) -> void:
