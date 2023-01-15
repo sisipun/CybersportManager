@@ -14,7 +14,7 @@ export (float) var _max_speed: float = 100.0
 export (float) var _max_rotation_speed: float = PI
 
 var team: int = -1
-var player_number: int = -1
+var index: int = -1
 var health: float = 0.0
 
 
@@ -35,9 +35,9 @@ func _physics_process(_delta: float) -> void:
 	rotation = _velocity.angle()
 
 
-func init(_team: int, _player_number: int) -> void:
+func init(_team: int, _index: int) -> void:
 	self.team = _team
-	self.player_number = _player_number
+	self.index = _index
 	self.health = _max_health
 
 
@@ -66,17 +66,16 @@ func hit(power: float) -> void:
 	if health <= 0:
 		health = 0
 		emit_signal("dead")
-		queue_free()
 	
 	_health_bar.value = health
 
 
-# Can't use BasePlayer type because of circylar dependency
+# TODO [CD] BasePlayer
 func _on_player_detected(player: KinematicBody2D) -> void:
 	if player.team != team:
 		_on_enemy_detected(player)
 
 
-# Can't use BasePlayer type because of circylar dependency
+# TODO [CD] BasePlayer
 func _on_enemy_detected(_enemy: KinematicBody2D) -> void:
 	pass

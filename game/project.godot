@@ -24,6 +24,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://script/base/match/player/base_player.gd"
 }, {
+"base": "Node",
+"class": "BasePlayerController",
+"language": "GDScript",
+"path": "res://script/base/match/player/base_player_controller.gd"
+}, {
 "base": "RayCast2D",
 "class": "BasePlayerVision",
 "language": "GDScript",
@@ -89,6 +94,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://script/tactical_fps/match/player/tactical_fps_player.gd"
 }, {
+"base": "BasePlayerController",
+"class": "TacticalFpsPlayerController",
+"language": "GDScript",
+"path": "res://script/tactical_fps/match/player/tactical_fps_player_controller.gd"
+}, {
 "base": "BaseStartingPosition",
 "class": "TacticalFpsStartingPosition",
 "language": "GDScript",
@@ -123,6 +133,7 @@ _global_script_class_icons={
 "BaseMap": "",
 "BaseMatch": "",
 "BasePlayer": "",
+"BasePlayerController": "",
 "BasePlayerVision": "",
 "BaseStartingPosition": "",
 "BaseTeamController": "",
@@ -136,6 +147,7 @@ _global_script_class_icons={
 "TacticalFpsMatch": "",
 "TacticalFpsPlantZone": "",
 "TacticalFpsPlayer": "",
+"TacticalFpsPlayerController": "",
 "TacticalFpsStartingPosition": "",
 "TacticalFpsTeam": "",
 "TacticalFpsTeamController": "",

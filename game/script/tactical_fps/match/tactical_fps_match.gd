@@ -53,7 +53,7 @@ func init(teams: Array, team_players_count: int) -> void:
 	.init(teams, team_players_count)
 	for team in teams:
 		_score[team] = 0
-	map.connect("team_dead", self, "_on_team_dead")
+		_team_controllers[team].connect("team_dead", self, "_on_team_dead")
 
 
 func start() -> void:
@@ -63,10 +63,8 @@ func start() -> void:
 
 func start_round() -> void:
 	for team in _teams:
-		for i in range(_team_players_count):
-			var player: BasePlayer = _player_scene.instance()
-			player.init(team, i)
-			map.add_player(player)
+		for player in _team_players[team]:
+			player.spawn()
 	for controller in _team_controllers.values():
 		controller.start_round()
 	_round_timer.start()
@@ -98,7 +96,9 @@ func _on_start_round_timer_timeout() -> void:
 
 
 func _on_end_round_timer_timeout() -> void:
-	map.clear()
+	for team in _teams:
+		for player in _team_players[team]:
+			player.despawn()
 	_state = State.ROUND_STARTING
 	_start_round_timer.start()
 

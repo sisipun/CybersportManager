@@ -2,9 +2,6 @@ class_name TacticalFpsMap
 extends BaseMap
 
 
-signal team_dead(team)
-
-
 export (Array, NodePath) var starting_position_nodes: Array = []
 export (Array, NodePath) var plant_zone_nodes: Array = []
 
@@ -24,23 +21,16 @@ func _ready() -> void:
 func get_starting_position(player: BasePlayer) -> Vector2:
 	var starting_position = team_starting_positions[player.team]
 	var radius = starting_position.radius
-	var y: int = (player.player_number + 1) * 10 * ((randi() % 2 ) * 2 - 1)
+	var y: int = (player.index + 1) * 10 * ((randi() % 2 ) * 2 - 1)
 	var x: int = int(sqrt(radius * radius - y * y)) * ((randi() % 2 ) * 2 - 1)
 	var player_offset: Vector2 = Vector2(x, y)
 	return starting_position.position + player_offset
 
 
-func _on_player_dead(player: BasePlayer) -> void:
-	_players[player.team].erase(player)
-	if _players[player.team] == []:
-		emit_signal("team_dead", player.team)
-
-
-# TODO Method for test proposal. Remove later
+# TODO [TEST] Remove later
 func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
-	if event is InputEventMouseButton and event.is_pressed():
-		_players[0][0].move_to(event.position)
-
+	if event is InputEventMouseButton and event.is_pressed() and _player != null:
+		_player.move_to(event.position)
 
 
 func _on_body_exited(body: Node) -> void:
