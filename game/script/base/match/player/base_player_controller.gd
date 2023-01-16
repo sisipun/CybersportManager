@@ -25,9 +25,10 @@ func spawn() -> void:
 	
 	_player = _player_scene.instance()
 	_player.init(team, index)
-	assert(_player.connect("dead", self, "_on_player_dead") == OK)
-	
 	_current_match.map.spawn_player(_player)
+	
+	assert(_player.connect("dead", self, "_on_player_dead") == OK)
+	assert(_player.connect("player_detected", self, "_on_player_player_detected") == OK)
 
 
 func despawn() -> void:
@@ -43,3 +44,7 @@ func is_dead() -> bool:
 func _on_player_dead() -> void:
 	despawn()
 	emit_signal("player_dead")
+
+
+func _on_player_player_detected(_detected_player: BasePlayer) -> void:
+	pass

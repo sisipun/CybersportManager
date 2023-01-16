@@ -3,6 +3,7 @@ extends KinematicBody2D
 
 
 signal dead
+signal player_detected(player)
 
 
 export (NodePath) onready var _navigation_agent = get_node(_navigation_agent) as NavigationAgent2D
@@ -72,10 +73,4 @@ func hit(power: float) -> void:
 
 # TODO [CD] BasePlayer
 func _on_player_detected(player: KinematicBody2D) -> void:
-	if player.team != team:
-		_on_enemy_detected(player)
-
-
-# TODO [CD] BasePlayer
-func _on_enemy_detected(_enemy: KinematicBody2D) -> void:
-	pass
+	emit_signal("player_detected", player)
