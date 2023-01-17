@@ -2,8 +2,9 @@ class_name BasePlayer
 extends KinematicBody2D
 
 
-signal dead
 signal player_detected(player)
+signal hitted(hitter)
+signal dead(killer)
 
 
 export (NodePath) onready var _navigation_agent = get_node(_navigation_agent) as NavigationAgent2D
@@ -60,13 +61,16 @@ func stop() -> void:
 	_navigation_agent.set_target_location(global_position)
 
 
-func hit(power: float) -> void:
+# [CD] BasePlayer
+func hit(power: float, hitter: KinematicBody2D) -> void:
 	health -= power
 	print('Hitted wiht power:', power, '. Health left:', health)
 	
 	if health <= 0:
 		health = 0
-		emit_signal("dead")
+		emit_signal("dead", hitter)
+	else:
+		emit_signal("hitted", hitter)
 	
 	_health_bar.value = health
 

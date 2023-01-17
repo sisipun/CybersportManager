@@ -35,5 +35,5 @@ func _on_collision(collider: CollisionObject2D) -> void:
 		return
 	
 	if collider is TacticalFpsPlayer:
-		collider.hit(_power)
+		collider.hit(_power, _player)
 	queue_free()
