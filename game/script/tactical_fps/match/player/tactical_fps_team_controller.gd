@@ -7,8 +7,10 @@ func start_round() -> void:
 	var _target_plant_zone: TacticalFpsPlantZone = tactical_fps_map.plant_zones[randi() % len(tactical_fps_map.plant_zones)]
 	for player in _players:
 		var tactical_fps_player: TacticalFpsPlayerController = player as TacticalFpsPlayerController
+		player.start_round()
 		tactical_fps_player.set_target(_target_plant_zone.global_position)
 
 
 func end_round() -> void:
-	pass
+	for player in _players:
+		player.end_round()

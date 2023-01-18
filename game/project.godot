@@ -25,6 +25,11 @@ _global_script_classes=[ {
 "path": "res://script/base/match/player/base_player.gd"
 }, {
 "base": "Node",
+"class": "BasePlayerCommand",
+"language": "GDScript",
+"path": "res://script/base/match/player/command/base_player_command.gd"
+}, {
+"base": "Node",
 "class": "BasePlayerController",
 "language": "GDScript",
 "path": "res://script/base/match/player/base_player_controller.gd"
@@ -68,6 +73,11 @@ _global_script_classes=[ {
 "class": "PlayerSummaryModel",
 "language": "GDScript",
 "path": "res://script/base/model/player/player_summary_model.gd"
+}, {
+"base": "BasePlayerCommand",
+"class": "ShootPlayerCommand",
+"language": "GDScript",
+"path": "res://script/tactical_fps/match/player/command/shoot_player_command.gd"
 }, {
 "base": "KinematicBody2D",
 "class": "TacticalFpsBullet",
@@ -133,6 +143,7 @@ _global_script_class_icons={
 "BaseMap": "",
 "BaseMatch": "",
 "BasePlayer": "",
+"BasePlayerCommand": "",
 "BasePlayerController": "",
 "BasePlayerVision": "",
 "BaseStartingPosition": "",
@@ -142,6 +153,7 @@ _global_script_class_icons={
 "OrganizationModel": "",
 "PlayerModel": "",
 "PlayerSummaryModel": "",
+"ShootPlayerCommand": "",
 "TacticalFpsBullet": "",
 "TacticalFpsMap": "",
 "TacticalFpsMatch": "",
