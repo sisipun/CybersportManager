@@ -2,15 +2,12 @@ class_name TacticalFpsPlayerController
 extends BasePlayerController
 
 
-var _target: Vector2 = Vector2.ZERO
-var _current_command: BasePlayerCommand = null
-
-
 func set_target(target: Vector2) -> void:
 	if not is_dead():
-		_target = target
-		_player.move_to(_target)
-
+		if team == TacticalFpsTeam.Side.BLUE:
+			_start_command(DefendTargetPlayerCommand.new(_player, _current_match, [target]))
+		else:
+			_start_command(AttackTargetPlayerCommand.new(_player, _current_match, [target]))
 
 
 func start_round() -> void:
@@ -18,7 +15,8 @@ func start_round() -> void:
 
 
 func end_round() -> void:
-	_current_command = null
+	_stop_current_command()
+	_commands.clear()
 
 
 func _on_player_hitted(hitter: BasePlayer) -> void:
@@ -31,13 +29,5 @@ func _on_player_player_detected(detected_player: BasePlayer) -> void:
 
 
 func _on_enemy_detected(enemy: BasePlayer) -> void:
-	if not is_dead() and not _current_command:
-		_current_command = ShootPlayerCommand.new(_player, _current_match)
-		_current_command.process([enemy])
-		assert(_current_command.connect("finished", self, "_on_current_command_finished") == OK)
-
-
-func _on_current_command_finished() -> void:
-	if not is_dead():
-		_current_command = null
-		_player.move_to(_target)
+	if not is_dead() and not (_current_command is ShootPlayerCommand):
+		_start_command(ShootPlayerCommand.new(_player, _current_match, [enemy]))

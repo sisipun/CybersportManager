@@ -2,31 +2,37 @@ class_name ShootPlayerCommand
 extends BasePlayerCommand
 
 
-func _init(player: TacticalFpsPlayer, current_match: TacticalFpsMatch).(player, current_match) -> void:
+func _init(
+	player: TacticalFpsPlayer, 
+	current_match: TacticalFpsMatch, 
+	arguments: Array
+).(player, current_match, arguments) -> void:
 	pass
 
 
-func valid(arguments: Array) -> bool:
-	var target: BasePlayer = arguments[0]
+func is_valid() -> bool:
+	var target: BasePlayer = _arguments[0]
 	return (
-		is_instance_valid(_player)
+		.is_valid()
+		and is_instance_valid(_player)
 		and is_instance_valid(target) 
 		and is_instance_valid(_player.weapon)
 	)
 
 
-func process(arguments: Array) -> void:
-	if not valid(arguments):
-		emit_signal("finished")
+func start() -> void:
+	.start()
+	if not is_valid():
+		finish()
 		return
 	
 	_player.stop()
-	var target: BasePlayer = arguments[0]
+	var target: BasePlayer = _arguments[0]
 	var rotation_finished: bool = false
-	while valid(arguments) and not rotation_finished:
+	while is_valid() and not rotation_finished:
 		var delta: float = _current_match.get_process_delta_time()
 		_player.rotate_to(delta, target.position)
 		_player.shoot()
 		yield(_current_match.get_tree(), "idle_frame")
 	
-	emit_signal("finished")
+	finish()

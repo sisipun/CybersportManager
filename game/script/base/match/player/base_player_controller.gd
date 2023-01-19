@@ -11,6 +11,8 @@ var team: int = -1
 var index: int = -1
 var _player: BasePlayer = null
 var _current_match: BaseMatch = null
+var _commands: Array = []
+var _current_command: BasePlayerCommand = null
 
 
 func init(_team: int, _index: int, current_match: BaseMatch) -> void:
@@ -42,14 +44,45 @@ func is_dead() -> bool:
 	return _player == null
 
 
+func _start_command(command: BasePlayerCommand) -> void:
+	if _current_command != null:
+		_stop_current_command()
+	
+	_commands.append(command)
+	_current_command = command
+	assert(_current_command.connect("finished", self, "_on_current_command_finished") == OK)
+	_current_command.start()
+
+
+func _stop_current_command() -> void:
+	if _current_command != null:
+		_current_command.disconnect("finished", self, "_on_current_command_finished")
+		_current_command.stop()
+		_current_command = null
+
+
+func _start_next_command() -> void:
+	_stop_current_command()
+	_commands.pop_back()
+	
+	var next_command = _commands.pop_back()
+	if next_command != null:
+		_start_command(next_command)
+
+
+func _on_current_command_finished() -> void:
+	if not is_dead():
+		_start_next_command()
+
+
+func _on_player_dead(_killer: BasePlayer) -> void:
+	despawn()
+	emit_signal("player_dead")
+
+
 func _on_player_player_detected(_detected_player: BasePlayer) -> void:
 	pass
 
 
 func _on_player_hitted(_hitter: BasePlayer) -> void:
 	pass
-
-
-func _on_player_dead(_killer: BasePlayer) -> void:
-	despawn()
-	emit_signal("player_dead")

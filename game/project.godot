@@ -9,6 +9,11 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "BasePlayerCommand",
+"class": "AttackTargetPlayerCommand",
+"language": "GDScript",
+"path": "res://script/tactical_fps/match/player/command/attack_target_player_command.gd"
+}, {
 "base": "Node",
 "class": "BaseMap",
 "language": "GDScript",
@@ -48,6 +53,11 @@ _global_script_classes=[ {
 "class": "BaseTeamController",
 "language": "GDScript",
 "path": "res://script/base/match/player/base_team_controller.gd"
+}, {
+"base": "BasePlayerCommand",
+"class": "DefendTargetPlayerCommand",
+"language": "GDScript",
+"path": "res://script/tactical_fps/match/player/command/defend_target_player_command.gd"
 }, {
 "base": "Node",
 "class": "Discipline",
@@ -140,6 +150,7 @@ _global_script_classes=[ {
 "path": "res://script/base/model/team/team_summary_model.gd"
 } ]
 _global_script_class_icons={
+"AttackTargetPlayerCommand": "",
 "BaseMap": "",
 "BaseMatch": "",
 "BasePlayer": "",
@@ -148,6 +159,7 @@ _global_script_class_icons={
 "BasePlayerVision": "",
 "BaseStartingPosition": "",
 "BaseTeamController": "",
+"DefendTargetPlayerCommand": "",
 "Discipline": "",
 "HealthBar": "",
 "OrganizationModel": "",

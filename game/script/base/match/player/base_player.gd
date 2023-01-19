@@ -2,6 +2,7 @@ class_name BasePlayer
 extends KinematicBody2D
 
 
+signal navigation_finished
 signal player_detected(player)
 signal hitted(hitter)
 signal dead(killer)
@@ -22,6 +23,7 @@ var health: float = 0.0
 
 func _ready() -> void:
 	assert(_vision.connect("player_detected", self, "_on_player_detected") == OK)
+	assert(_navigation_agent.connect("navigation_finished", self, "_on_navigation_finished") == OK)
 	_health_bar.init(_max_health)
 	health = _max_health
 
@@ -78,3 +80,7 @@ func hit(power: float, hitter: KinematicBody2D) -> void:
 # TODO [CD] BasePlayer
 func _on_player_detected(player: KinematicBody2D) -> void:
 	emit_signal("player_detected", player)
+
+
+func _on_navigation_finished() -> void:
+	emit_signal("navigation_finished")
