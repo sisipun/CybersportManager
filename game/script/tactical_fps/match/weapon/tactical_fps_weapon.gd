@@ -2,11 +2,9 @@ class_name TacticalFpsWeapon
 extends Sprite
 
 
-export (NodePath) onready var _bullet_spawn_point = get_node(_bullet_spawn_point) as Node2D
+export (NodePath) onready var _bullet_ray = get_node(_bullet_ray) as RayCast2D
 export (NodePath) onready var _player_attach_point = get_node(_player_attach_point) as Node2D
 export (NodePath) onready var _bullet_spawn_timer = get_node(_bullet_spawn_timer) as Timer
-
-export (PackedScene) var _bullet_scene: PackedScene = null
 
 export (float) var _bullet_power: float = 10.0
 export (float) var _bullet_speed: float = 1000.0
@@ -28,18 +26,17 @@ func init(_player: BasePlayer) -> void:
 
 
 func shoot() -> void:
-	if !_can_shoot:
+	if not _can_shoot:
 		return
 	
-	var bullet = _bullet_scene.instance()
-	player.get_parent().add_child(bullet)
-	bullet.init(
-		self, 
-		player.to_map_coordinates(_bullet_spawn_point.global_position), 
-		forward(), 
-		_bullet_power, 
-		_bullet_speed
-	)
+	_bullet_ray.force_raycast_update()
+	if _bullet_ray.is_colliding():
+		var collider = _bullet_ray.get_collider()
+		if collider == player:
+			return
+		if collider is BasePlayer:
+			collider.hit(_bullet_power, player)
+	
 	_can_shoot = false
 	_bullet_spawn_timer.start()
 

@@ -89,11 +89,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://script/tactical_fps/match/player/command/shoot_player_command.gd"
 }, {
-"base": "KinematicBody2D",
-"class": "TacticalFpsBullet",
-"language": "GDScript",
-"path": "res://script/tactical_fps/match/weapon/tactical_fps_bullet.gd"
-}, {
 "base": "BaseMap",
 "class": "TacticalFpsMap",
 "language": "GDScript",
@@ -166,7 +161,6 @@ _global_script_class_icons={
 "PlayerModel": "",
 "PlayerSummaryModel": "",
 "ShootPlayerCommand": "",
-"TacticalFpsBullet": "",
 "TacticalFpsMap": "",
 "TacticalFpsMatch": "",
 "TacticalFpsPlantZone": "",

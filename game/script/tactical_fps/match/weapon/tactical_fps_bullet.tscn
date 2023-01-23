@@ -1,13 +1,54 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://script/tactical_fps/match/weapon/tactical_fps_bullet.gd" type="Script" id=1]
 [ext_resource path="res://asset/sprite/bullet.png" type="Texture" id=2]
+
+[sub_resource type="GDScript" id=2]
+script/source = "class_name TacticalFpsBullet
+extends KinematicBody2D
+
+
+var _weapon: TacticalFpsWeapon = null
+var _player: TacticalFpsPlayer = null
+var _direction: Vector2 = Vector2.ZERO
+var _power: float = 0.0 
+var _speed: float = 0.0 
+
+
+func _physics_process(delta: float) -> void:
+	var collision: KinematicCollision2D = move_and_collide(_direction * _speed * delta)
+	if collision:
+		_on_collision(collision.collider)
+
+
+func init(
+	weapon: TacticalFpsWeapon, 
+	position: Vector2, 
+	direction: Vector2, 
+	power: float, 
+	speed: float
+) -> void:
+	self._weapon = weapon
+	self._player = weapon.player
+	self._direction = direction.normalized()
+	self._power = power
+	self._speed = speed
+	self.position = position
+
+
+func _on_collision(collider: CollisionObject2D) -> void:
+	if collider == _player:
+		return
+	
+	if collider is TacticalFpsPlayer:
+		collider.hit(_power, _player)
+	queue_free()
+"
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 2.0
 
 [node name="Bullet" type="KinematicBody2D"]
-script = ExtResource( 1 )
+script = SubResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )

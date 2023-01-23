@@ -20,7 +20,7 @@ func end_round() -> void:
 
 
 func _on_player_hitted(hitter: BasePlayer) -> void:
-	_on_enemy_detected(hitter)
+	_on_player_player_detected(hitter)
 
 
 func _on_player_player_detected(detected_player: BasePlayer) -> void:

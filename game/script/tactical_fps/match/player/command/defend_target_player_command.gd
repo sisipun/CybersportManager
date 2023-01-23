@@ -32,5 +32,6 @@ func start() -> void:
 
 
 func stop() -> void:
-	_player.stop()
+	if is_instance_valid(_player):
+		_player.stop()
 	.stop()

@@ -33,18 +33,22 @@ scale = Vector2( 2.5, 0.1 )
 position = Vector2( 0, 270 )
 scale = Vector2( 2.5, 0.1 )
 
-[node name="RedStartingPosition" parent="." index="7" instance=ExtResource( 3 )]
+[node name="Border" parent="." index="7" instance=ExtResource( 4 )]
+position = Vector2( 0, -102 )
+scale = Vector2( 1, 0.1 )
+
+[node name="RedStartingPosition" parent="." index="8" instance=ExtResource( 3 )]
 position = Vector2( 33, 223 )
 
-[node name="BlueStartingPosition" parent="." index="8" instance=ExtResource( 3 )]
+[node name="BlueStartingPosition" parent="." index="9" instance=ExtResource( 3 )]
 position = Vector2( -2, -186 )
 team = 1
 
-[node name="ZoneA" parent="." index="9" instance=ExtResource( 2 )]
+[node name="ZoneA" parent="." index="10" instance=ExtResource( 2 )]
 position = Vector2( -176, -223 )
 scale = Vector2( 2, 2 )
 
-[node name="ZoneB" parent="." index="10" instance=ExtResource( 2 )]
+[node name="ZoneB" parent="." index="11" instance=ExtResource( 2 )]
 position = Vector2( 170, -210 )
 scale = Vector2( 2, 2 )
 
