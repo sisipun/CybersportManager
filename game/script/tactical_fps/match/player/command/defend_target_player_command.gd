@@ -23,7 +23,7 @@ func start() -> void:
 		finish()
 		return
 	
-	var target: Vector2 = _arguments[0]
+	var target: Vector2 = arguments[0]
 	_player.move_to(target)
 	yield(_player, "navigation_finished")
 	

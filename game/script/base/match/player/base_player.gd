@@ -3,12 +3,13 @@ extends KinematicBody2D
 
 
 signal navigation_finished
-signal player_detected(player)
+signal detected(bodies)
 signal hitted(hitter)
 signal dead(killer)
 
 
 export (NodePath) onready var _navigation_agent = get_node(_navigation_agent) as NavigationAgent2D
+# [CD] BasePlayerVision
 export (NodePath) onready var _vision = get_node(_vision) as RayCast2D
 export (NodePath) onready var _health_bar = get_node(_health_bar) as HealthBar
 
@@ -22,7 +23,7 @@ var health: float = 0.0
 
 
 func _ready() -> void:
-	assert(_vision.connect("player_detected", self, "_on_player_detected") == OK)
+	assert(_vision.connect("detected", self, "_on_detected") == OK)
 	assert(_navigation_agent.connect("navigation_finished", self, "_on_navigation_finished") == OK)
 	_health_bar.init(_max_health)
 	health = _max_health
@@ -45,8 +46,8 @@ func init(_team: int, _index: int) -> void:
 	self.health = _max_health
 
 
-func to_map_coordinates(global_position: Vector2) -> Vector2:
-	return get_parent().to_local(global_position)
+func can_see(body: KinematicBody2D) -> bool:
+	return _vision.can_see(body)
 
 
 func move_to(target: Vector2) -> void:
@@ -56,6 +57,7 @@ func move_to(target: Vector2) -> void:
 func rotate_to(delta: float, target: Vector2) -> void:
 	var angle_delta: float = delta * _max_rotation_speed
 	var angle: float = (target - position).angle()
+	print(angle)
 	rotation = clamp(lerp_angle(rotation, angle, 1), rotation - angle_delta, rotation + angle_delta)
 
 
@@ -77,9 +79,8 @@ func hit(power: float, hitter: KinematicBody2D) -> void:
 	_health_bar.value = health
 
 
-# TODO [CD] BasePlayer
-func _on_player_detected(player: KinematicBody2D) -> void:
-	emit_signal("player_detected", player)
+func _on_detected(bodies: Array) -> void:
+	emit_signal("detected", bodies)
 
 
 func _on_navigation_finished() -> void:

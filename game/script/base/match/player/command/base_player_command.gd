@@ -7,31 +7,31 @@ signal finished
 
 var _player: BasePlayer
 var _current_match: BaseMatch
-var _finished: bool
-var _arguments: Array
+var finished: bool
+var arguments: Array
 
 
 func _init(
 	player: BasePlayer, 
 	current_match: BaseMatch, 
-	arguments: Array
+	_arguments: Array
 ) -> void:
 	self._player = player
 	self._current_match = current_match
-	self._arguments = arguments
-	self._finished = true
+	self.arguments = _arguments
+	self.finished = true
 
 
 func is_valid() -> bool:
-	return not _finished
+	return not finished
 
 
 func start() -> void:
-	_finished = false
+	finished = false
 
 
 func stop() -> void:
-	_finished = true
+	finished = true
 
 
 func finish() -> void:

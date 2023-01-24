@@ -20,14 +20,20 @@ func end_round() -> void:
 
 
 func _on_player_hitted(hitter: BasePlayer) -> void:
-	_on_player_player_detected(hitter)
+	_on_player_detected([hitter])
 
 
-func _on_player_player_detected(detected_player: BasePlayer) -> void:
-	if detected_player.team != team:
-		_on_enemy_detected(detected_player)
+func _on_player_detected(bodies: Array) -> void:
+	var enemies: Array = []
+	for body in bodies:
+		if body.team != team:
+			enemies.append(body)
+	
+	_on_enemy_detected(enemies)
 
 
-func _on_enemy_detected(enemy: BasePlayer) -> void:
-	if not is_dead() and not (_current_command is ShootPlayerCommand):
-		_start_command(ShootPlayerCommand.new(_player, _current_match, [enemy]))
+func _on_enemy_detected(enemies: Array) -> void:
+	if not is_dead():
+		if not (_current_command is ShootPlayerCommand):
+			if enemies.size() > 0:
+				_start_command(ShootPlayerCommand.new(_player, _current_match, [enemies[0]]))

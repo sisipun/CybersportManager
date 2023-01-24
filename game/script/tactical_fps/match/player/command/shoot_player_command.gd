@@ -11,12 +11,13 @@ func _init(
 
 
 func is_valid() -> bool:
-	var target: BasePlayer = _arguments[0]
+	var target: BasePlayer = arguments[0]
 	return (
 		.is_valid()
 		and is_instance_valid(_player)
 		and is_instance_valid(target) 
 		and is_instance_valid(_player.weapon)
+		and _player.can_see(target)
 	)
 
 
@@ -27,9 +28,8 @@ func start() -> void:
 		return
 	
 	_player.stop()
-	var target: BasePlayer = _arguments[0]
-	var rotation_finished: bool = false
-	while is_valid() and not rotation_finished:
+	var target: BasePlayer = arguments[0]
+	while is_valid():
 		var delta: float = _current_match.get_process_delta_time()
 		_player.rotate_to(delta, target.position)
 		_player.shoot()
