@@ -3,7 +3,8 @@ extends KinematicBody2D
 
 
 signal navigation_finished
-signal detected(bodies)
+signal detected(body)
+signal lost(body)
 signal hitted(hitter)
 signal dead(killer)
 
@@ -24,6 +25,7 @@ var health: float = 0.0
 
 func _ready() -> void:
 	assert(_vision.connect("detected", self, "_on_detected") == OK)
+	assert(_vision.connect("lost", self, "_on_lost") == OK)
 	assert(_navigation_agent.connect("navigation_finished", self, "_on_navigation_finished") == OK)
 	_health_bar.init(_max_health)
 	health = _max_health
@@ -57,8 +59,12 @@ func move_to(target: Vector2) -> void:
 func rotate_to(delta: float, target: Vector2) -> void:
 	var angle_delta: float = delta * _max_rotation_speed
 	var angle: float = (target - position).angle()
-	print(angle)
 	rotation = clamp(lerp_angle(rotation, angle, 1), rotation - angle_delta, rotation + angle_delta)
+
+
+func is_rotated_to(target: Vector2) -> bool:
+	var angle: float = (target - position).angle()
+	return rotation == angle
 
 
 func stop() -> void:
@@ -79,8 +85,12 @@ func hit(power: float, hitter: KinematicBody2D) -> void:
 	_health_bar.value = health
 
 
-func _on_detected(bodies: Array) -> void:
-	emit_signal("detected", bodies)
+func _on_detected(body: KinematicBody2D) -> void:
+	emit_signal("detected", body)
+
+
+func _on_lost(body: KinematicBody2D) -> void:
+	emit_signal("lost", body)
 
 
 func _on_navigation_finished() -> void:

@@ -30,6 +30,7 @@ func spawn() -> void:
 	_current_match.map.spawn_player(_player)
 	
 	assert(_player.connect("detected", self, "_on_player_detected") == OK)
+	assert(_player.connect("lost", self, "_on_player_lost") == OK)
 	assert(_player.connect("dead", self, "_on_player_dead") == OK)
 	assert(_player.connect("hitted", self, "_on_player_hitted") == OK)
 
@@ -80,7 +81,11 @@ func _on_player_dead(_killer: BasePlayer) -> void:
 	emit_signal("player_dead")
 
 
-func _on_player_detected(_bodies: Array) -> void:
+func _on_player_detected(_body: KinematicBody2D) -> void:
+	pass
+
+
+func _on_player_lost(_body: KinematicBody2D) -> void:
 	pass
 
 

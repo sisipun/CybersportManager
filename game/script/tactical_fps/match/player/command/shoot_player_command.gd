@@ -17,7 +17,7 @@ func is_valid() -> bool:
 		and is_instance_valid(_player)
 		and is_instance_valid(target) 
 		and is_instance_valid(_player.weapon)
-		and _player.can_see(target)
+		and (not _player.is_rotated_to(target.position) or _player.can_see(target))
 	)
 
 

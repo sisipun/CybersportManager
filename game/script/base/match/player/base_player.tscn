@@ -32,7 +32,6 @@ texture = ExtResource( 1 )
 max_speed = 100.0
 
 [node name="Vision" type="RayCast2D" parent="."]
-enabled = true
 cast_to = Vector2( 2000, 0 )
 script = ExtResource( 3 )
 
