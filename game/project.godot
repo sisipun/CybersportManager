@@ -39,11 +39,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://script/base/match/player/base_player_controller.gd"
 }, {
-"base": "RayCast2D",
-"class": "BasePlayerVision",
-"language": "GDScript",
-"path": "res://script/base/match/player/base_player_vision.gd"
-}, {
 "base": "Node2D",
 "class": "BaseStartingPosition",
 "language": "GDScript",
@@ -68,6 +63,11 @@ _global_script_classes=[ {
 "class": "HealthBar",
 "language": "GDScript",
 "path": "res://script/base/match/player/health_bar.gd"
+}, {
+"base": "Area2D",
+"class": "Hearing",
+"language": "GDScript",
+"path": "res://script/base/match/player/hearing.gd"
 }, {
 "base": "Resource",
 "class": "OrganizationModel",
@@ -143,6 +143,11 @@ _global_script_classes=[ {
 "class": "TeamSummaryModel",
 "language": "GDScript",
 "path": "res://script/base/model/team/team_summary_model.gd"
+}, {
+"base": "RayCast2D",
+"class": "Vision",
+"language": "GDScript",
+"path": "res://script/base/match/player/vision.gd"
 } ]
 _global_script_class_icons={
 "AttackTargetPlayerCommand": "",
@@ -151,12 +156,12 @@ _global_script_class_icons={
 "BasePlayer": "",
 "BasePlayerCommand": "",
 "BasePlayerController": "",
-"BasePlayerVision": "",
 "BaseStartingPosition": "",
 "BaseTeamController": "",
 "DefendTargetPlayerCommand": "",
 "Discipline": "",
 "HealthBar": "",
+"Hearing": "",
 "OrganizationModel": "",
 "PlayerModel": "",
 "PlayerSummaryModel": "",
@@ -171,7 +176,8 @@ _global_script_class_icons={
 "TacticalFpsTeamController": "",
 "TacticalFpsWeapon": "",
 "TeamModel": "",
-"TeamSummaryModel": ""
+"TeamSummaryModel": "",
+"Vision": ""
 }
 
 [application]

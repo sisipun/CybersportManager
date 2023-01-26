@@ -29,8 +29,9 @@ func spawn() -> void:
 	_player.init(team, index)
 	_current_match.map.spawn_player(_player)
 	
-	assert(_player.connect("detected", self, "_on_player_detected") == OK)
-	assert(_player.connect("lost", self, "_on_player_lost") == OK)
+	assert(_player.connect("saw", self, "_on_player_saw") == OK)
+	assert(_player.connect("stopped_seeing", self, "_on_player_stopped_seeing") == OK)
+	assert(_player.connect("heard", self, "_on_player_heard") == OK)
 	assert(_player.connect("dead", self, "_on_player_dead") == OK)
 	assert(_player.connect("hitted", self, "_on_player_hitted") == OK)
 
@@ -76,17 +77,22 @@ func _on_current_command_finished() -> void:
 		_start_next_command()
 
 
+func _on_player_saw(_body: KinematicBody2D) -> void:
+	pass
+
+
+func _on_player_stopped_seeing(_body: KinematicBody2D) -> void:
+	pass
+
+
+# TODO add type
+func _on_player_heard(sound) -> void:
+	pass
+
+
 func _on_player_dead(_killer: BasePlayer) -> void:
 	despawn()
 	emit_signal("player_dead")
-
-
-func _on_player_detected(_body: KinematicBody2D) -> void:
-	pass
-
-
-func _on_player_lost(_body: KinematicBody2D) -> void:
-	pass
 
 
 func _on_player_hitted(_hitter: BasePlayer) -> void:

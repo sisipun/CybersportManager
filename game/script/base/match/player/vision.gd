@@ -1,4 +1,4 @@
-class_name BasePlayerVision
+class_name Vision
 extends RayCast2D
 
 

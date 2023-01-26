@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://script/base/match/player/vision.gd" type="Script" id=1]
+
+[node name="Vision" type="RayCast2D"]
+cast_to = Vector2( 2000, 0 )
+script = ExtResource( 1 )

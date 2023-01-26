@@ -3,15 +3,17 @@ extends KinematicBody2D
 
 
 signal navigation_finished
-signal detected(body)
-signal lost(body)
+signal saw(body)
+signal stopped_seeing(body)
+signal heard(sound)
+signal stopped_hearing(position)
 signal hitted(hitter)
 signal dead(killer)
 
 
 export (NodePath) onready var _navigation_agent = get_node(_navigation_agent) as NavigationAgent2D
-# [CD] BasePlayerVision
-export (NodePath) onready var _vision = get_node(_vision) as RayCast2D
+export (NodePath) onready var _vision = get_node(_vision) as Vision
+export (NodePath) onready var _hearing = get_node(_hearing) as Hearing
 export (NodePath) onready var _health_bar = get_node(_health_bar) as HealthBar
 
 export (float) var _max_health: float = 100.0
@@ -24,8 +26,9 @@ var health: float = 0.0
 
 
 func _ready() -> void:
-	assert(_vision.connect("detected", self, "_on_detected") == OK)
-	assert(_vision.connect("lost", self, "_on_lost") == OK)
+	assert(_vision.connect("detected", self, "_on_vision_detected") == OK)
+	assert(_vision.connect("lost", self, "_on_vision_lost") == OK)
+	assert(_hearing.connect("detected", self, "_on_hearing_detected") == OK)
 	assert(_navigation_agent.connect("navigation_finished", self, "_on_navigation_finished") == OK)
 	_health_bar.init(_max_health)
 	health = _max_health
@@ -85,12 +88,17 @@ func hit(power: float, hitter: KinematicBody2D) -> void:
 	_health_bar.value = health
 
 
-func _on_detected(body: KinematicBody2D) -> void:
-	emit_signal("detected", body)
+func _on_vision_detected(body: KinematicBody2D) -> void:
+	emit_signal("saw", body)
 
 
-func _on_lost(body: KinematicBody2D) -> void:
-	emit_signal("lost", body)
+func _on_vision_lost(body: KinematicBody2D) -> void:
+	emit_signal("stopped_seeing", body)
+
+
+# TODO add type
+func _on_hearing_detected(sound) -> void:
+	emit_signal("heard", sound)
 
 
 func _on_navigation_finished() -> void:

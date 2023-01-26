@@ -20,15 +20,16 @@ func end_round() -> void:
 
 
 func _on_player_hitted(hitter: BasePlayer) -> void:
-	_on_player_detected(hitter)
+	if hitter.team != team:
+		_on_enemy_detected(hitter)
 
 
-func _on_player_detected(body: KinematicBody2D) -> void:
+func _on_player_saw(body: KinematicBody2D) -> void:
 	if body is BasePlayer and body.team != team:
 		_on_enemy_detected(body)
 
 
-func _on_player_lost(body: KinematicBody2D) -> void:
+func _on_player_stopped_seeing(body: KinematicBody2D) -> void:
 	if body is BasePlayer:
 		print('lost')
 	pass
