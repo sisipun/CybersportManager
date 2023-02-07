@@ -29,9 +29,11 @@ func _on_player_saw(body: KinematicBody2D) -> void:
 		_on_enemy_detected(body)
 
 
-func _on_player_stopped_seeing(body: KinematicBody2D) -> void:
-	if body is BasePlayer:
-		print('lost')
+func _on_player_stopped_seeing(_body: KinematicBody2D) -> void:
+	pass
+
+
+func _on_player_heard(_position: Vector2) -> void:
 	pass
 
 

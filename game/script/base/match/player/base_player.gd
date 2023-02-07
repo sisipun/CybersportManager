@@ -5,8 +5,7 @@ extends KinematicBody2D
 signal navigation_finished
 signal saw(body)
 signal stopped_seeing(body)
-signal heard(sound)
-signal stopped_hearing(position)
+signal heard(position)
 signal hitted(hitter)
 signal dead(killer)
 
@@ -97,8 +96,8 @@ func _on_vision_lost(body: KinematicBody2D) -> void:
 
 
 # TODO add type
-func _on_hearing_detected(sound) -> void:
-	emit_signal("heard", sound)
+func _on_hearing_detected(position: Vector2) -> void:
+	emit_signal("heard", position)
 
 
 func _on_navigation_finished() -> void:

@@ -85,8 +85,7 @@ func _on_player_stopped_seeing(_body: KinematicBody2D) -> void:
 	pass
 
 
-# TODO add type
-func _on_player_heard(_sound) -> void:
+func _on_player_heard(_position: Vector2) -> void:
 	pass
 
 
