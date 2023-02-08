@@ -54,7 +54,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://script/tactical_fps/match/player/command/defend_target_player_command.gd"
 }, {
-"base": "Node",
+"base": "Resource",
 "class": "Discipline",
 "language": "GDScript",
 "path": "res://script/base/model/discipline.gd"
@@ -72,17 +72,12 @@ _global_script_classes=[ {
 "base": "Resource",
 "class": "OrganizationModel",
 "language": "GDScript",
-"path": "res://script/base/model/organization/organization_model.gd"
+"path": "res://script/base/model/organization_model.gd"
 }, {
 "base": "Resource",
 "class": "PlayerModel",
 "language": "GDScript",
-"path": "res://script/base/model/player/player_model.gd"
-}, {
-"base": "Resource",
-"class": "PlayerSummaryModel",
-"language": "GDScript",
-"path": "res://script/base/model/player/player_summary_model.gd"
+"path": "res://script/base/model/player_model.gd"
 }, {
 "base": "BasePlayerCommand",
 "class": "ShootPlayerCommand",
@@ -137,12 +132,7 @@ _global_script_classes=[ {
 "base": "Resource",
 "class": "TeamModel",
 "language": "GDScript",
-"path": "res://script/base/model/team/team_model.gd"
-}, {
-"base": "Resource",
-"class": "TeamSummaryModel",
-"language": "GDScript",
-"path": "res://script/base/model/team/team_summary_model.gd"
+"path": "res://script/base/model/team_model.gd"
 }, {
 "base": "RayCast2D",
 "class": "Vision",
@@ -164,7 +154,6 @@ _global_script_class_icons={
 "Hearing": "",
 "OrganizationModel": "",
 "PlayerModel": "",
-"PlayerSummaryModel": "",
 "ShootPlayerCommand": "",
 "TacticalFpsMap": "",
 "TacticalFpsMatch": "",
@@ -176,7 +165,6 @@ _global_script_class_icons={
 "TacticalFpsTeamController": "",
 "TacticalFpsWeapon": "",
 "TeamModel": "",
-"TeamSummaryModel": "",
 "Vision": ""
 }
 
@@ -185,6 +173,10 @@ _global_script_class_icons={
 config/name="CybersportManager"
 run/main_scene="res://script/ui.tscn"
 config/icon="res://asset/icon/icon.png"
+
+[autoload]
+
+Database="*res://script/base/database/database.gd"
 
 [input_devices]
 

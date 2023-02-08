@@ -1,8 +1,8 @@
 class_name Discipline
-extends Node
+extends Resource
 
 
-enum Type {
+enum Values {
 	TACTICAL_FPS,
 	MOBA,
 	BATTLE_ROYALE
