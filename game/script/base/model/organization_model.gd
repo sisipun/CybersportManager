@@ -15,3 +15,5 @@ func _init(
 	self.id = _id
 	self.name = _name
 	self.teams = _teams
+	for team in teams:
+		team.set_organization_id(id)
