@@ -2,18 +2,17 @@ class_name OrganizationModel
 extends Resource
 
 
-export (String) var id: String = ""
 export (String) var name: String = ""
 export (Array, Resource) var teams: Array = []
 
+export (String) var _id: String = ""
+
 
 func _init(
-	_id: String, 
-	_name: String, 
-	_teams: Array
+	_name: String
 ) -> void:
-	self.id = _id
 	self.name = _name
-	self.teams = _teams
-	for team in teams:
-		team.set_organization_id(id)
+
+
+func get_id() -> String:
+	return _id

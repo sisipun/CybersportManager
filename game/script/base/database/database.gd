@@ -1,52 +1,65 @@
+class_name Database
 extends Node
 
+
+export(Array, Resource) var migrations: Array = []
 
 var organizations: Dictionary = {}
 var teams: Dictionary = {}
 var players: Dictionary = {}
 
-var _data_path: String = "res://asset/data/"
-var _data_file: String = "data.jsonl"
-
 
 func _ready() -> void:
 	print('Init Database Started')
 	
-	var file = File.new()
-	if not file.file_exists(_data_path + _data_file):
-		print('Database file not exists')
+	for migration in migrations:
+		migration.migrate(self)
+	
+	print('Database Inited. Organizations: ', organizations.size(), ', Teams: ', teams.size(), ', Players": ', players.size())
+
+
+func add_organization(organization: OrganizationModel) -> String:
+	organization._id = str(organizations.size())
+	organizations[organization.get_id()] = organization
+	return organization.get_id()
+
+
+func add_team(team: TeamModel) -> String:
+	team._id = str(teams.size())
+	teams[team.get_id()] = team
+	return team.get_id()
+
+
+func add_player(player: PlayerModel) -> String:
+	player._id = str(players.size())
+	players[player.get_id()] = player
+	return player.get_id()
+
+
+func add_team_to_organization(team_id: String, organization_id: String) -> void:
+	if not teams.has(team_id) or not organizations.has(organization_id):
 		return
 	
-	file.open(_data_path + _data_file, File.READ)
-	while not file.eof_reached():
-		pass
-	file.close()
+	var team: TeamModel = teams[team_id]
+	var organization: OrganizationModel = organizations[organization_id]
+	if organization.teams.has(team):
+		return
 	
-	var player: PlayerModel = PlayerModel.new(
-		"1",
-		Discipline.Values.TACTICAL_FPS,
-		"s1mple",
-		"Alex Kostylev",
-		25
-	)
-	players[player.id] = player
+	team._organization_id = organization_id
+	organization.teams.append(team)
+
+
+func add_player_to_team(player_id: String, team_id: String) -> void:
+	if not players.has(player_id) or not teams.has(team_id):
+		return
 	
-	var team: TeamModel = TeamModel.new(
-		"1", 
-		Discipline.Values.TACTICAL_FPS, 
-		"NaVi CS:GO", 
-		[player]
-	)
-	teams[team.id] = team
+	var player: PlayerModel = players[player_id]
+	var team: TeamModel = teams[team_id]
+	if team.players.has(player):
+		return
 	
-	var organization: OrganizationModel = OrganizationModel.new(
-		"1",
-		"NaVi",
-		[team]
-	)
-	organizations[organization.id] = organization
-	
-	print('Database Inited')
+	player._current_team_id = team_id
+	team.players.append(player)
 
 
 func get_organization(id: String) -> OrganizationModel:
