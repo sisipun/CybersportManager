@@ -1,18 +1,19 @@
 class_name OrganizationModel
-extends Resource
+extends BaseModel
 
 
-export (String) var name: String = ""
-export (Array, Resource) var teams: Array = []
+const MODEL_NAME = "Organization"
 
-export (String) var _id: String = ""
+var name: String
+var teams: Array
 
 
 func _init(
 	_name: String
 ) -> void:
 	self.name = _name
+	self.teams = []
 
 
-func get_id() -> String:
-	return _id
+func get_model_name() -> String:
+	return MODEL_NAME

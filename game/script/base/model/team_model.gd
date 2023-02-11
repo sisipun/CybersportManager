@@ -1,13 +1,14 @@
 class_name TeamModel
-extends Resource
+extends BaseModel
 
 
-export (Discipline.Values) var discipline: int = -1
-export (String) var name: String = ""
-export (Array, Resource) var players: Array = []
+const MODEL_NAME = "Team"
 
-export (String) var _id: String = ""
-export (String) var _organization_id: String = ""
+var discipline: int
+var name: String
+var players: Array
+
+var _organization: ModelReference
 
 
 func _init(
@@ -16,14 +17,21 @@ func _init(
 ) -> void:
 	self.discipline = _discipline
 	self.name = _name
+	self.players = []
 
 
-func get_id() -> String:
-	return _id
+func set_organization(organization_id: String) -> void:
+	_organization = ModelReference.new(OrganizationModel.MODEL_NAME, organization_id)
+	if get_organization():
+		get_organization().teams.append(ModelReference.new(MODEL_NAME, _id))
 
 
 func get_organization() -> OrganizationModel:
-	if not _organization_id:
+	if not _organization:
 		return null
 	
-	return Data.get_organization(_organization_id)
+	return _organization.get_value() as OrganizationModel
+
+
+func get_model_name() -> String:
+	return MODEL_NAME

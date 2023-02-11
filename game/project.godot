@@ -29,6 +29,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://script/base/database/migration/base_migration.gd"
 }, {
+"base": "Resource",
+"class": "BaseModel",
+"language": "GDScript",
+"path": "res://script/base/model/base_model.gd"
+}, {
 "base": "KinematicBody2D",
 "class": "BasePlayer",
 "language": "GDScript",
@@ -80,11 +85,16 @@ _global_script_classes=[ {
 "path": "res://script/base/match/player/hearing.gd"
 }, {
 "base": "Resource",
+"class": "ModelReference",
+"language": "GDScript",
+"path": "res://script/base/model/model_refence.gd"
+}, {
+"base": "BaseModel",
 "class": "OrganizationModel",
 "language": "GDScript",
 "path": "res://script/base/model/organization_model.gd"
 }, {
-"base": "Resource",
+"base": "BaseModel",
 "class": "PlayerModel",
 "language": "GDScript",
 "path": "res://script/base/model/player_model.gd"
@@ -144,7 +154,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://script/tactical_fps/match/weapon/tactical_fps_weapon.gd"
 }, {
-"base": "Resource",
+"base": "BaseModel",
 "class": "TeamModel",
 "language": "GDScript",
 "path": "res://script/base/model/team_model.gd"
@@ -159,6 +169,7 @@ _global_script_class_icons={
 "BaseMap": "",
 "BaseMatch": "",
 "BaseMigration": "",
+"BaseModel": "",
 "BasePlayer": "",
 "BasePlayerCommand": "",
 "BasePlayerController": "",
@@ -169,6 +180,7 @@ _global_script_class_icons={
 "Discipline": "",
 "HealthBar": "",
 "Hearing": "",
+"ModelReference": "",
 "OrganizationModel": "",
 "PlayerModel": "",
 "ShootPlayerCommand": "",

@@ -1,15 +1,16 @@
 class_name PlayerModel
-extends Resource
+extends BaseModel
 
 
-export (Discipline.Values) var discipline: int = -1
-export (String) var name: String = ""
-export (String) var real_name: String = ""
-export (int) var age: int = 0
-export (String) var country: String = ""
+const MODEL_NAME = "Player"
 
-export (String) var _id: String = ""
-export (String) var _current_team_id: String = ""
+var discipline: int
+var name: String
+var real_name: String
+var age: int
+var country: String
+
+var _current_team: ModelReference
 
 
 func _init(
@@ -26,12 +27,18 @@ func _init(
 	self.country = _country
 
 
-func get_id() -> String:
-	return _id
+func set_current_team(team_id: String) -> void:
+	self._current_team = ModelReference.new(TeamModel.MODEL_NAME, team_id)
+	if get_current_team():
+		get_current_team().players.append(ModelReference.new(MODEL_NAME, _id))
 
 
 func get_current_team() -> TeamModel:
-	if not _current_team_id:
+	if not _current_team:
 		return null
 	
-	return Data.get_team(_current_team_id)
+	return _current_team.get_value() as TeamModel
+
+
+func get_model_name() -> String:
+	return MODEL_NAME
