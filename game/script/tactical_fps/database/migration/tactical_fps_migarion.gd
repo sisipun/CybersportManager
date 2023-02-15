@@ -40,21 +40,18 @@ func _migrate(file: File, database: Database) -> void:
 		players_teams[player_data["name"]] = player_teams
 	
 	
-	var organization_name_to_id = {}
+	var persist_organizations: Dictionary = {}
 	for organization in organizations.values():
-		var id: String = database.add_model(organization)
-		organization_name_to_id[organization.name] = id
+		persist_organizations[organization.name] = database.add_model(organization)
 	
-	var team_name_to_id = {}
+	var persist_teams: Dictionary = {}
 	for team in teams.values():
-		var id: String = database.add_model(team)
-		team_name_to_id[team.name] = id
-		team.set_organization(organization_name_to_id[team.name])
+		persist_teams[team.name] = database.add_model(team)
+		team.set_organization(persist_organizations[team.name].get_reference())
 	
-	var player_name_to_id = {}
+	var persist_players: Dictionary = {}
 	for player in players.values():
-		var id: String = database.add_model(player)
-		player_name_to_id[player.name] = id
+		persist_players[player.name] = database.add_model(player)
 		if players_teams.has(player.name) and players_teams[player.name].size() > 0:
 			var current_team_name: String = players_teams[player.name][0]
-			player.set_current_team(team_name_to_id[current_team_name])
+			player.set_current_team(persist_teams[current_team_name].get_reference())

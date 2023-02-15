@@ -32,7 +32,7 @@ _global_script_classes=[ {
 "base": "Resource",
 "class": "BaseModel",
 "language": "GDScript",
-"path": "res://script/base/model/base_model.gd"
+"path": "res://script/base/database/model/base_model.gd"
 }, {
 "base": "KinematicBody2D",
 "class": "BasePlayer",
@@ -72,7 +72,7 @@ _global_script_classes=[ {
 "base": "Resource",
 "class": "Discipline",
 "language": "GDScript",
-"path": "res://script/base/model/discipline.gd"
+"path": "res://script/base/database/model/discipline.gd"
 }, {
 "base": "ProgressBar",
 "class": "HealthBar",
@@ -87,17 +87,17 @@ _global_script_classes=[ {
 "base": "Resource",
 "class": "ModelReference",
 "language": "GDScript",
-"path": "res://script/base/model/model_refence.gd"
+"path": "res://script/base/database/model/model_refence.gd"
 }, {
 "base": "BaseModel",
 "class": "OrganizationModel",
 "language": "GDScript",
-"path": "res://script/base/model/organization_model.gd"
+"path": "res://script/base/database/model/organization_model.gd"
 }, {
 "base": "BaseModel",
 "class": "PlayerModel",
 "language": "GDScript",
-"path": "res://script/base/model/player_model.gd"
+"path": "res://script/base/database/model/player_model.gd"
 }, {
 "base": "BasePlayerCommand",
 "class": "ShootPlayerCommand",
@@ -157,7 +157,7 @@ _global_script_classes=[ {
 "base": "BaseModel",
 "class": "TeamModel",
 "language": "GDScript",
-"path": "res://script/base/model/team_model.gd"
+"path": "res://script/base/database/model/team_model.gd"
 }, {
 "base": "RayCast2D",
 "class": "Vision",
@@ -201,11 +201,12 @@ _global_script_class_icons={
 [application]
 
 config/name="CybersportManager"
-run/main_scene="res://script/ui.tscn"
+run/main_scene="res://script/base/dashboard/base_dashboard.tscn"
 config/icon="res://asset/icon/icon.png"
 
 [autoload]
 
+WorldState="*res://script/base/world/world_state.tscn"
 Data="*res://script/base/database/database.tscn"
 
 [input_devices]

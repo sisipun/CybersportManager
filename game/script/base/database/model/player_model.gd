@@ -27,10 +27,9 @@ func _init(
 	self.country = _country
 
 
-func set_current_team(team_id: String) -> void:
-	self._current_team = ModelReference.new(TeamModel.MODEL_NAME, team_id)
-	if get_current_team():
-		get_current_team().players.append(ModelReference.new(MODEL_NAME, _id))
+func set_current_team(team: ModelReference) -> void:
+	_current_team = team
+	get_current_team().players.append(_reference)
 
 
 func get_current_team() -> TeamModel:

@@ -20,10 +20,9 @@ func _init(
 	self.players = []
 
 
-func set_organization(organization_id: String) -> void:
-	_organization = ModelReference.new(OrganizationModel.MODEL_NAME, organization_id)
-	if get_organization():
-		get_organization().teams.append(ModelReference.new(MODEL_NAME, _id))
+func set_organization(organization: ModelReference) -> void:
+	_organization = organization
+	get_organization().teams.append(_reference)
 
 
 func get_organization() -> OrganizationModel:

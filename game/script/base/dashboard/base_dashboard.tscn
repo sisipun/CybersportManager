@@ -1,0 +1,30 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://script/base/dashboard/base_dashboard.gd" type="Script" id=1]
+
+[node name="BaseDashboard" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+_next_day_button = NodePath("NextDayButton")
+_day_number_label = NodePath("DayNumberLabel")
+
+[node name="NextDayButton" type="Button" parent="."]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -150.0
+margin_top = 30.0
+margin_right = -30.0
+margin_bottom = 70.0
+rect_min_size = Vector2( 100, 30 )
+text = "Next Day"
+
+[node name="DayNumberLabel" type="Label" parent="."]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -250.0
+margin_top = 30.0
+margin_right = -200.0
+margin_bottom = 70.0
+align = 1
+valign = 1
