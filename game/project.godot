@@ -27,12 +27,12 @@ _global_script_classes=[ {
 "base": "Resource",
 "class": "BaseMigration",
 "language": "GDScript",
-"path": "res://script/base/database/migration/base_migration.gd"
+"path": "res://script/base/game_state/database/migration/base_migration.gd"
 }, {
 "base": "Resource",
 "class": "BaseModel",
 "language": "GDScript",
-"path": "res://script/base/database/model/base_model.gd"
+"path": "res://script/base/game_state/database/model/base_model.gd"
 }, {
 "base": "KinematicBody2D",
 "class": "BasePlayer",
@@ -62,12 +62,12 @@ _global_script_classes=[ {
 "base": "Control",
 "class": "DashboardContainer",
 "language": "GDScript",
-"path": "res://script/base/dashboard/dashboard_container.gd"
+"path": "res://script/base/manager/dashboard/dashboard_container.gd"
 }, {
 "base": "Node",
 "class": "Database",
 "language": "GDScript",
-"path": "res://script/base/database/database.gd"
+"path": "res://script/base/game_state/database/database.gd"
 }, {
 "base": "BasePlayerCommand",
 "class": "DefendTargetPlayerCommand",
@@ -77,7 +77,7 @@ _global_script_classes=[ {
 "base": "Resource",
 "class": "Discipline",
 "language": "GDScript",
-"path": "res://script/base/database/model/discipline.gd"
+"path": "res://script/base/game_state/database/model/discipline.gd"
 }, {
 "base": "ProgressBar",
 "class": "HealthBar",
@@ -92,22 +92,22 @@ _global_script_classes=[ {
 "base": "Resource",
 "class": "ModelReference",
 "language": "GDScript",
-"path": "res://script/base/database/model/model_refence.gd"
+"path": "res://script/base/game_state/database/model/model_refence.gd"
 }, {
 "base": "BaseModel",
 "class": "OrganizationModel",
 "language": "GDScript",
-"path": "res://script/base/database/model/organization_model.gd"
+"path": "res://script/base/game_state/database/model/organization_model.gd"
 }, {
 "base": "Control",
 "class": "PlayerDashboard",
 "language": "GDScript",
-"path": "res://script/base/dashboard/player_dashboard.gd"
+"path": "res://script/base/manager/dashboard/player_dashboard.gd"
 }, {
 "base": "BaseModel",
 "class": "PlayerModel",
 "language": "GDScript",
-"path": "res://script/base/database/model/player_model.gd"
+"path": "res://script/base/game_state/database/model/player_model.gd"
 }, {
 "base": "BasePlayerCommand",
 "class": "ShootPlayerCommand",
@@ -127,7 +127,7 @@ _global_script_classes=[ {
 "base": "BaseMigration",
 "class": "TacticalFpsMigration",
 "language": "GDScript",
-"path": "res://script/tactical_fps/database/migration/tactical_fps_migarion.gd"
+"path": "res://script/tactical_fps/game_state/database/migration/tactical_fps_migarion.gd"
 }, {
 "base": "Area2D",
 "class": "TacticalFpsPlantZone",
@@ -167,7 +167,7 @@ _global_script_classes=[ {
 "base": "BaseModel",
 "class": "TeamModel",
 "language": "GDScript",
-"path": "res://script/base/database/model/team_model.gd"
+"path": "res://script/base/game_state/database/model/team_model.gd"
 }, {
 "base": "RayCast2D",
 "class": "Vision",
@@ -213,13 +213,13 @@ _global_script_class_icons={
 [application]
 
 config/name="CybersportManager"
-run/main_scene="res://script/base/dashboard/dashboard_container.tscn"
+run/main_scene="res://script/base/manager/dashboard/dashboard_container.tscn"
 config/icon="res://asset/icon/icon.png"
 
 [autoload]
 
-Calendar="*res://script/base/game_state/calendar.tscn"
-Data="*res://script/base/database/database.tscn"
+Calendar="*res://script/base/game_state/calendar/calendar.tscn"
+Data="*res://script/base/game_state/database/database.tscn"
 
 [input_devices]
 

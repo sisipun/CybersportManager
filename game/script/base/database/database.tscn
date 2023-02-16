@@ -1,8 +1,0 @@
-[gd_scene load_steps=3 format=2]
-
-[ext_resource path="res://script/base/database/database.gd" type="Script" id=1]
-[ext_resource path="res://script/tactical_fps/database/migration/tactical_fps_migration.tres" type="Resource" id=2]
-
-[node name="Database" type="Node"]
-script = ExtResource( 1 )
-migrations = [ ExtResource( 2 ) ]
