@@ -45,7 +45,7 @@ func _ready() -> void:
 	_end_round_timer.wait_time = _end_round_delay
 	_end_round_timer.connect("timeout", self, "_on_end_round_timer_timeout")
 	
-	init(TacticalFpsTeam.Side.values(), 1)
+	init(TacticalFpsTeam.Side.values(), 3)
 	start()
 
 

@@ -1,0 +1,47 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://script/base/dashboard/player_dashboard.gd" type="Script" id=1]
+
+[node name="PlayerDashboard" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+_name_label = NodePath("Name")
+_real_name_label = NodePath("RealName")
+_age_label = NodePath("Age")
+
+[node name="Name" type="Label" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -50.0
+margin_top = -10.0
+margin_right = 50.0
+margin_bottom = 10.0
+align = 1
+valign = 1
+
+[node name="RealName" type="Label" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -50.0
+margin_top = 30.0
+margin_right = 50.0
+margin_bottom = 50.0
+align = 1
+valign = 1
+
+[node name="Age" type="Label" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -50.0
+margin_top = 60.0
+margin_right = 50.0
+margin_bottom = 80.0
+align = 1
+valign = 1
