@@ -5,6 +5,7 @@ extends BaseMigration
 func _migrate(file: File, database: Database) -> void:
 	var players: Dictionary = {}
 	var players_teams: Dictionary = {}
+	var players_current_teams: Dictionary = {}
 	var teams: Dictionary = {}
 	var organizations: Dictionary = {}
 	
@@ -38,6 +39,7 @@ func _migrate(file: File, database: Database) -> void:
 				)
 			player_teams.append(team_data["name"])
 		players_teams[player_data["name"]] = player_teams
+		players_current_teams[player_data["name"]] = line["stats"]["current_team"]
 	
 	
 	var persist_organizations: Dictionary = {}
@@ -52,6 +54,7 @@ func _migrate(file: File, database: Database) -> void:
 	var persist_players: Dictionary = {}
 	for player in players.values():
 		persist_players[player.name] = database.add_model(player)
-		if players_teams.has(player.name) and players_teams[player.name].size() > 0:
-			var current_team_name: String = players_teams[player.name][0]
-			player.set_current_team(persist_teams[current_team_name].get_reference())
+		if players_current_teams.has(player.name):
+			var current_team_name: String = players_current_teams[player.name]
+			if persist_teams.has(current_team_name):
+				player.set_current_team(persist_teams[current_team_name].get_reference())

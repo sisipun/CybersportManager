@@ -62,7 +62,7 @@ _global_script_classes=[ {
 "base": "Control",
 "class": "DashboardContainer",
 "language": "GDScript",
-"path": "res://script/base/manager/dashboard/dashboard_container.gd"
+"path": "res://script/base/manager/ui/main_dashboard_ui.gd"
 }, {
 "base": "Node",
 "class": "Database",
@@ -100,9 +100,9 @@ _global_script_classes=[ {
 "path": "res://script/base/game_state/database/model/organization_model.gd"
 }, {
 "base": "Control",
-"class": "PlayerDashboard",
+"class": "PlayerInfoUi",
 "language": "GDScript",
-"path": "res://script/base/manager/dashboard/player_dashboard.gd"
+"path": "res://script/base/manager/ui/player_info_ui.gd"
 }, {
 "base": "BaseModel",
 "class": "PlayerModel",
@@ -164,6 +164,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://script/tactical_fps/match/weapon/tactical_fps_weapon.gd"
 }, {
+"base": "Control",
+"class": "TeamInfoUi",
+"language": "GDScript",
+"path": "res://script/base/manager/ui/team_info_ui.gd"
+}, {
 "base": "BaseModel",
 "class": "TeamModel",
 "language": "GDScript",
@@ -193,7 +198,7 @@ _global_script_class_icons={
 "Hearing": "",
 "ModelReference": "",
 "OrganizationModel": "",
-"PlayerDashboard": "",
+"PlayerInfoUi": "",
 "PlayerModel": "",
 "ShootPlayerCommand": "",
 "TacticalFpsMap": "",
@@ -206,6 +211,7 @@ _global_script_class_icons={
 "TacticalFpsTeam": "",
 "TacticalFpsTeamController": "",
 "TacticalFpsWeapon": "",
+"TeamInfoUi": "",
 "TeamModel": "",
 "Vision": ""
 }
@@ -213,7 +219,7 @@ _global_script_class_icons={
 [application]
 
 config/name="CybersportManager"
-run/main_scene="res://script/base/manager/dashboard/dashboard_container.tscn"
+run/main_scene="res://script/base/manager/ui/main_dashboard_ui.tscn"
 config/icon="res://asset/icon/icon.png"
 
 [autoload]

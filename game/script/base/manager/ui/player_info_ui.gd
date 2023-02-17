@@ -1,4 +1,4 @@
-class_name PlayerDashboard
+class_name PlayerInfoUi
 extends Control
 
 
