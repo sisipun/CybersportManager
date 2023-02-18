@@ -11,8 +11,7 @@ script = ExtResource( 1 )
 _next_day_button = NodePath("NextDayButton")
 _day_number_label = NodePath("DayNumberLabel")
 _container = NodePath("Container")
-player_info_ui_scene = ExtResource( 2 )
-team_info_ui_scene = ExtResource( 3 )
+_ui_scenes = [ ExtResource( 2 ), ExtResource( 3 ) ]
 
 [node name="NextDayButton" type="Button" parent="."]
 anchor_left = 1.0
