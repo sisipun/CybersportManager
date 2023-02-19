@@ -10,11 +10,16 @@ func get_type() -> int:
 	return Type.TEAM_INFO
 
 
-func show_ui(params: Array) -> void:
+func init(params: Array) -> void:
 	var id: String = params[0]
 	var team: TeamModel = Data.get_model(TeamModel.MODEL_NAME, id)
 	
-	_name_label.text = str(team.name)
+	for child in _players_container.get_children():
+		child.disconnect("pressed", self, "_on_player_pressed")
+		_players_container.remove_child(child)
+		child.queue_free()
+	
+	_name_label.text = str(team.name)	
 	for player_link in team.players:
 		var player_element: LinkButton = LinkButton.new()
 		
@@ -23,15 +28,7 @@ func show_ui(params: Array) -> void:
 		player_element.text = player.name
 		assert(player_element.connect("pressed", self, "_on_player_pressed", [player.get_id()]) == OK)
 	
-	.show_ui(params)
-
-
-func hide_ui() -> void:
-	.hide_ui()
-	_name_label.text = ""
-	for child in _players_container.get_children():
-		_players_container.remove_child(child)
-		child.queue_free()
+	.init(params)
 
 
 func _on_player_pressed(id: String) -> void:

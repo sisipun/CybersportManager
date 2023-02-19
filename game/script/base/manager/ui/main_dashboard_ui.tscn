@@ -8,10 +8,26 @@
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 1 )
+_next_button = NodePath("NextButton")
+_previous_button = NodePath("PreviousButton")
 _next_day_button = NodePath("NextDayButton")
 _day_number_label = NodePath("DayNumberLabel")
 _container = NodePath("Container")
 _ui_scenes = [ ExtResource( 2 ), ExtResource( 3 ) ]
+
+[node name="NextButton" type="Button" parent="."]
+margin_left = 200.0
+margin_top = 30.0
+margin_right = 320.0
+margin_bottom = 70.0
+text = "Next"
+
+[node name="PreviousButton" type="Button" parent="."]
+margin_left = 30.0
+margin_top = 30.0
+margin_right = 150.0
+margin_bottom = 70.0
+text = "Previous"
 
 [node name="NextDayButton" type="Button" parent="."]
 anchor_left = 1.0

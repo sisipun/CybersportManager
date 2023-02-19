@@ -12,12 +12,8 @@ enum Type {
 signal link_pressed(type, params)
 
 
-func show_ui(_params: Array) -> void:
-	self.show()
-
-
-func hide_ui() -> void:
-	self.hide()
+func init(_params: Array) -> void:
+	pass
 
 
 func get_type() -> int:
