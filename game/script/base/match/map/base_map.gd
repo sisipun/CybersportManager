@@ -2,7 +2,7 @@ class_name BaseMap
 extends Node
 
 
-export (NodePath) onready var _navigation = get_node(_navigation) as Navigation2D
+@export (NodePath) onready var _navigation = get_node(_navigation) as Navigation2D
 
 # TODO [TEST] Remove later
 var _player: BasePlayer = null

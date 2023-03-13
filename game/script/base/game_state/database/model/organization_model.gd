@@ -2,7 +2,7 @@ class_name OrganizationModel
 extends BaseModel
 
 
-const MODEL_NAME = "Organization"
+const MODEL_NAME: String = "Organization"
 
 var name: String
 var teams: Array

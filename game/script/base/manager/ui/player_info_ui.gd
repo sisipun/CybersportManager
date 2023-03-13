@@ -2,9 +2,13 @@ class_name PlayerInfoUi
 extends BaseUi
 
 
-export (NodePath) onready var _name_label = get_node(_name_label) as Label
-export (NodePath) onready var _real_name_label = get_node(_real_name_label) as Label
-export (NodePath) onready var _age_label = get_node(_age_label) as Label
+@export_node_path("Label") var _name_label_path: NodePath
+@export_node_path("Label") var _real_name_label_path: NodePath
+@export_node_path("Label") var _age_label_path: NodePath
+
+@onready var _name_label: Label = get_node(_name_label_path)
+@onready var _real_name_label: Label = get_node(_real_name_label_path)
+@onready var _age_label: Label = get_node(_age_label_path)
 
 
 func get_type() -> int:
@@ -19,4 +23,4 @@ func init(params: Array) -> void:
 	_real_name_label.text = str(player.real_name)
 	_age_label.text = str(player.age)
 	
-	.init(params)
+	super.init(params)

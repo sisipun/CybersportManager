@@ -2,7 +2,7 @@ class_name TacticalFpsMigration
 extends BaseMigration
 
 
-func _migrate(file: File, database: Database) -> void:
+func _migrate(file: FileAccess, database: Database) -> void:
 	var players: Dictionary = {}
 	var players_teams: Dictionary = {}
 	var players_current_teams: Dictionary = {}
@@ -10,8 +10,10 @@ func _migrate(file: File, database: Database) -> void:
 	var organizations: Dictionary = {}
 	
 	while not file.eof_reached():
-		var line = JSON.parse(file.get_line()).result
-		if not line:
+		var test_json_conv = JSON.new()
+		assert(test_json_conv.parse(file.get_line()) == OK)
+		var line = test_json_conv.get_data()
+		if line == null:
 			continue
 		
 		var player_data: Dictionary = line["summary"]

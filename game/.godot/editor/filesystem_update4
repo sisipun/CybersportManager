@@ -1,0 +1,17 @@
+res://asset/environment/default_env.tres
+res://script/base/manager/ui/main_dashboard_ui.tscn
+res://script/base/game_state/database/migration/base_migration.gd
+res://script/base/manager/ui/main_dashboard_ui.gd
+res://script/base/game_state/calendar/calendar.tscn
+res://script/base/game_state/database/model/base_model.gd
+res://script/base/game_state/database/database.gd
+res://script/base/game_state/database/model/model_refence.gd
+res://script/base/game_state/database/model/organization_model.gd
+res://script/base/game_state/database/model/player_model.gd
+res://script/base/game_state/database/model/team_model.gd
+res://script/base/game_state/database/database.tscn
+res://script/base/manager/ui/player_info_ui.gd
+res://script/base/manager/ui/player_info_ui.tscn
+res://script/base/manager/ui/team_info_ui.gd
+res://script/base/manager/ui/team_info_ui.tscn
+res://script/tactical_fps/game_state/database/migration/tactical_fps_migarion.gd

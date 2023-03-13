@@ -2,8 +2,11 @@ class_name TeamInfoUi
 extends BaseUi
 
 
-export (NodePath) onready var _name_label = get_node(_name_label) as Label
-export (NodePath) onready var _players_container = get_node(_players_container) as VBoxContainer
+@export_node_path("Label") var _name_label_path: NodePath
+@export_node_path("VBoxContainer") var _players_container_path: NodePath
+
+@onready var _name_label: Label = get_node(_name_label_path)
+@onready var _players_container: VBoxContainer = get_node(_players_container_path)
 
 
 func get_type() -> int:
@@ -15,7 +18,7 @@ func init(params: Array) -> void:
 	var team: TeamModel = Data.get_model(TeamModel.MODEL_NAME, id)
 	
 	for child in _players_container.get_children():
-		child.disconnect("pressed", self, "_on_player_pressed")
+		child.disconnect("pressed",Callable(self,"_on_player_pressed"))
 		_players_container.remove_child(child)
 		child.queue_free()
 	
@@ -26,9 +29,9 @@ func init(params: Array) -> void:
 		_players_container.add_child(player_element)
 		var player: PlayerModel = player_link.get_value()
 		player_element.text = player.name
-		assert(player_element.connect("pressed", self, "_on_player_pressed", [player.get_id()]) == OK)
+		assert(player_element.connect("pressed",Callable(self,"_on_player_pressed").bind(player.get_id())) == OK)
 	
-	.init(params)
+	super.init(params)
 
 
 func _on_player_pressed(id: String) -> void:

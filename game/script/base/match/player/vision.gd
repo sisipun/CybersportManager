@@ -6,10 +6,10 @@ signal detected(body)
 signal lost(body)
 
 
-export (float) var _cone_of_vision_degrees: float = 100.0
-export (int) var _rays_count: int = 50
+@export (float) var _cone_of_vision_degrees: float = 100.0
+@export (int) var _rays_count: int = 50
 
-var _direction: Vector2 = cast_to
+var _direction: Vector2 = target_position
 var _last_detected_bodies = []
 
 
@@ -19,9 +19,9 @@ func _physics_process(_delta: float) -> void:
 	
 	var detected_bodies: Array = []
 	for i in range(_rays_count):
-		var current_cone_of_vision_angle: float = deg2rad((i - align_index) * cone_of_vision_step)
+		var current_cone_of_vision_angle: float = deg_to_rad((i - align_index) * cone_of_vision_step)
 		var current_cast_to_vector: Vector2 = _direction.rotated(current_cone_of_vision_angle)
-		cast_to = current_cast_to_vector
+		target_position = current_cast_to_vector
 		force_raycast_update()
 		
 		if is_colliding() and not detected_bodies.has(get_collider()):
@@ -36,8 +36,8 @@ func _physics_process(_delta: float) -> void:
 			emit_signal("lost", last_detected_body)
 	
 	_last_detected_bodies = detected_bodies
-	cast_to = _direction
+	target_position = _direction
 
 
-func can_see(body: KinematicBody2D) -> bool:
+func can_see(body: CharacterBody2D) -> bool:
 	return _last_detected_bodies.has(body)

@@ -24,12 +24,12 @@ func _on_player_hitted(hitter: BasePlayer) -> void:
 		_on_enemy_detected(hitter)
 
 
-func _on_player_saw(body: KinematicBody2D) -> void:
+func _on_player_saw(body: CharacterBody2D) -> void:
 	if body is BasePlayer and body.team != team:
 		_on_enemy_detected(body)
 
 
-func _on_player_stopped_seeing(_body: KinematicBody2D) -> void:
+func _on_player_stopped_seeing(_body: CharacterBody2D) -> void:
 	pass
 
 

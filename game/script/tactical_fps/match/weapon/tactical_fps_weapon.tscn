@@ -2,14 +2,14 @@
 
 [ext_resource path="res://script/tactical_fps/match/weapon/tactical_fps_weapon.gd" type="Script" id=1]
 
-[node name="Weapon" type="Sprite"]
+[node name="Weapon" type="Sprite2D"]
 script = ExtResource( 1 )
 _bullet_ray = NodePath("BulletRay")
 _player_attach_point = NodePath("PlayerAttachPoint")
 _bullet_spawn_timer = NodePath("BulletSpawnTimer")
 
 [node name="BulletRay" type="RayCast2D" parent="."]
-cast_to = Vector2( 2000, 0 )
+target_position = Vector2( 2000, 0 )
 
 [node name="PlayerAttachPoint" type="Node2D" parent="."]
 

@@ -2,7 +2,7 @@ class_name TeamModel
 extends BaseModel
 
 
-const MODEL_NAME = "Team"
+const MODEL_NAME: String = "Team"
 
 var discipline: int
 var name: String

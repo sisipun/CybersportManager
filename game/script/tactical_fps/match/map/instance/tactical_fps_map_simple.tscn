@@ -6,15 +6,15 @@
 [ext_resource path="res://script/base/match/map/base_wall.tscn" type="PackedScene" id=4]
 
 [sub_resource type="NavigationPolygon" id=1]
-vertices = PoolVector2Array( -276, -276, 275, -274, 277, 276, -276, 275 )
-polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
-outlines = [ PoolVector2Array( -276, -276, 275, -274, 277, 276, -276, 275 ) ]
+vertices = PackedVector2Array( -276, -276, 275, -274, 277, 276, -276, 275 )
+polygons = [ PackedInt32Array( 0, 1, 2, 3 ) ]
+outlines = [ PackedVector2Array( -276, -276, 275, -274, 277, 276, -276, 275 ) ]
 
 [node name="Map" instance=ExtResource( 1 )]
 starting_position_nodes = [ NodePath("RedStartingPosition"), NodePath("BlueStartingPosition") ]
 plant_zone_nodes = [ NodePath("ZoneA"), NodePath("ZoneB") ]
 
-[node name="Zone" type="NavigationPolygonInstance" parent="Navigation" index="0"]
+[node name="Zone" type="NavigationRegion2D" parent="Navigation" index="0"]
 navpoly = SubResource( 1 )
 
 [node name="LWall" parent="." index="3" instance=ExtResource( 4 )]

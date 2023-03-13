@@ -2,7 +2,7 @@ class_name BaseModel
 extends Resource
 
 
-var _id: String setget set_id, get_id
+var _id: String: get = get_id, set = set_id
 var _reference: ModelReference
 
 

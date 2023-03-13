@@ -5,7 +5,7 @@ extends Node
 signal player_dead
 
 
-export (PackedScene) var _player_scene: PackedScene = null
+@export (PackedScene) var _player_scene: PackedScene = null
 
 var team: int = -1
 var index: int = -1
@@ -25,15 +25,15 @@ func spawn() -> void:
 	if _player != null:
 		despawn()
 	
-	_player = _player_scene.instance()
+	_player = _player_scene.instantiate()
 	_player.init(team, index)
 	_current_match.map.spawn_player(_player)
 	
-	assert(_player.connect("saw", self, "_on_player_saw") == OK)
-	assert(_player.connect("stopped_seeing", self, "_on_player_stopped_seeing") == OK)
-	assert(_player.connect("heard", self, "_on_player_heard") == OK)
-	assert(_player.connect("dead", self, "_on_player_dead") == OK)
-	assert(_player.connect("hitted", self, "_on_player_hitted") == OK)
+	assert(_player.connect("saw",Callable(self,"_on_player_saw")) == OK)
+	assert(_player.connect("stopped_seeing",Callable(self,"_on_player_stopped_seeing")) == OK)
+	assert(_player.connect("heard",Callable(self,"_on_player_heard")) == OK)
+	assert(_player.connect("dead",Callable(self,"_on_player_dead")) == OK)
+	assert(_player.connect("hitted",Callable(self,"_on_player_hitted")) == OK)
 
 
 func despawn() -> void:
@@ -52,13 +52,13 @@ func _start_command(command: BasePlayerCommand) -> void:
 	
 	_commands.append(command)
 	_current_command = command
-	assert(_current_command.connect("finished", self, "_on_current_command_finished") == OK)
+	assert(_current_command.connect("finished",Callable(self,"_on_current_command_finished")) == OK)
 	_current_command.start()
 
 
 func _stop_current_command() -> void:
 	if _current_command != null:
-		_current_command.disconnect("finished", self, "_on_current_command_finished")
+		_current_command.disconnect("finished",Callable(self,"_on_current_command_finished"))
 		_current_command.stop()
 		_current_command = null
 
@@ -77,11 +77,11 @@ func _on_current_command_finished() -> void:
 		_start_next_command()
 
 
-func _on_player_saw(_body: KinematicBody2D) -> void:
+func _on_player_saw(_body: CharacterBody2D) -> void:
 	pass
 
 
-func _on_player_stopped_seeing(_body: KinematicBody2D) -> void:
+func _on_player_stopped_seeing(_body: CharacterBody2D) -> void:
 	pass
 
 

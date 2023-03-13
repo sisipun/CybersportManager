@@ -1,14 +1,14 @@
 class_name TacticalFpsWeapon
-extends Sprite
+extends Sprite2D
 
 
-export (NodePath) onready var _bullet_ray = get_node(_bullet_ray) as RayCast2D
-export (NodePath) onready var _player_attach_point = get_node(_player_attach_point) as Node2D
-export (NodePath) onready var _bullet_spawn_timer = get_node(_bullet_spawn_timer) as Timer
+@export (NodePath) onready var _bullet_ray = get_node(_bullet_ray) as RayCast2D
+@export (NodePath) onready var _player_attach_point = get_node(_player_attach_point) as Node2D
+@export (NodePath) onready var _bullet_spawn_timer = get_node(_bullet_spawn_timer) as Timer
 
-export (float) var _bullet_power: float = 10.0
-export (float) var _bullet_speed: float = 1000.0
-export (float) var _rate_of_fire: float = 300.0
+@export (float) var _bullet_power: float = 10.0
+@export (float) var _bullet_speed: float = 1000.0
+@export (float) var _rate_of_fire: float = 300.0
 
 var player: BasePlayer = null
 var _can_shoot: bool = true
@@ -17,7 +17,7 @@ var _can_shoot: bool = true
 func _ready() -> void:
 	_bullet_spawn_timer.wait_time = 60.0 / _rate_of_fire
 	_bullet_spawn_timer.one_shot = true
-	assert(_bullet_spawn_timer.connect("timeout", self, "_on_bullet_spawn_timer_timeout") == OK)
+	assert(_bullet_spawn_timer.connect("timeout",Callable(self,"_on_bullet_spawn_timer_timeout")) == OK)
 
 
 func init(_player: BasePlayer) -> void:

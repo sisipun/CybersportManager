@@ -6,9 +6,9 @@ extends Node
 signal end_match(winner)
 
 
-export (NodePath) onready var map = get_node(map) as BaseMap
-export (PackedScene) var _team_controller_scene: PackedScene = null
-export (PackedScene) var _player_controller_scene: PackedScene = null
+@export (NodePath) onready var map = get_node(map) as BaseMap
+@export (PackedScene) var _team_controller_scene: PackedScene = null
+@export (PackedScene) var _player_controller_scene: PackedScene = null
 
 var _team_players_count: int = -1
 var _team_controllers: Dictionary = {}
@@ -26,14 +26,14 @@ func init(teams: Array, team_players_count: int) -> void:
 	_team_players_count = team_players_count
 	for team in teams:
 		# TODO [CD] BaseTeamController
-		var controller: Node = _team_controller_scene.instance()
+		var controller: Node = _team_controller_scene.instantiate()
 		add_child(controller)
 		_team_controllers[team] = controller
 		
 		var players: Array = []
 		for i in range(_team_players_count):
 			# TODO [CD] BasePlayerController
-			var player: Node = _player_controller_scene.instance()
+			var player: Node = _player_controller_scene.instantiate()
 			player.init(team, i, self)
 			players.append(player)
 			controller.add_child(player)

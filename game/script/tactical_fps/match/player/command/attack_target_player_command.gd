@@ -12,20 +12,20 @@ func _init(
 
 func is_valid() -> bool:
 	return (
-		.is_valid()
+		super.is_valid()
 		and is_instance_valid(_player)
 	)
 
 
 func start() -> void:
-	.start()
+	super.start()
 	if not is_valid():
 		finish()
 		return
 	
 	var target: Vector2 = arguments[0]
 	_player.move_to(target)
-	yield(_player, "navigation_finished")
+	await _player.navigation_finished
 	
 	if _player.position == target:
 		finish()
@@ -33,4 +33,4 @@ func start() -> void:
 
 func stop() -> void:
 	_player.stop()
-	.stop()
+	super.stop()

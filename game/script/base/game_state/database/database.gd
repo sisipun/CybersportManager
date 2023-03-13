@@ -2,7 +2,7 @@ class_name Database
 extends Node
 
 
-export(Array, Resource) var migrations: Array = []
+@export var migrations: Array[Resource] = []
 
 var data: Dictionary = {}
 
