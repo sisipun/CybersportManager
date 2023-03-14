@@ -5,13 +5,13 @@ extends Node
 signal player_dead
 
 
-@export (PackedScene) var _player_scene: PackedScene = null
+@export var _player_scene: PackedScene = null
 
 var team: int = -1
 var index: int = -1
 var _player: BasePlayer = null
 var _current_match: BaseMatch = null
-var _commands: Array = []
+var _commands: Array[BasePlayerCommand] = []
 var _current_command: BasePlayerCommand = null
 
 

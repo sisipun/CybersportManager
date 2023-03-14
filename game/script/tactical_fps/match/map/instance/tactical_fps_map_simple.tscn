@@ -1,56 +1,56 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=6 format=3 uid="uid://dwndn5lxxf1nt"]
 
-[ext_resource path="res://script/tactical_fps/match/map/tactical_fps_map.tscn" type="PackedScene" id=1]
-[ext_resource path="res://script/tactical_fps/match/map/tactical_fps_plant_zone.tscn" type="PackedScene" id=2]
-[ext_resource path="res://script/tactical_fps/match/map/tactical_fps_starting_position.tscn" type="PackedScene" id=3]
-[ext_resource path="res://script/base/match/map/base_wall.tscn" type="PackedScene" id=4]
+[ext_resource type="PackedScene" path="res://script/tactical_fps/match/map/tactical_fps_map.tscn" id="1"]
+[ext_resource type="PackedScene" uid="uid://c1yjkfchf6m4e" path="res://script/tactical_fps/match/map/tactical_fps_plant_zone.tscn" id="2"]
+[ext_resource type="PackedScene" path="res://script/tactical_fps/match/map/tactical_fps_starting_position.tscn" id="3"]
+[ext_resource type="PackedScene" uid="uid://oygrfbodrmfk" path="res://script/base/match/map/base_wall.tscn" id="4"]
 
-[sub_resource type="NavigationPolygon" id=1]
-vertices = PackedVector2Array( -276, -276, 275, -274, 277, 276, -276, 275 )
-polygons = [ PackedInt32Array( 0, 1, 2, 3 ) ]
-outlines = [ PackedVector2Array( -276, -276, 275, -274, 277, 276, -276, 275 ) ]
+[sub_resource type="NavigationPolygon" id="1"]
+vertices = PackedVector2Array(-276, -276, 275, -274, 277, 276, -276, 275)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-276, -276, 275, -274, 277, 276, -276, 275)])
 
-[node name="Map" instance=ExtResource( 1 )]
-starting_position_nodes = [ NodePath("RedStartingPosition"), NodePath("BlueStartingPosition") ]
-plant_zone_nodes = [ NodePath("ZoneA"), NodePath("ZoneB") ]
+[node name="Map" instance=ExtResource("1")]
+starting_position_nodes = [NodePath("RedStartingPosition"), NodePath("BlueStartingPosition")]
+plant_zone_nodes = [NodePath("ZoneA"), NodePath("ZoneB")]
 
 [node name="Zone" type="NavigationRegion2D" parent="Navigation" index="0"]
-navpoly = SubResource( 1 )
+navigation_polygon = SubResource("1")
 
-[node name="LWall" parent="." index="3" instance=ExtResource( 4 )]
-position = Vector2( -270, 0 )
-scale = Vector2( 0.1, 2.5 )
+[node name="LWall" parent="." index="3" instance=ExtResource("4")]
+position = Vector2(-270, 0)
+scale = Vector2(0.1, 2.5)
 
-[node name="RWall" parent="." index="4" instance=ExtResource( 4 )]
-position = Vector2( 270, 0 )
-scale = Vector2( 0.1, 2.5 )
+[node name="RWall" parent="." index="4" instance=ExtResource("4")]
+position = Vector2(270, 0)
+scale = Vector2(0.1, 2.5)
 
-[node name="UWall" parent="." index="5" instance=ExtResource( 4 )]
-position = Vector2( 0, -270 )
-scale = Vector2( 2.5, 0.1 )
+[node name="UWall" parent="." index="5" instance=ExtResource("4")]
+position = Vector2(0, -270)
+scale = Vector2(2.5, 0.1)
 
-[node name="DWall" parent="." index="6" instance=ExtResource( 4 )]
-position = Vector2( 0, 270 )
-scale = Vector2( 2.5, 0.1 )
+[node name="DWall" parent="." index="6" instance=ExtResource("4")]
+position = Vector2(0, 270)
+scale = Vector2(2.5, 0.1)
 
-[node name="Border" parent="." index="7" instance=ExtResource( 4 )]
-position = Vector2( 0, -102 )
-scale = Vector2( 1, 0.1 )
+[node name="Border" parent="." index="7" instance=ExtResource("4")]
+position = Vector2(0, -102)
+scale = Vector2(1, 0.1)
 
-[node name="RedStartingPosition" parent="." index="8" instance=ExtResource( 3 )]
-position = Vector2( 33, 223 )
+[node name="RedStartingPosition" parent="." index="8" instance=ExtResource("3")]
+position = Vector2(33, 223)
 
-[node name="BlueStartingPosition" parent="." index="9" instance=ExtResource( 3 )]
-position = Vector2( -2, -186 )
+[node name="BlueStartingPosition" parent="." index="9" instance=ExtResource("3")]
+position = Vector2(-2, -186)
 team = 1
 
-[node name="ZoneA" parent="." index="10" instance=ExtResource( 2 )]
-position = Vector2( -176, -223 )
-scale = Vector2( 2, 2 )
+[node name="ZoneA" parent="." index="10" instance=ExtResource("2")]
+position = Vector2(-176, -223)
+scale = Vector2(2, 2)
 
-[node name="ZoneB" parent="." index="11" instance=ExtResource( 2 )]
-position = Vector2( 170, -210 )
-scale = Vector2( 2, 2 )
+[node name="ZoneB" parent="." index="11" instance=ExtResource("2")]
+position = Vector2(170, -210)
+scale = Vector2(2, 2)
 
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]
 [connection signal="input_event" from="." to="." method="_on_input_event"]

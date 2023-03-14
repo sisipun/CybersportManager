@@ -9,20 +9,25 @@ enum State {
 }
 
 
-@export (NodePath) onready var _round_timer = get_node(_round_timer) as Timer
-@export (NodePath) onready var _bomb_timer = get_node(_bomb_timer) as Timer
-@export (NodePath) onready var _start_round_timer = get_node(_start_round_timer) as Timer
-@export (NodePath) onready var _end_round_timer = get_node(_end_round_timer) as Timer
+@export_node_path("Timer") var _round_timer_path: NodePath
+@export_node_path("Timer") var _bomb_timer_path: NodePath
+@export_node_path("Timer") var _start_round_timer_path: NodePath
+@export_node_path("Timer") var _end_round_timer_path: NodePath
 
-@export (int) var _win_condition_rounds_count: int = 16
+@export var _win_condition_rounds_count: int = 16
 
-@export (TacticalFpsTeam.Side) var _round_ends_winning_team: int = TacticalFpsTeam.Side.BLUE
-@export (TacticalFpsTeam.Side) var _round_bomb_explodes_winning_team: int = TacticalFpsTeam.Side.RED
+@export var _round_ends_winning_team: TacticalFpsTeam.Side = TacticalFpsTeam.Side.BLUE
+@export var _round_bomb_explodes_winning_team: TacticalFpsTeam.Side = TacticalFpsTeam.Side.RED
 
-@export (float) var _round_duration: float = 10.0
-@export (float) var _bomb_duration: float = 30.0
-@export (float) var _start_round_delay: float = 2.0
-@export (float) var _end_round_delay: float = 3.0
+@export var _round_duration: float = 10.0
+@export var _bomb_duration: float = 30.0
+@export var _start_round_delay: float = 2.0
+@export var _end_round_delay: float = 3.0
+
+@onready var _round_timer: Timer = get_node(_round_timer_path)
+@onready var _bomb_timer: Timer = get_node(_bomb_timer_path)
+@onready var _start_round_timer: Timer = get_node(_start_round_timer_path)
+@onready var _end_round_timer: Timer = get_node(_end_round_timer_path)
 
 var _score: Dictionary = {} 
 var _state: int = State.ROUND_STARTING
@@ -45,11 +50,11 @@ func _ready() -> void:
 	_end_round_timer.wait_time = _end_round_delay
 	_end_round_timer.connect("timeout",Callable(self,"_on_end_round_timer_timeout"))
 	
-	init(TacticalFpsTeam.Side.values(), 3)
+	init(TacticalFpsTeam.all_sides(), 3)
 	start()
 
 
-func init(teams: Array, team_players_count: int) -> void:
+func init(teams: Array[TacticalFpsTeam.Side], team_players_count: int) -> void:
 	super.init(teams, team_players_count)
 	for team in teams:
 		_score[team] = 0

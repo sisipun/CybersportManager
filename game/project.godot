@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="CybersportManager"
-run/main_scene="res://script/base/manager/ui/main_dashboard_ui.tscn"
+run/main_scene="res://script/ui.tscn"
 config/features=PackedStringArray("4.0")
 config/icon="res://asset/icon/icon.png"
 

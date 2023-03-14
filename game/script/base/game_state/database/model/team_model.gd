@@ -6,7 +6,7 @@ const MODEL_NAME: String = "Team"
 
 var discipline: int
 var name: String
-var players: Array
+var players: Array[ModelReference]
 
 var _organization: ModelReference
 

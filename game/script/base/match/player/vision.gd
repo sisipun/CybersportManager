@@ -6,8 +6,8 @@ signal detected(body)
 signal lost(body)
 
 
-@export (float) var _cone_of_vision_degrees: float = 100.0
-@export (int) var _rays_count: int = 50
+@export var _cone_of_vision_degrees: float = 100.0
+@export var _rays_count: int = 50
 
 var _direction: Vector2 = target_position
 var _last_detected_bodies = []
@@ -17,7 +17,7 @@ func _physics_process(_delta: float) -> void:
 	var cone_of_vision_step: float = _cone_of_vision_degrees / (_rays_count - 1.0)
 	var align_index: float = (_rays_count - 1.0) / 2.0
 	
-	var detected_bodies: Array = []
+	var detected_bodies: Array[Object] = []
 	for i in range(_rays_count):
 		var current_cone_of_vision_angle: float = deg_to_rad((i - align_index) * cone_of_vision_step)
 		var current_cast_to_vector: Vector2 = _direction.rotated(current_cone_of_vision_angle)

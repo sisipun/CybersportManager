@@ -6,7 +6,8 @@ func _init(
 	player: TacticalFpsPlayer, 
 	current_match: TacticalFpsMatch, 
 	arguments: Array
-).(player, current_match, arguments) -> void:
+) -> void:
+	super(player, current_match, arguments)
 	pass
 
 
@@ -23,7 +24,7 @@ func start() -> void:
 		finish()
 		return
 	
-	var target: Vector2 = arguments[0]
+	var target: Vector2 = _arguments[0]
 	_player.move_to(target)
 	await _player.navigation_finished
 	

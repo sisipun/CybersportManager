@@ -5,7 +5,7 @@ extends BaseModel
 const MODEL_NAME: String = "Organization"
 
 var name: String
-var teams: Array
+var teams: Array[ModelReference]
 
 
 func _init(

@@ -1,7 +1,7 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=2 format=3 uid="uid://dbjjplmchjsjs"]
 
-[ext_resource path="res://script/base/match/player/vision.gd" type="Script" id=1]
+[ext_resource type="Script" path="res://script/base/match/player/vision.gd" id="1"]
 
 [node name="Vision" type="RayCast2D"]
-target_position = Vector2( 2000, 0 )
-script = ExtResource( 1 )
+target_position = Vector2(2000, 0)
+script = ExtResource("1")

@@ -2,7 +2,7 @@ class_name TacticalFpsPlayer
 extends BasePlayer
 
 
-@export (PackedScene) var _weapon_scene: PackedScene = null
+@export var _weapon_scene: PackedScene = null
 
 var weapon: TacticalFpsWeapon = null
 

@@ -10,14 +10,19 @@ signal hitted(hitter)
 signal dead(killer)
 
 
-@export (NodePath) onready var _navigation_agent = get_node(_navigation_agent) as NavigationAgent2D
-@export (NodePath) onready var _vision = get_node(_vision) as Vision
-@export (NodePath) onready var _hearing = get_node(_hearing) as Hearing
-@export (NodePath) onready var _health_bar = get_node(_health_bar) as HealthBar
+@export_node_path("NavigationAgent2D") var _navigation_agent_path: NodePath
+@export_node_path("Vision") var _vision_path: NodePath
+@export_node_path("Hearing") var _hearing_path: NodePath
+@export_node_path("HealthBar") var _health_bar_path: NodePath
 
-@export (float) var _max_health: float = 100.0
-@export (float) var _max_speed: float = 100.0
-@export (float) var _max_rotation_speed: float = PI
+@export var _max_health: float = 100.0
+@export var _max_speed: float = 100.0
+@export var _max_rotation_speed: float = PI
+
+@onready var _navigation_agent: NavigationAgent2D = get_node(_navigation_agent_path)
+@onready var _vision: Vision = get_node(_vision_path)
+@onready var _hearing: Hearing = get_node(_hearing_path)
+@onready var _health_bar: HealthBar = get_node(_health_bar_path)
 
 var team: int = -1
 var index: int = -1
@@ -57,7 +62,8 @@ func can_see(body: CharacterBody2D) -> bool:
 
 
 func move_to(target: Vector2) -> void:
-	_navigation_agent.set_target_location(target)
+	pass
+	#_navigation_agent.set_target_location(target)
 
 
 func rotate_to(delta: float, target: Vector2) -> void:
@@ -72,11 +78,11 @@ func is_rotated_to(target: Vector2) -> bool:
 
 
 func stop() -> void:
-	_navigation_agent.set_target_location(global_position)
+	pass
+	#_navigation_agent.set_target_location(global_position)
 
 
-# [CD] BasePlayer
-func hit(power: float, hitter: CharacterBody2D) -> void:
+func hit(power: float, hitter: BasePlayer) -> void:
 	health -= power
 	print('Hitted wiht power:', power, '. Health left:', health)
 	
@@ -98,8 +104,8 @@ func _on_vision_lost(body: CharacterBody2D) -> void:
 
 
 # TODO add type
-func _on_hearing_detected(position: Vector2) -> void:
-	emit_signal("heard", position)
+func _on_hearing_detected(detected_position: Vector2) -> void:
+	emit_signal("heard", detected_position)
 
 
 func _on_navigation_finished() -> void:

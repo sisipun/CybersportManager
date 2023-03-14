@@ -2,13 +2,16 @@ class_name TacticalFpsWeapon
 extends Sprite2D
 
 
-@export (NodePath) onready var _bullet_ray = get_node(_bullet_ray) as RayCast2D
-@export (NodePath) onready var _player_attach_point = get_node(_player_attach_point) as Node2D
-@export (NodePath) onready var _bullet_spawn_timer = get_node(_bullet_spawn_timer) as Timer
+@export_node_path("RayCast2D") var _bullet_ray_path: NodePath
+@export_node_path("Node2D") var _player_attach_point_path: NodePath
+@export_node_path("Timer") var _bullet_spawn_timer_path: NodePath
 
-@export (float) var _bullet_power: float = 10.0
-@export (float) var _bullet_speed: float = 1000.0
-@export (float) var _rate_of_fire: float = 300.0
+@export var _bullet_power: float = 10.0
+@export var _rate_of_fire: float = 300.0
+
+@onready var _bullet_ray: RayCast2D = get_node(_bullet_ray_path)
+@onready var _player_attach_point: Node2D = get_node(_player_attach_point_path)
+@onready var _bullet_spawn_timer: Timer = get_node(_bullet_spawn_timer_path)
 
 var player: BasePlayer = null
 var _can_shoot: bool = true

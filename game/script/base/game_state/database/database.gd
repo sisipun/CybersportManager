@@ -11,7 +11,7 @@ func _ready() -> void:
 	print('Init Database Started')
 	
 	for migration in migrations:
-		migration.migrate(self)
+		(migration as BaseMigration).migrate(self)
 	
 	print(
 		'Database Inited. ',

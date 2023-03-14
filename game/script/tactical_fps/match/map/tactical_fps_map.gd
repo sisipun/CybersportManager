@@ -2,11 +2,11 @@ class_name TacticalFpsMap
 extends BaseMap
 
 
-@export (Array, NodePath) var starting_position_nodes: Array = []
-@export (Array, NodePath) var plant_zone_nodes: Array = []
+@export var starting_position_nodes: Array[NodePath] = []
+@export var plant_zone_nodes: Array[NodePath] = []
 
 var team_starting_positions: Dictionary = {}
-var plant_zones: Array = []
+var plant_zones: Array[TacticalFpsPlantZone] = []
 
 
 func _ready() -> void:
@@ -29,8 +29,8 @@ func get_starting_position(player: BasePlayer) -> Vector2:
 
 # TODO [TEST] Remove later
 func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
-	if event is InputEventMouseButton and event.is_pressed() and _player != null:
-		_player.move_to(event.position)
+	if event is InputEventMouseButton and event.is_pressed() and _test_player != null:
+		_test_player.move_to(event.position)
 
 
 func _on_body_exited(body: Node) -> void:

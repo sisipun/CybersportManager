@@ -7,10 +7,10 @@ signal team_dead(team)
 
 var _team: int = -1
 var _current_match: BaseMatch = null
-var _players: Array = []
+var _players: Array[BasePlayerController] = []
 
 
-func init(team: int, players: Array, current_match: BaseMatch) -> void:
+func init(team: int, players: Array[BasePlayerController], current_match: BaseMatch) -> void:
 	self._team = team
 	self._current_match = current_match
 	self._players = players

@@ -1,2 +1,3 @@
-res://script/base/manager/ui
+res://script/base/game_state/database
 res://script
+res://script/base/manager/ui

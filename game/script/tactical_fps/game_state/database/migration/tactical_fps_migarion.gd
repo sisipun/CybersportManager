@@ -27,7 +27,7 @@ func _migrate(file: FileAccess, database: Database) -> void:
 				player_data["country"]
 			)
 		
-		var player_teams:  Array = []
+		var player_teams: Array = []
 		var teams_data: Array = player_data["teams"]
 		for team_data in teams_data:
 			if not teams.has(team_data["name"]):

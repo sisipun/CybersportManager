@@ -8,16 +8,16 @@ extends Control
 @export_node_path("Label") var _day_number_label_path: NodePath
 @export_node_path("Container") var _container_path: NodePath
 
+@export var _ui_scenes: Array[PackedScene] = []
+
 @onready var _next_button: Button = get_node(_next_button_path)
 @onready var _previous_button: Button = get_node(_previous_button_path)
 @onready var _next_day_button: Button = get_node(_next_day_button_path)
 @onready var _day_number_label: Label = get_node(_day_number_label_path)
 @onready var _container: Container = get_node(_container_path)
 
-@export var _ui_scenes: Array[PackedScene] = []
-
 var _type_to_ui: Dictionary = {}
-var _ui_stack: Array = []
+var _ui_stack: Array[BaseUi] = []
 var _current_ui_stack_position: int = -1
 
 
