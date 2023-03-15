@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://dhmcp41i628gn" path="res://script/base/match/player/base_player.tscn" id="1"]
 [ext_resource type="Script" path="res://script/tactical_fps/match/player/tactical_fps_player.gd" id="2"]
-[ext_resource type="PackedScene" path="res://script/tactical_fps/match/weapon/instance/tactica_fps_weapon_ak47.tscn" id="3"]
+[ext_resource type="PackedScene" uid="uid://edq1qf6u4f5d" path="res://script/tactical_fps/match/weapon/instance/tactica_fps_weapon_ak47.tscn" id="3"]
 
 [node name="Player" instance=ExtResource("1")]
 script = ExtResource("2")

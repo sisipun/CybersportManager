@@ -42,7 +42,7 @@ func _physics_process(_delta: float) -> void:
 	if _navigation_agent.is_navigation_finished():
 		return
 	
-	var direction: Vector2 = global_position.direction_to(_navigation_agent.get_next_location())
+	var direction: Vector2 = global_position.direction_to(_navigation_agent.get_next_path_position())
 	var _velocity = _max_speed * direction
 	_navigation_agent.set_velocity(_velocity)
 	set_velocity(_velocity)
@@ -62,8 +62,7 @@ func can_see(body: CharacterBody2D) -> bool:
 
 
 func move_to(target: Vector2) -> void:
-	pass
-	#_navigation_agent.set_target_location(target)
+	_navigation_agent.target_position = target
 
 
 func rotate_to(delta: float, target: Vector2) -> void:
@@ -78,8 +77,7 @@ func is_rotated_to(target: Vector2) -> bool:
 
 
 func stop() -> void:
-	pass
-	#_navigation_agent.set_target_location(global_position)
+	_navigation_agent.target_position = global_position
 
 
 func hit(power: float, hitter: BasePlayer) -> void:
@@ -95,12 +93,14 @@ func hit(power: float, hitter: BasePlayer) -> void:
 	_health_bar.value = health
 
 
-func _on_vision_detected(body: CharacterBody2D) -> void:
-	emit_signal("saw", body)
+func _on_vision_detected(body: Object) -> void:
+	if body is CharacterBody2D:
+		emit_signal("saw", body)
 
 
-func _on_vision_lost(body: CharacterBody2D) -> void:
-	emit_signal("stopped_seeing", body)
+func _on_vision_lost(body: Object) -> void:
+	if body is CharacterBody2D:
+		emit_signal("stopped_seeing", body)
 
 
 # TODO add type

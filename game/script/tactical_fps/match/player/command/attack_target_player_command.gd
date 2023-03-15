@@ -13,13 +13,13 @@ func _init(
 
 func is_valid() -> bool:
 	return (
-		super.is_valid()
+		super()
 		and is_instance_valid(_player)
 	)
 
 
 func start() -> void:
-	super.start()
+	super()
 	if not is_valid():
 		finish()
 		return
@@ -34,4 +34,4 @@ func start() -> void:
 
 func stop() -> void:
 	_player.stop()
-	super.stop()
+	super()

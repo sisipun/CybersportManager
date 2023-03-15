@@ -20,6 +20,11 @@ config/icon="res://asset/icon/icon.png"
 Calendar="*res://script/base/game_state/calendar/calendar.tscn"
 Data="*res://script/base/game_state/database/database.tscn"
 
+[display]
+
+window/size/viewport_width=2048
+window/size/viewport_height=1024
+
 [input_devices]
 
 pointing/emulate_touch_from_mouse=true

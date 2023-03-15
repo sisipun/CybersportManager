@@ -10,7 +10,7 @@ signal lost(body)
 @export var _rays_count: int = 50
 
 var _direction: Vector2 = target_position
-var _last_detected_bodies = []
+var _last_detected_bodies: Array[Object] = []
 
 
 func _physics_process(_delta: float) -> void:

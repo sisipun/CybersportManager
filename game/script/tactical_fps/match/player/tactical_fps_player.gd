@@ -8,6 +8,7 @@ var weapon: TacticalFpsWeapon = null
 
 
 func _ready() -> void:
+	super()
 	weapon = _weapon_scene.instantiate()
 	add_child(weapon)
 	weapon.init(self)

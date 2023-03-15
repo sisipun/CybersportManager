@@ -55,7 +55,7 @@ func _ready() -> void:
 
 
 func init(teams: Array[TacticalFpsTeam.Side], team_players_count: int) -> void:
-	super.init(teams, team_players_count)
+	super(teams, team_players_count)
 	for team in teams:
 		_score[team] = 0
 		_team_controllers[team].connect("team_dead",Callable(self,"_on_team_dead"))

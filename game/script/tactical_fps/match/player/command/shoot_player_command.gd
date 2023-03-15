@@ -12,18 +12,17 @@ func _init(
 
 
 func is_valid() -> bool:
-	var target: BasePlayer = _arguments[0]
 	return (
-		super.is_valid()
+		super()
 		and is_instance_valid(_player)
-		and is_instance_valid(target) 
+		and is_instance_valid(_arguments[0]) 
 		and is_instance_valid(_player.weapon)
-		and (not _player.is_rotated_to(target.position) or _player.can_see(target))
+		and (not _player.is_rotated_to(_arguments[0].position) or _player.can_see(_arguments[0]))
 	)
 
 
 func start() -> void:
-	super.start()
+	super()
 	if not is_valid():
 		finish()
 		return
@@ -34,6 +33,6 @@ func start() -> void:
 		var delta: float = _current_match.get_process_delta_time()
 		_player.rotate_to(delta, target.position)
 		_player.shoot()
-		await _current_match.get_tree().idle_frame
+		await _current_match.get_tree().process_frame
 	
 	finish()

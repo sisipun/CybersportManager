@@ -31,7 +31,7 @@ func init(params: Array) -> void:
 		player_element.text = player.name
 		assert(player_element.connect("pressed",Callable(self,"_on_player_pressed").bind(player.get_id())) == OK)
 	
-	super.init(params)
+	super(params)
 
 
 func _on_player_pressed(id: String) -> void:

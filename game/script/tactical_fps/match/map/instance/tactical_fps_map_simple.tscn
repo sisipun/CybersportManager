@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://dwndn5lxxf1nt"]
 
-[ext_resource type="PackedScene" path="res://script/tactical_fps/match/map/tactical_fps_map.tscn" id="1"]
+[ext_resource type="PackedScene" uid="uid://vi3oaqaysxhq" path="res://script/tactical_fps/match/map/tactical_fps_map.tscn" id="1"]
 [ext_resource type="PackedScene" uid="uid://c1yjkfchf6m4e" path="res://script/tactical_fps/match/map/tactical_fps_plant_zone.tscn" id="2"]
 [ext_resource type="PackedScene" path="res://script/tactical_fps/match/map/tactical_fps_starting_position.tscn" id="3"]
 [ext_resource type="PackedScene" uid="uid://oygrfbodrmfk" path="res://script/base/match/map/base_wall.tscn" id="4"]
@@ -11,10 +11,10 @@ polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(-276, -276, 275, -274, 277, 276, -276, 275)])
 
 [node name="Map" instance=ExtResource("1")]
-starting_position_nodes = [NodePath("RedStartingPosition"), NodePath("BlueStartingPosition")]
-plant_zone_nodes = [NodePath("ZoneA"), NodePath("ZoneB")]
+starting_position_nodes = Array[NodePath]([NodePath("RedStartingPosition"), NodePath("BlueStartingPosition")])
+plant_zone_nodes = Array[NodePath]([NodePath("ZoneA"), NodePath("ZoneB")])
 
-[node name="Zone" type="NavigationRegion2D" parent="Navigation" index="0"]
+[node name="Navigation@Zone" type="NavigationRegion2D" parent="." index="0"]
 navigation_polygon = SubResource("1")
 
 [node name="LWall" parent="." index="3" instance=ExtResource("4")]

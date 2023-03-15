@@ -1,11 +1,11 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=3 format=3 uid="uid://edq1qf6u4f5d"]
 
-[ext_resource path="res://script/tactical_fps/match/weapon/tactical_fps_weapon.tscn" type="PackedScene" id=1]
-[ext_resource path="res://asset/sprite/weapon.png" type="Texture2D" id=2]
+[ext_resource type="PackedScene" uid="uid://dp4ewewife2fc" path="res://script/tactical_fps/match/weapon/tactical_fps_weapon.tscn" id="1"]
+[ext_resource type="Texture2D" uid="uid://bspjf0t38ayv6" path="res://asset/sprite/weapon.png" id="2"]
 
-[node name="Weapon" instance=ExtResource( 1 )]
-scale = Vector2( 0.4, 0.3 )
-texture = ExtResource( 2 )
+[node name="Weapon" instance=ExtResource("1")]
+scale = Vector2(0.4, 0.3)
+texture = ExtResource("2")
 
 [node name="PlayerAttachPoint" parent="." index="1"]
-position = Vector2( -41, 0 )
+position = Vector2(-41, 0)

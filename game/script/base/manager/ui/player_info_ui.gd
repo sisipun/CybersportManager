@@ -23,4 +23,4 @@ func init(params: Array) -> void:
 	_real_name_label.text = str(player.real_name)
 	_age_label.text = str(player.age)
 	
-	super.init(params)
+	super(params)
