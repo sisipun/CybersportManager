@@ -33,5 +33,6 @@ func start() -> void:
 
 
 func stop() -> void:
-	_player.stop()
+	if _player:
+		_player.stop()
 	super()

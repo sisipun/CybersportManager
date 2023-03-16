@@ -1,8 +1,8 @@
-[gd_resource type="Resource" load_steps=2 format=2]
+[gd_resource type="Resource" script_class="TacticalFpsMigration" load_steps=2 format=3 uid="uid://b744kw0o61kni"]
 
-[ext_resource path="res://script/tactical_fps/game_state/database/migration/tactical_fps_migarion.gd" type="Script" id=1]
+[ext_resource type="Script" path="res://script/tactical_fps/game_state/database/migration/tactical_fps_migarion.gd" id="1"]
 
 [resource]
-script = ExtResource( 1 )
+script = ExtResource("1")
 _path = "res://asset/data"
 _file_name = "data.jsonl"

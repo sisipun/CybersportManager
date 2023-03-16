@@ -30,10 +30,10 @@ var health: float = 0.0
 
 
 func _ready() -> void:
-	assert(_vision.connect("detected",Callable(self,"_on_vision_detected")) == OK)
-	assert(_vision.connect("lost",Callable(self,"_on_vision_lost")) == OK)
-	assert(_hearing.connect("detected",Callable(self,"_on_hearing_detected")) == OK)
-	assert(_navigation_agent.connect("navigation_finished",Callable(self,"_on_navigation_finished")) == OK)
+	assert(_vision.detected.connect(_on_vision_detected) == OK)
+	assert(_vision.lost.connect(_on_vision_lost) == OK)
+	assert(_hearing.detected.connect(_on_hearing_detected) == OK)
+	assert(_navigation_agent.navigation_finished.connect(_on_navigation_finished) == OK)
 	_health_bar.init(_max_health)
 	health = _max_health
 

@@ -3,5 +3,5 @@
 [ext_resource type="Script" path="res://script/base/match/player/vision.gd" id="1"]
 
 [node name="Vision" type="RayCast2D"]
-target_position = Vector2(2000, 0)
+target_position = Vector2(2500, 0)
 script = ExtResource("1")

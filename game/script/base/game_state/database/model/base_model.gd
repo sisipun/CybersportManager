@@ -6,6 +6,10 @@ var _id: String: get = get_id, set = set_id
 var _reference: ModelReference
 
 
+func get_resource_type() -> String:
+	return "BaseModel"
+
+
 func set_id(id: String) -> void:
 	_id = id
 	_reference = ModelReference.new(get_model_name(), _id)

@@ -13,6 +13,10 @@ var country: String
 var _current_team: ModelReference
 
 
+func get_resource_type() -> String:
+	return "PlayerModel"
+
+
 func _init(
 	_discipline: int, 
 	_name: String, 

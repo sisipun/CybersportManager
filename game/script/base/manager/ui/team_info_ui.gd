@@ -29,7 +29,7 @@ func init(params: Array) -> void:
 		_players_container.add_child(player_element)
 		var player: PlayerModel = player_link.get_value()
 		player_element.text = player.name
-		assert(player_element.connect("pressed",Callable(self,"_on_player_pressed").bind(player.get_id())) == OK)
+		assert(player_element.pressed.connect(_on_player_pressed.bind(player.get_id())) == OK)
 	
 	super(params)
 

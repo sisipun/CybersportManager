@@ -1,8 +1,8 @@
 [gd_scene load_steps=3 format=3 uid="uid://bklmkruv1d4qx"]
 
 [ext_resource type="Script" path="res://script/base/game_state/database/database.gd" id="1"]
-[ext_resource type="Resource" path="res://script/tactical_fps/game_state/database/migration/tactical_fps_migration.tres" id="2"]
+[ext_resource type="Resource" uid="uid://b744kw0o61kni" path="res://script/tactical_fps/game_state/database/migration/tactical_fps_migration.tres" id="2"]
 
 [node name="Database" type="Node"]
 script = ExtResource("1")
-migrations = Array[Resource]([ExtResource("2")])
+migrations = Array[Resource("res://script/base/game_state/database/migration/base_migration.gd")]([ExtResource("2")])

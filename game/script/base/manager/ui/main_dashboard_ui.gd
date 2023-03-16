@@ -31,10 +31,10 @@ func _ready() -> void:
 	
 	_on_link_pressed(BaseUi.Type.TEAM_INFO, ["0"])
 	
-	assert(Calendar.connect("next_day_started",Callable(self,"_on_next_day_started")) == OK)
-	assert(_next_button.connect("pressed",Callable(self,"go_next")) == OK)
-	assert(_previous_button.connect("pressed",Callable(self,"go_previous")) == OK)
-	assert(_next_day_button.connect("pressed",Callable(self,"_on_next_day_button_pressed")) == OK)
+	assert(Calendar.next_day_started.connect(_on_next_day_started) == OK)
+	assert(_next_button.pressed.connect(go_next) == OK)
+	assert(_previous_button.pressed.connect(go_previous) == OK)
+	assert(_next_day_button.pressed.connect(_on_next_day_button_pressed) == OK)
 
 
 func go_next() -> void:
@@ -55,13 +55,13 @@ func _go_to_stack_postion(stack_position: int) -> void:
 
 
 func _show_ui(ui: BaseUi) -> void:
-	assert(ui.connect("link_pressed",Callable(self,"_on_link_pressed")) == OK)
+	assert(ui.link_pressed.connect(_on_link_pressed) == OK)
 	ui.show()
 
 
 func _hide_ui(ui: BaseUi) -> void:
 	ui.hide()
-	ui.disconnect("link_pressed",Callable(self,"_on_link_pressed"))
+	ui.link_pressed.disconnect(_on_link_pressed)
 
 
 func _clear_stack_tail(from: int) -> void:

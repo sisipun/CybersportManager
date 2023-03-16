@@ -11,6 +11,7 @@ _round_timer_path = NodePath("RoundTimer")
 _bomb_timer_path = NodePath("BombTimer")
 _start_round_timer_path = NodePath("StartRoundTimer")
 _end_round_timer_path = NodePath("EndRoundTimer")
+_round_duration = 30.0
 map_path = NodePath("Map")
 _team_controller_scene = ExtResource("3")
 _player_controller_scene = ExtResource("1")

@@ -1,21 +1,24 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=3 format=3 uid="uid://dvo2nnxboxufx"]
 
-[ext_resource path="res://script/ui.gd" type="Script" id=1]
-[ext_resource path="res://script/tactical_fps/match/tactical_fps_match.tscn" type="PackedScene" id=2]
+[ext_resource type="Script" path="res://script/ui.gd" id="1"]
+[ext_resource type="PackedScene" uid="uid://dfct4ppukcnhv" path="res://script/tactical_fps/match/tactical_fps_match.tscn" id="2"]
 
 [node name="UI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
-script = ExtResource( 1 )
+script = ExtResource("1")
 
 [node name="MapZone" type="Control" parent="."]
+anchors_preset = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 mouse_filter = 2
 
-[node name="Match" parent="MapZone" instance=ExtResource( 2 )]
+[node name="Match" parent="MapZone" instance=ExtResource("2")]
 
 [editable path="MapZone/Match"]

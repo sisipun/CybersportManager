@@ -8,6 +8,10 @@ var name: String
 var teams: Array[ModelReference]
 
 
+func get_resource_type() -> String:
+	return "OrganizationModel"
+
+
 func _init(
 	_name: String
 ) -> void:

@@ -32,7 +32,7 @@ func _physics_process(_delta: float) -> void:
 			emit_signal("detected", detected_body)
 	
 	for last_detected_body in _last_detected_bodies:
-		if not detected_bodies.has(last_detected_body):
+		if is_instance_valid(last_detected_body) and not detected_bodies.has(last_detected_body):
 			emit_signal("lost", last_detected_body)
 	
 	_last_detected_bodies = detected_bodies

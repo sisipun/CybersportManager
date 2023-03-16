@@ -15,7 +15,7 @@ func init(team: int, players: Array[BasePlayerController], current_match: BaseMa
 	self._current_match = current_match
 	self._players = players
 	for player in _players:
-		assert(player.connect("player_dead",Callable(self,"_on_player_dead")) == OK)
+		assert(player.player_dead.connect(_on_player_dead) == OK)
 
 
 func before_start() -> void:

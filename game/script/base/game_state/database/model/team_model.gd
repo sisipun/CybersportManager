@@ -11,6 +11,10 @@ var players: Array[ModelReference]
 var _organization: ModelReference
 
 
+func get_resource_type() -> String:
+	return "TeamModel"
+
+
 func _init(
 	_discipline: int,
 	_name: String

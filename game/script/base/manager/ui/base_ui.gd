@@ -8,7 +8,6 @@ enum Type {
 }
 
 
-# warning-ignore:unused_signal
 signal link_pressed(type, params)
 
 

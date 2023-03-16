@@ -7,3 +7,7 @@ enum Values {
 	MOBA,
 	BATTLE_ROYALE
 }
+
+
+func get_resource_type() -> String:
+	return "Discipline"

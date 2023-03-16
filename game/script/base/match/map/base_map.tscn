@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://script/base/match/map/base_map.gd" id="2"]
 
 [sub_resource type="RectangleShape2D" id="1"]
-size = Vector2(560, 560)
+size = Vector2(900, 900)
 
 [node name="Map" type="Area2D"]
 script = ExtResource("2")
@@ -13,5 +13,5 @@ script = ExtResource("2")
 shape = SubResource("1")
 
 [node name="Background" type="Sprite2D" parent="."]
-scale = Vector2(2.5, 2.5)
+scale = Vector2(4, 4)
 texture = ExtResource("1")

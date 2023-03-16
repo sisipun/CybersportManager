@@ -6,6 +6,10 @@ extends Resource
 @export var _file_name: String = ""
 
 
+func get_resource_type() -> String:
+	return "BaseMigration"
+
+
 func migrate(database: Database) -> void:
 	var file_path = _path + '/' + _file_name
 	if not FileAccess.file_exists(file_path):

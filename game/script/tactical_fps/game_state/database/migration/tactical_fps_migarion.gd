@@ -2,6 +2,10 @@ class_name TacticalFpsMigration
 extends BaseMigration
 
 
+func get_resource_type() -> String:
+	return "TacticalFpsMigration"
+
+
 func _migrate(file: FileAccess, database: Database) -> void:
 	var players: Dictionary = {}
 	var players_teams: Dictionary = {}

@@ -29,11 +29,11 @@ func spawn() -> void:
 	_player.init(team, index)
 	_current_match.map.spawn_player(_player)
 	
-	assert(_player.connect("saw",Callable(self,"_on_player_saw")) == OK)
-	assert(_player.connect("stopped_seeing",Callable(self,"_on_player_stopped_seeing")) == OK)
-	assert(_player.connect("heard",Callable(self,"_on_player_heard")) == OK)
-	assert(_player.connect("dead",Callable(self,"_on_player_dead")) == OK)
-	assert(_player.connect("hitted",Callable(self,"_on_player_hitted")) == OK)
+	assert(_player.saw.connect(_on_player_saw) == OK)
+	assert(_player.stopped_seeing.connect(_on_player_stopped_seeing) == OK)
+	assert(_player.heard.connect(_on_player_heard) == OK)
+	assert(_player.dead.connect(_on_player_dead) == OK)
+	assert(_player.hitted.connect(_on_player_hitted) == OK)
 
 
 func despawn() -> void:
@@ -52,13 +52,13 @@ func _start_command(command: BasePlayerCommand) -> void:
 	
 	_commands.append(command)
 	_current_command = command
-	assert(_current_command.connect("finished",Callable(self,"_on_current_command_finished")) == OK)
+	assert(_current_command.finished.connect(_on_current_command_finished) == OK)
 	_current_command.start()
 
 
 func _stop_current_command() -> void:
 	if _current_command != null:
-		_current_command.disconnect("finished",Callable(self,"_on_current_command_finished"))
+		_current_command.finished.disconnect(_on_current_command_finished)
 		_current_command.stop()
 		_current_command = null
 

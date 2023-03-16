@@ -19,7 +19,7 @@ enum State {
 @export var _round_ends_winning_team: TacticalFpsTeam.Side = TacticalFpsTeam.Side.BLUE
 @export var _round_bomb_explodes_winning_team: TacticalFpsTeam.Side = TacticalFpsTeam.Side.RED
 
-@export var _round_duration: float = 10.0
+@export var _round_duration: float = 30.0
 @export var _bomb_duration: float = 30.0
 @export var _start_round_delay: float = 2.0
 @export var _end_round_delay: float = 3.0
@@ -36,19 +36,19 @@ var _state: int = State.ROUND_STARTING
 func _ready() -> void:
 	_round_timer.one_shot = true
 	_round_timer.wait_time = _round_duration
-	_round_timer.connect("timeout",Callable(self,"_on_round_timer_timeout"))
+	assert(_round_timer.timeout.connect(_on_round_timer_timeout) == OK)
 	
 	_bomb_timer.one_shot = true
 	_bomb_timer.wait_time = _bomb_duration
-	_bomb_timer.connect("timeout",Callable(self,"_on_bomb_timer_timeout"))
+	assert(_bomb_timer.timeout.connect(_on_bomb_timer_timeout) == OK)
 	
 	_start_round_timer.one_shot = true
 	_start_round_timer.wait_time = _start_round_delay
-	_start_round_timer.connect("timeout",Callable(self,"_on_start_round_timer_timeout"))
+	assert(_start_round_timer.timeout.connect(_on_start_round_timer_timeout) == OK)
 	
 	_end_round_timer.one_shot = true
 	_end_round_timer.wait_time = _end_round_delay
-	_end_round_timer.connect("timeout",Callable(self,"_on_end_round_timer_timeout"))
+	assert(_end_round_timer.timeout.connect(_on_end_round_timer_timeout) == OK)
 	
 	init(TacticalFpsTeam.all_sides(), 3)
 	start()
@@ -58,7 +58,7 @@ func init(teams: Array[TacticalFpsTeam.Side], team_players_count: int) -> void:
 	super(teams, team_players_count)
 	for team in teams:
 		_score[team] = 0
-		_team_controllers[team].connect("team_dead",Callable(self,"_on_team_dead"))
+		assert(_team_controllers[team].team_dead.connect(_on_team_dead) == OK)
 
 
 func start() -> void:
