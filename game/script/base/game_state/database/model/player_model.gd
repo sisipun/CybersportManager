@@ -2,9 +2,9 @@ class_name PlayerModel
 extends BaseModel
 
 
-const MODEL_NAME: String = "Player"
+const MODEL_NAME: String = "PlayerModel"
 
-var discipline: int
+var discipline: Discipline.Values
 var name: String
 var real_name: String
 var age: int
@@ -13,12 +13,8 @@ var country: String
 var _current_team: ModelReference
 
 
-func get_resource_type() -> String:
-	return "PlayerModel"
-
-
 func _init(
-	_discipline: int, 
+	_discipline: Discipline.Values, 
 	_name: String, 
 	_real_name: String, 
 	_age: int,
@@ -41,6 +37,10 @@ func get_current_team() -> TeamModel:
 		return null
 	
 	return _current_team.get_value() as TeamModel
+
+
+func get_resource_type() -> String:
+	return MODEL_NAME
 
 
 func get_model_name() -> String:

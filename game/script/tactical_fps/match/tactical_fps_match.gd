@@ -76,7 +76,7 @@ func start_round() -> void:
 	_state = State.ROUND_IN_PROGRESS
 
 
-func end_round(winner: int) -> void:
+func end_round(winner: TacticalFpsTeam.Side) -> void:
 	if _state != State.ROUND_IN_PROGRESS:
 		return
 	
@@ -108,7 +108,7 @@ func _on_end_round_timer_timeout() -> void:
 	_start_round_timer.start()
 
 
-func _on_team_dead(team: int) -> void:
+func _on_team_dead(team: TacticalFpsTeam.Side) -> void:
 	end_round(1 - team)
 
 

@@ -2,21 +2,17 @@ class_name TeamModel
 extends BaseModel
 
 
-const MODEL_NAME: String = "Team"
+const MODEL_NAME: String = "TeamModel"
 
-var discipline: int
+var discipline: Discipline.Values
 var name: String
 var players: Array[ModelReference]
 
 var _organization: ModelReference
 
 
-func get_resource_type() -> String:
-	return "TeamModel"
-
-
 func _init(
-	_discipline: int,
+	_discipline: Discipline.Values,
 	_name: String
 ) -> void:
 	self.discipline = _discipline
@@ -34,6 +30,10 @@ func get_organization() -> OrganizationModel:
 		return null
 	
 	return _organization.get_value() as OrganizationModel
+
+
+func get_resource_type() -> String:
+	return MODEL_NAME
 
 
 func get_model_name() -> String:

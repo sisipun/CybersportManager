@@ -27,13 +27,13 @@ func _physics_process(_delta: float) -> void:
 		if is_colliding() and not detected_bodies.has(get_collider()):
 			detected_bodies.append(get_collider())
 	
-	for detected_body in detected_bodies:
-		if not _last_detected_bodies.has(detected_body):
-			emit_signal("detected", detected_body)
+	var new_detected_bodies: Array[Object] = detected_bodies.filter(func(body): return not _last_detected_bodies.has(body))
+	for new_detected_body in new_detected_bodies:
+		emit_signal("detected", new_detected_body)
 	
-	for last_detected_body in _last_detected_bodies:
-		if is_instance_valid(last_detected_body) and not detected_bodies.has(last_detected_body):
-			emit_signal("lost", last_detected_body)
+	var lost_bodies = _last_detected_bodies.filter(func(body): return is_instance_valid(body) and not detected_bodies.has(body))
+	for lost_body in lost_bodies:
+		emit_signal("lost", lost_body)
 	
 	_last_detected_bodies = detected_bodies
 	target_position = _direction

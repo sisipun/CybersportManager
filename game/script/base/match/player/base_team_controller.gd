@@ -27,8 +27,5 @@ func process() -> void:
 
 
 func _on_player_dead() -> void:
-	for player in _players:
-		if not player.is_dead():
-			return
-	
-	emit_signal("team_dead", _team)
+	if _players.all(func(player) -> bool: return player.is_dead()):
+		emit_signal("team_dead", _team)
