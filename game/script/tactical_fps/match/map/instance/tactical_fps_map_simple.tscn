@@ -6,51 +6,51 @@
 [ext_resource type="PackedScene" uid="uid://oygrfbodrmfk" path="res://script/base/match/map/base_wall.tscn" id="4"]
 
 [sub_resource type="NavigationPolygon" id="1"]
-vertices = PackedVector2Array(-276, -276, 275, -274, 277, 276, -276, 275)
+vertices = PackedVector2Array(-429, -430, 429, -429, 433, 430, -431, 428)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(-276, -276, 275, -274, 277, 276, -276, 275)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-429, -430, 429, -429, 433, 430, -431, 428)])
 
 [node name="Map" instance=ExtResource("1")]
 starting_position_nodes = Array[NodePath]([NodePath("RedStartingPosition"), NodePath("BlueStartingPosition")])
 plant_zone_nodes = Array[NodePath]([NodePath("ZoneA"), NodePath("ZoneB")])
 
-[node name="Navigation@Zone" type="NavigationRegion2D" parent="." index="0"]
-navigation_polygon = SubResource("1")
-
-[node name="LWall" parent="." index="3" instance=ExtResource("4")]
-position = Vector2(-450, 0)
-scale = Vector2(0.16, 4)
-
-[node name="RWall" parent="." index="4" instance=ExtResource("4")]
-position = Vector2(450, 0)
-scale = Vector2(0.16, 4)
-
-[node name="UWall" parent="." index="5" instance=ExtResource("4")]
-position = Vector2(0, -450)
-scale = Vector2(4, 0.16)
-
-[node name="DWall" parent="." index="6" instance=ExtResource("4")]
-position = Vector2(0, 450)
-scale = Vector2(4, 0.16)
-
-[node name="Border" parent="." index="7" instance=ExtResource("4")]
-position = Vector2(0, -102)
-scale = Vector2(2, 0.2)
-
-[node name="RedStartingPosition" parent="." index="8" instance=ExtResource("3")]
+[node name="RedStartingPosition" parent="." index="2" instance=ExtResource("3")]
 position = Vector2(33, 223)
 
-[node name="BlueStartingPosition" parent="." index="9" instance=ExtResource("3")]
+[node name="BlueStartingPosition" parent="." index="3" instance=ExtResource("3")]
 position = Vector2(-2, -186)
 team = 1
 
-[node name="ZoneA" parent="." index="10" instance=ExtResource("2")]
+[node name="ZoneA" parent="." index="4" instance=ExtResource("2")]
 position = Vector2(-270, -300)
 scale = Vector2(4, 4)
 
-[node name="ZoneB" parent="." index="11" instance=ExtResource("2")]
+[node name="ZoneB" parent="." index="5" instance=ExtResource("2")]
 position = Vector2(270, -300)
 scale = Vector2(4, 4)
+
+[node name="LWall" parent="Geometry" index="0" instance=ExtResource("4")]
+position = Vector2(-450, 0)
+scale = Vector2(0.16, 4)
+
+[node name="RWall" parent="Geometry" index="1" instance=ExtResource("4")]
+position = Vector2(450, 0)
+scale = Vector2(0.16, 4)
+
+[node name="UWall" parent="Geometry" index="2" instance=ExtResource("4")]
+position = Vector2(0, -450)
+scale = Vector2(4, 0.16)
+
+[node name="DWall" parent="Geometry" index="3" instance=ExtResource("4")]
+position = Vector2(0, 450)
+scale = Vector2(4, 0.16)
+
+[node name="Border" parent="Geometry" index="4" instance=ExtResource("4")]
+position = Vector2(0, -102)
+scale = Vector2(2, 0.2)
+
+[node name="Zone" type="NavigationRegion2D" parent="Navigation" index="0"]
+navigation_polygon = SubResource("1")
 
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]
 [connection signal="input_event" from="." to="." method="_on_input_event"]

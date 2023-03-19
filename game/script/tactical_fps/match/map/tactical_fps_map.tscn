@@ -7,3 +7,7 @@
 script = ExtResource("3")
 starting_position_nodes = Array[NodePath]([NodePath(""), NodePath("")])
 plant_zone_nodes = Array[NodePath]([NodePath(""), NodePath("")])
+
+[node name="Geometry" type="Node2D" parent="." index="2"]
+
+[node name="Navigation" type="Node2D" parent="." index="3"]

@@ -50,7 +50,7 @@ func _ready() -> void:
 	_end_round_timer.wait_time = _end_round_delay
 	assert(_end_round_timer.timeout.connect(_on_end_round_timer_timeout) == OK)
 	
-	init(TacticalFpsTeam.all_sides(), 3)
+	init(TacticalFpsTeam.all_sides(), 2)
 	start()
 
 

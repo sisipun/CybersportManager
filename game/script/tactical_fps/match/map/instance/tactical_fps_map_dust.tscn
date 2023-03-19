@@ -5,35 +5,40 @@
 [ext_resource type="PackedScene" path="res://script/tactical_fps/match/map/tactical_fps_starting_position.tscn" id="3"]
 [ext_resource type="PackedScene" uid="uid://oygrfbodrmfk" path="res://script/base/match/map/base_wall.tscn" id="4"]
 
+[sub_resource type="NavigationPolygon" id="11"]
+vertices = PackedVector2Array(38, -153, 152, -153, 147, -95, 34, -94)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(38, -153, 152, -153, 147, -95, 34, -94)])
+
 [sub_resource type="NavigationPolygon" id="1"]
-vertices = PackedVector2Array(267, 156, 268, 270, -264, 272, -264, 149, -119, 150)
+vertices = PackedVector2Array(449, 156, 448, 447, -446, 447, -446, 149, -119, 150)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(267, 156, 268, 270, -264, 272, -264, 149, -119, 150)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(449, 156, 448, 447, -446, 447, -446, 149, -119, 150)])
 
 [sub_resource type="NavigationPolygon" id="2"]
-vertices = PackedVector2Array(150, -272, 153, -179, -144, -180, -140, -272)
+vertices = PackedVector2Array(150, -449, 153, -179, -144, -180, -142, -452)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(-140, -272, -144, -180, 153, -179, 150, -272)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-142, -452, -144, -180, 153, -179, 150, -449)])
 
 [sub_resource type="NavigationPolygon" id="3"]
-vertices = PackedVector2Array(-264, 148, -269, -176, -145, -179, -144, 149)
+vertices = PackedVector2Array(-446, 148, -446, -176, -145, -179, -144, 149)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(-144, 149, -145, -179, -269, -176, -264, 148)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-144, 149, -145, -179, -446, -176, -446, 148)])
 
 [sub_resource type="NavigationPolygon" id="4"]
-vertices = PackedVector2Array(154, -177, 269, -179, 267, 154, 154, -155, 150, -95, 149, 153)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 3, 2, 5)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(154, -177, 154, -155, 150, -95, 149, 153, 267, 154, 269, -179)])
+vertices = PackedVector2Array(153, -153, 154, -177, 449, -179, 449, 154, 149, 153, 150, -97)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4), PackedInt32Array(0, 4, 5)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(154, -177, 153, -153, 150, -97, 149, 153, 449, 154, 449, -179)])
 
 [sub_resource type="NavigationPolygon" id="5"]
-vertices = PackedVector2Array(-160, -180, -270, -177, -268, -273, -141, -272, -145, -180)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(0, 3, 4)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(-160, -180, -145, -180, -141, -272, -268, -273, -270, -177)])
+vertices = PackedVector2Array(-447, -177, -445, -448, -141, -450, -145, -180, -146, -179)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-146, -179, -145, -180, -141, -450, -445, -448, -447, -177)])
 
 [sub_resource type="NavigationPolygon" id="6"]
-vertices = PackedVector2Array(270, -272, 269, -181, 154, -179, 152, -272)
+vertices = PackedVector2Array(449, -450, 450, -181, 154, -179, 152, -450)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(152, -272, 154, -179, 269, -181, 270, -272)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(152, -450, 154, -179, 450, -181, 449, -450)])
 
 [sub_resource type="NavigationPolygon" id="7"]
 vertices = PackedVector2Array(-30, -179, 38, -180, 32, -93, -29, -74, 30, 152, -32, 151)
@@ -55,86 +60,81 @@ vertices = PackedVector2Array(-144, -155, -31, -155, -30, -97, -143, -97)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(-144, -155, -31, -155, -30, -97, -143, -97)])
 
-[sub_resource type="NavigationPolygon" id="11"]
-vertices = PackedVector2Array(38, -153, 152, -153, 147, -95, 34, -94)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(38, -153, 152, -153, 147, -95, 34, -94)])
-
 [node name="Map" instance=ExtResource("1")]
 starting_position_nodes = Array[NodePath]([NodePath("RedStartingPosition"), NodePath("BlueStartingPosition")])
 plant_zone_nodes = Array[NodePath]([NodePath("ZoneA"), NodePath("ZoneB")])
 
-[node name="Navigation@Wall1" parent="." index="0" instance=ExtResource("4")]
-position = Vector2(-132, 35)
-scale = Vector2(0.1, 1)
-
-[node name="Navigation@Wall2" parent="." index="1" instance=ExtResource("4")]
-position = Vector2(-87, -85)
-scale = Vector2(0.5, 0.1)
-
-[node name="Navigation@Wall3" parent="." index="2" instance=ExtResource("4")]
-position = Vector2(-88, -167)
-scale = Vector2(0.5, 0.1)
-
-[node name="RedStartingPosition" parent="." index="3" instance=ExtResource("3")]
+[node name="RedStartingPosition" parent="." index="0" instance=ExtResource("3")]
 position = Vector2(33, 223)
 
-[node name="BlueStartingPosition" parent="." index="4" instance=ExtResource("3")]
+[node name="BlueStartingPosition" parent="." index="1" instance=ExtResource("3")]
 position = Vector2(-2, -186)
 team = 1
 
-[node name="ZoneA" parent="." index="5" instance=ExtResource("2")]
+[node name="ZoneA" parent="." index="2" instance=ExtResource("2")]
 position = Vector2(-176, -223)
 scale = Vector2(2, 2)
 
-[node name="ZoneB" parent="." index="6" instance=ExtResource("2")]
+[node name="ZoneB" parent="." index="3" instance=ExtResource("2")]
 position = Vector2(185, -206)
 scale = Vector2(2, 2)
 
-[node name="Navigation@Wall4" parent="." index="7" instance=ExtResource("4")]
+[node name="Background" parent="." index="5"]
+position = Vector2(1, -1)
+
+[node name="Wall1" parent="Geometry" index="0" instance=ExtResource("4")]
+position = Vector2(-132, 35)
+scale = Vector2(0.1, 1)
+
+[node name="Wall2" parent="Geometry" index="1" instance=ExtResource("4")]
+position = Vector2(-87, -85)
+scale = Vector2(0.5, 0.1)
+
+[node name="Wall3" parent="Geometry" index="2" instance=ExtResource("4")]
+position = Vector2(-88, -167)
+scale = Vector2(0.5, 0.1)
+
+[node name="Wall4" parent="Geometry" index="3" instance=ExtResource("4")]
 position = Vector2(96, -166)
 scale = Vector2(0.5, 0.1)
 
-[node name="Navigation@Wall5" parent="." index="8" instance=ExtResource("4")]
+[node name="Wall5" parent="Geometry" index="4" instance=ExtResource("4")]
 position = Vector2(136, 40)
 scale = Vector2(0.1, 1)
 
-[node name="Navigation@Wall6" parent="." index="9" instance=ExtResource("4")]
+[node name="Wall6" parent="Geometry" index="5" instance=ExtResource("4")]
 position = Vector2(91, -82)
 scale = Vector2(0.5, 0.1)
 
-[node name="Navigation@T-Spawn" type="NavigationRegion2D" parent="." index="10"]
-navigation_polygon = SubResource("1")
-
-[node name="Navigation@CT-Spawn" type="NavigationRegion2D" parent="." index="11"]
-navigation_polygon = SubResource("2")
-
-[node name="Navigation@Titanic" type="NavigationRegion2D" parent="." index="12"]
-navigation_polygon = SubResource("3")
-
-[node name="Navigation@Long" type="NavigationRegion2D" parent="." index="13"]
-navigation_polygon = SubResource("4")
-
-[node name="Navigation@B-Plant" type="NavigationRegion2D" parent="." index="14"]
-navigation_polygon = SubResource("5")
-
-[node name="Navigation@A-Plant" type="NavigationRegion2D" parent="." index="15"]
-navigation_polygon = SubResource("6")
-
-[node name="Navigation@Mid" type="NavigationRegion2D" parent="." index="16"]
-navigation_polygon = SubResource("7")
-
-[node name="Navigation@L-Min" type="NavigationRegion2D" parent="." index="17"]
-navigation_polygon = SubResource("8")
-
-[node name="Navigation@R-Mid" type="NavigationRegion2D" parent="." index="18"]
-navigation_polygon = SubResource("9")
-
-[node name="Navigation@Lower" type="NavigationRegion2D" parent="." index="19"]
-navigation_polygon = SubResource("10")
-
-[node name="Navigation@Short" type="NavigationRegion2D" parent="." index="20"]
+[node name="Short" type="NavigationRegion2D" parent="Navigation" index="0"]
 navigation_polygon = SubResource("11")
 
-[node name="Background" parent="." index="22"]
-position = Vector2(1, -1)
+[node name="T-Spawn" type="NavigationRegion2D" parent="Navigation" index="1"]
+navigation_polygon = SubResource("1")
+
+[node name="CT-Spawn" type="NavigationRegion2D" parent="Navigation" index="2"]
+navigation_polygon = SubResource("2")
+
+[node name="Titanic" type="NavigationRegion2D" parent="Navigation" index="3"]
+navigation_polygon = SubResource("3")
+
+[node name="Long" type="NavigationRegion2D" parent="Navigation" index="4"]
+navigation_polygon = SubResource("4")
+
+[node name="B-Plant" type="NavigationRegion2D" parent="Navigation" index="5"]
+navigation_polygon = SubResource("5")
+
+[node name="A-Plant" type="NavigationRegion2D" parent="Navigation" index="6"]
+navigation_polygon = SubResource("6")
+
+[node name="Mid" type="NavigationRegion2D" parent="Navigation" index="7"]
+navigation_polygon = SubResource("7")
+
+[node name="L-Min" type="NavigationRegion2D" parent="Navigation" index="8"]
+navigation_polygon = SubResource("8")
+
+[node name="R-Mid" type="NavigationRegion2D" parent="Navigation" index="9"]
+navigation_polygon = SubResource("9")
+
+[node name="Lower" type="NavigationRegion2D" parent="Navigation" index="10"]
+navigation_polygon = SubResource("10")
